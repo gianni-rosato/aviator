@@ -47,6 +47,8 @@
                 <child>
                     <object class="AdwViewStack" id="stack">
                         <property name="vexpand">True</property>
+
+                        <!-- Video Tab -->
                         <child>
                             <object class="AdwViewStackPage">
                                 <property name="name">page1</property>
@@ -114,10 +116,6 @@
                                                                             <object class="GtkBox">
                                                                                 <property name="margin-top">16</property>
                                                                                 <property name="margin-bottom">16</property>
-                                                                                <!-- <property name="margin-start">24</property> -->
-                                                                                <!-- <property name="margin-end">24</property> -->
-
-                                                                                <property name="tooltip-text">linked</property>
                                                                                 <style>
                                                                                     <class name="linked" />
                                                                                 </style>
@@ -143,9 +141,40 @@
                                                                             </object>
                                                                         </child>
                                                                     </object>
-
                                                                 </child>
+                                                            </object>
+                                                        </child>
 
+                                                        <child>
+                                                            <object class="AdwActionRow">
+                                                                <property name="title" translatable="yes">_Frame Rate</property>
+                                                                <property name="use-underline">true</property>
+                                                                <child>
+                                                                    <object class="GtkBox">
+                                                                        <child>
+                                                                            <object class="GtkBox">
+                                                                                <property name="margin-top">16</property>
+                                                                                <property name="margin-bottom">16</property>
+                                                                                <property name="tooltip-text">Framerate determines how many frames your video displays per second. It is not recommended to set this higher than the video's native framerate.</property>
+                                                                                <style>
+                                                                                    <class name="linked" />
+                                                                                </style>
+                                                                                <child>
+                                                                                    <object class="GtkEntry">
+                                                                                        <property name="placeholder-text" translatable="yes">FPS</property>
+                                                                                        <property name="hexpand">True</property>
+                                                                                        <property name="max-width-chars">4</property>
+                                                                                    </object>
+                                                                                </child>
+                                                                                <child>
+                                                                                    <object class="GtkButton">
+                                                                                        <property name="label" translatable="yes">Same as source</property>
+                                                                                    </object>
+                                                                                </child>
+                                                                            </object>
+                                                                        </child>
+                                                                    </object>
+                                                                </child>
                                                             </object>
                                                         </child>
 
@@ -153,6 +182,7 @@
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Variable Frame Rate</property>
                                                                 <property name="use-underline">true</property>
+                                                                <property name="tooltip-text">Variable Framerate makes your output framerate identical to your source's, given "Same as Source" is selected for FPS input.</property>
                                                                 <child>
                                                                     <object class="GtkSwitch">
                                                                         <property name="valign">center</property>
@@ -165,6 +195,7 @@
                                                         <child>
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_CRF</property>
+                                                                <property name="tooltip-text">Constant Rate Factor (CRF) determines the size and quality of your output. Higher values mean lower file size and quality while lower values create larger, higher-quality video.</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
                                                                     <object class="GtkScale">
@@ -188,10 +219,10 @@
                                                             </object>
                                                         </child>
 
-
                                                         <child>
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_CPU</property>
+                                                                <property name="tooltip-text">This value determines how hard your system will work to encode your video. Lower values mean your system will take longer to encode the video, but the files will be higher quality. Higher values will encode less efficiently, but much more quickly.</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
                                                                     <object class="GtkScale">
@@ -214,7 +245,6 @@
                                                                 </child>
                                                             </object>
                                                         </child>
-
                                                     </object>
                                                 </child>
                                             </object>
@@ -223,6 +253,8 @@
                                 </property>
                             </object>
                         </child>
+
+                        <!-- Audio Tab -->
                         <child>
                             <object class="AdwViewStackPage">
                                 <property name="name">page2</property>
@@ -230,35 +262,208 @@
                                 <property name="icon-name">audio-speakers-symbolic</property>
                                 <property name="use-underline">True</property>
                                 <property name="child">
-                                    <object class="GtkLabel">
-                                        <property name="margin-top">24</property>
-                                        <property name="margin-bottom">24</property>
-                                        <property name="margin-start">24</property>
-                                        <property name="margin-end">24</property>
-                                        <property name="label" translatable="yes">Audio</property>
+                                    <object class="GtkBox">
+                                        <property name="orientation">vertical</property>
+                                        <property name="homogeneous">False</property>
+                                        <child>
+                                            <object class="AdwPreferencesPage">
+                                                <property name="margin-top">16</property>
+                                                <child>
+                                                    <object class="AdwPreferencesGroup">
+                                                        <!-- <property name="description" translatable="yes">Transcode a video to AV1.</property> -->
+                                                        <!-- <child>
+                                                            <object class="AdwActionRow">
+                                                                <property name="title" translatable="yes">_File</property>
+                                                                <property name="use-underline">true</property>
+                                                                <child>
+                                                                    <object class="GtkButton">
+                                                                        <property name="valign">center</property>
+                                                                        <property name="child">
+                                                                            <object class="AdwButtonContent">
+                                                                                <property name="icon-name">document-open-symbolic</property>
+                                                                                <property name="label" translatable="yes">_Open</property>
+                                                                                <property name="use-underline">True</property>
+                                                                            </object>
+                                                                        </property>
+                                                                    </object>
+                                                                </child>
+                                                            </object>
+                                                        </child> -->
+
+                                                        <child>
+                                                            <object class="AdwActionRow">
+                                                                <property name="title" translatable="yes">_Bitrate</property>
+                                                                <property name="use-underline">true</property>
+                                                                <property name="tooltip-text">Sets the audio bitrate to a value in kbps. Higher values mean better quality.</property>
+                                                                <child>
+                                                                    <!-- <child>
+                                                                            <object class="GtkLabel">
+                                                                                <property name="margin-top">24</property>
+                                                                                <property name="margin-bottom">24</property>
+                                                                                <property name="margin-start">24</property>
+                                                                                <property name="margin-end">24</property>
+                                                                                <property name="label" translatable="yes">Resolution</property>
+                                                                            </object>
+                                                                        </child> -->
+                                                                    <object class="GtkBox">
+                                                                        <property name="margin-top">16</property>
+                                                                        <property name="margin-bottom">16</property>
+                                                                        <style>
+                                                                            <class name="linked" />
+                                                                        </style>
+                                                                        <child>
+                                                                            <object class="GtkEntry">
+                                                                                <property name="placeholder-text" translatable="yes">kbps</property>
+                                                                                <property name="hexpand">True</property>
+                                                                                <property name="max-width-chars">4</property>
+                                                                            </object>
+                                                                        </child>
+                                                                        <child>
+                                                                            <object class="GtkButton">
+                                                                                <property name="label" translatable="yes">Same as source</property>
+                                                                            </object>
+                                                                        </child>
+                                                                    </object>
+                                                                </child>
+                                                            </object>
+                                                        </child>
+
+                                                        <child>
+                                                            <object class="AdwActionRow">
+                                                                <property name="title" translatable="yes">_Variable Bit Rate</property>
+                                                                <property name="use-underline">true</property>
+                                                                <property name="tooltip-text">Allows Opus to vary the bitrate based on the complexity of the audio.</property>
+                                                                <child>
+                                                                    <object class="GtkSwitch">
+                                                                        <property name="valign">center</property>
+                                                                        <!-- <property name="active" bind-source="LoginAdvancedDialog" bind-property="autodiscovery" bind-flags="sync-create|bidirectional" /> -->
+                                                                    </object>
+                                                                </child>
+                                                            </object>
+                                                        </child>
+
+                                                        <child>
+                                                            <object class="AdwActionRow">
+                                                                <property name="title" translatable="yes">_Hint for Music</property>
+                                                                <property name="tooltip-text">Provide a hint to the encoder if the audio is music</property>
+                                                                <property name="use-underline">true</property>
+                                                                <child>
+                                                                    <object class="GtkSwitch">
+                                                                        <property name="valign">center</property>
+                                                                        <!-- <property name="active" bind-source="LoginAdvancedDialog" bind-property="autodiscovery" bind-flags="sync-create|bidirectional" /> -->
+                                                                    </object>
+                                                                </child>
+                                                            </object>
+                                                        </child>
+
+                                                        <child>
+                                                            <object class="AdwActionRow">
+                                                                <property name="title" translatable="yes">_Downmix Channels to Stereo</property>
+                                                                <property name="use-underline">true</property>
+                                                                <property name="tooltip-text">Downmixes audio with more channels to stereo audio with two channels.</property>
+                                                                <child>
+                                                                    <object class="GtkSwitch">
+                                                                        <property name="valign">center</property>
+                                                                        <!-- <property name="active" bind-source="LoginAdvancedDialog" bind-property="autodiscovery" bind-flags="sync-create|bidirectional" /> -->
+                                                                    </object>
+                                                                </child>
+                                                            </object>
+                                                        </child>
+                                                    </object>
+                                                </child>
+                                            </object>
+                                        </child>
                                     </object>
                                 </property>
                             </object>
                         </child>
+
+                        <!-- Export Tab -->
                         <child>
                             <object class="AdwViewStackPage">
                                 <property name="name">page3</property>
                                 <property name="title" translatable="yes">_Export</property>
                                 <property name="icon-name">folder-download-symbolic</property>
-                                <property name="badge-number">3</property>
-                                <property name="needs-attention">true</property>
                                 <property name="use-underline">True</property>
                                 <property name="child">
-                                    <object class="GtkLabel">
-                                        <property name="margin-top">24</property>
-                                        <property name="margin-bottom">24</property>
-                                        <property name="margin-start">24</property>
-                                        <property name="margin-end">24</property>
-                                        <property name="label" translatable="yes">Export</property>
+                                    <object class="GtkBox">
+                                        <property name="orientation">vertical</property>
+                                        <property name="homogeneous">False</property>
+
+                                        <child>
+                                            <object class="AdwPreferencesPage">
+                                                <child>
+                                                    <object class="AdwPreferencesGroup">
+                                                        <property name="margin-top">16</property>
+                                                        <!-- <property name="description" translatable="yes">Transcode a video to AV1.</property> -->
+                                                        <child>
+                                                            <object class="AdwActionRow">
+                                                                <property name="title" translatable="yes">_Output File</property>
+                                                                <property name="use-underline">true</property>
+                                                                <child>
+                                                                    <object class="GtkButton">
+                                                                        <property name="valign">center</property>
+                                                                        <property name="child">
+                                                                            <object class="AdwButtonContent">
+                                                                                <property name="icon-name">document-open-symbolic</property>
+                                                                                <!-- <property name="label" translatable="yes">_Open</property> -->
+                                                                                <property name="use-underline">True</property>
+                                                                            </object>
+                                                                        </property>
+                                                                    </object>
+                                                                </child>
+                                                            </object>
+                                                        </child>
+
+                                                        <child>
+                                                            <object class="AdwActionRow">
+                                                                <property name="title" translatable="yes">_Container</property>
+                                                                <property name="use-underline">true</property>
+                                                                <property name="tooltip-text">The container your video is stored in, which is associated with the file extension.</property>
+                                                                <child>
+                                                                    <object class="GtkBox">
+                                                                        <property name="margin-top">10</property>
+                                                                        <property name="margin-bottom">10</property>
+                                                                        <style>
+                                                                            <class name="linked" />
+                                                                        </style>
+                                                                        <child>
+                                                                            <object class="GtkButton">
+                                                                                <property name="label" translatable="yes">MKV</property>
+                                                                            </object>
+                                                                        </child>
+                                                                        <child>
+                                                                            <object class="GtkButton">
+                                                                                <property name="label" translatable="yes">WEBM</property>
+                                                                            </object>
+                                                                        </child>
+                                                                    </object>
+                                                                </child>
+                                                            </object>
+                                                        </child>
+                                                    </object>
+                                                </child>
+                                            </object>
+                                        </child>
+
+                                        <child>
+                                            <object class="GtkButton">
+                                                <property name="label" translatable="yes">Encode</property>
+                                                <property name="halign">center</property>
+                                                <!-- <property name="action-name">on_open</property> -->
+                                                <!-- <property name="icon-name">document-open-symbolic</property> -->
+                                                <style>
+                                                    <class name="pill" />
+                                                    <class name="sugested-action" />
+                                                </style>
+                                            </object>
+                                        </child>
                                     </object>
                                 </property>
                             </object>
                         </child>
+
+
                     </object>
                 </child>
                 <child>
