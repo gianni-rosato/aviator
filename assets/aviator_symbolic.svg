@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="16.0px"
+   height="16.0px"
+   viewBox="0 0 16.0 16.0"
+   version="1.1"
+   id="SVGRoot"
+   sodipodi:docname="aviator_symbolic.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1001"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="48.246665"
+     inkscape:cx="7.6585604"
+     inkscape:cy="6.9434851"
+     inkscape:window-width="1503"
+     inkscape:window-height="933"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1007"
+       spacingy="0.5" />
+  </sodipodi:namedview>
+  <defs
+     id="defs996" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       opacity="0.02"
+       fill="none"
+       d="M 15.000003,1.0000007 H 1.0000009 V 15.000002 H 15.000003 Z"
+       id="path670"
+       style="stroke-width:0.178962" />
+    <path
+       d="m 12.000017,2.4998611 c 1.658371,-0.00363 3.003631,1.3416464 3,3 v 4.9999999 c 0.0038,1.658355 -1.341629,3.00363 -3,3 H 4.0000167 c -1.6583696,0.0036 -3.00362977,-1.341646 -3,-3 V 5.4998611 c -0.00363,-1.6583536 1.3416304,-3.0036298 3,-3 z m -3.4e-5,2.0002778 -7.9999663,-2.778e-4 c -0.5526736,-0.00113 -1.0009071,0.4473315 -1,1 v 4.9999999 c -9.07e-4,0.55267 0.4473266,1.001136 1,1 h 8.0000003 c 0.552674,0.0011 1.000906,-0.44733 1,-1 L 13.00013,5.4998649 C 13.00133,4.9470363 12.552851,4.4987272 12.000017,4.4998611 Z"
+       fill="#2e3436"
+       id="path672"
+       style="stroke-width:0.204527"
+       sodipodi:nodetypes="ccccccccccccccccccc" />
+    <circle
+       style="opacity:0.35;fill:#2e3436;fill-opacity:1"
+       id="path1185"
+       cx="5.5"
+       cy="7"
+       r="1.5" />
+    <circle
+       style="opacity:0.35;fill:#2e3436;fill-opacity:1"
+       id="path1187"
+       cx="10.5"
+       cy="7"
+       r="1.5" />
+    <rect
+       style="opacity:1;fill:#2e3436;fill-opacity:1"
+       id="rect1241"
+       width="2"
+       height="1"
+       x="7"
+       y="9.5" />
+  </g>
+</svg>

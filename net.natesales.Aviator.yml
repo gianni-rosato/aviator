@@ -1,0 +1,24 @@
+app-id: net.natesales.Aviator
+runtime: org.freedesktop.Platform
+runtime-version: '21.08'
+sdk: org.freedesktop.Sdk
+command: runner.sh
+modules:
+  - python3-requirements.json
+  - name: aviator
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py build
+      - python3 setup.py install --skip-build --prefix=${FLATPAK_DEST} --root=/ --optimize=1
+      - install -D runner.sh /app/bin/runner.sh
+      # - install -Dm644 /app/share/{pixmaps,icons/hicolor/256x256/apps}/puddletag.png
+      # - install -D -m 644 ${FLATPAK_ID}.appdata.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml
+      # - rm -r /app/share/pixmaps
+    sources:
+      - type: file
+        path: runner.sh
+      - type: file
+        path: setup.py
+      - type: dir
+        path: aviator/
+        dest: aviator/
