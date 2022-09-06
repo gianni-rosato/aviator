@@ -11,11 +11,11 @@
         </section>
         <section>
             <item>
-                <attribute name="label" translatable="yes">_Preferences</attribute>
+                <attribute name="label" translatable="yes">_About</attribute>
                 <attribute name="action">app.preferences</attribute>
             </item>
             <item>
-                <attribute name="label" translatable="yes">_About Aviator</attribute>
+                <attribute name="label" translatable="yes">_Version</attribute>
                 <attribute name="action">app.about</attribute>
             </item>
         </section>
@@ -64,8 +64,8 @@
                                                 <property name="margin-top">32</property>
                                                 <property name="label" translatable="yes">Open</property>
                                                 <property name="halign">center</property>
-                                                <!-- <property name="action-name">on_open</property> -->
                                                 <!-- <property name="icon-name">document-open-symbolic</property> -->
+                                                <signal name="clicked" handler="open_source_file" swapped="no" />
                                                 <style>
                                                     <class name="pill" />
                                                     <class name="sugested-action" />
@@ -98,6 +98,18 @@
 
                                                         <child>
                                                             <object class="AdwActionRow">
+                                                                <property name="title" translatable="yes">_File</property>
+                                                                <property name="use-underline">true</property>
+                                                                <child>
+                                                                    <object class="GtkLabel" id="source_file_label">
+                                                                        <property name="label" translatable="yes"></property>
+                                                                    </object>
+                                                                </child>
+                                                            </object>
+                                                        </child>
+
+                                                        <child>
+                                                            <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Resolution</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
@@ -120,14 +132,14 @@
                                                                                     <class name="linked" />
                                                                                 </style>
                                                                                 <child>
-                                                                                    <object class="GtkEntry">
+                                                                                    <object class="GtkEntry" id="resolution_width_entry">
                                                                                         <property name="placeholder-text" translatable="yes">Width</property>
                                                                                         <property name="hexpand">True</property>
                                                                                         <property name="max-width-chars">4</property>
                                                                                     </object>
                                                                                 </child>
                                                                                 <child>
-                                                                                    <object class="GtkEntry">
+                                                                                    <object class="GtkEntry" id="resolution_height_entry">
                                                                                         <property name="placeholder-text" translatable="yes">Height</property>
                                                                                         <property name="hexpand">True</property>
                                                                                         <property name="max-width-chars">4</property>
@@ -136,6 +148,7 @@
                                                                                 <child>
                                                                                     <object class="GtkButton">
                                                                                         <property name="label" translatable="yes">Same as source</property>
+                                                                                        <signal name="clicked" handler="resolution_same_as_source" swapped="no" />
                                                                                     </object>
                                                                                 </child>
                                                                             </object>
@@ -160,7 +173,7 @@
                                                                                     <class name="linked" />
                                                                                 </style>
                                                                                 <child>
-                                                                                    <object class="GtkEntry">
+                                                                                    <object class="GtkEntry" id="framerate_entry">
                                                                                         <property name="placeholder-text" translatable="yes">FPS</property>
                                                                                         <property name="hexpand">True</property>
                                                                                         <property name="max-width-chars">4</property>
@@ -169,6 +182,7 @@
                                                                                 <child>
                                                                                     <object class="GtkButton">
                                                                                         <property name="label" translatable="yes">Same as source</property>
+                                                                                        <signal name="clicked" handler="framerate_same_as_source" swapped="no" />
                                                                                     </object>
                                                                                 </child>
                                                                             </object>
@@ -184,9 +198,8 @@
                                                                 <property name="use-underline">true</property>
                                                                 <property name="tooltip-text">Variable Framerate makes your output framerate identical to your source's, given "Same as Source" is selected for FPS input.</property>
                                                                 <child>
-                                                                    <object class="GtkSwitch">
+                                                                    <object class="GtkSwitch" id="variable_framerate_switch">
                                                                         <property name="valign">center</property>
-                                                                        <!-- <property name="active" bind-source="LoginAdvancedDialog" bind-property="autodiscovery" bind-flags="sync-create|bidirectional" /> -->
                                                                     </object>
                                                                 </child>
                                                             </object>
@@ -198,7 +211,7 @@
                                                                 <property name="tooltip-text">Constant Rate Factor (CRF) determines the size and quality of your output. Higher values mean lower file size and quality while lower values create larger, higher-quality video.</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
-                                                                    <object class="GtkScale">
+                                                                    <object class="GtkScale" id="crf_scale">
                                                                         <property name="halign">end</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="draw-value">1</property>
@@ -209,7 +222,6 @@
                                                                             <object class="GtkAdjustment">
                                                                                 <property name="upper">63</property>
                                                                                 <property name="lower">0</property>
-                                                                                <property name="value">32</property>
                                                                                 <property name="step-increment">1</property>
                                                                                 <property name="page-increment">1</property>
                                                                             </object>
@@ -225,7 +237,7 @@
                                                                 <property name="tooltip-text">This value determines how hard your system will work to encode your video. Lower values mean your system will take longer to encode the video, but the files will be higher quality. Higher values will encode less efficiently, but much more quickly.</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
-                                                                    <object class="GtkScale">
+                                                                    <object class="GtkScale" id="cpu_scale">
                                                                         <property name="halign">end</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="draw-value">1</property>
@@ -312,7 +324,7 @@
                                                                             <class name="linked" />
                                                                         </style>
                                                                         <child>
-                                                                            <object class="GtkEntry">
+                                                                            <object class="GtkEntry" id="bitrate_entry">
                                                                                 <property name="placeholder-text" translatable="yes">kbps</property>
                                                                                 <property name="hexpand">True</property>
                                                                                 <property name="max-width-chars">4</property>
@@ -321,6 +333,7 @@
                                                                         <child>
                                                                             <object class="GtkButton">
                                                                                 <property name="label" translatable="yes">Same as source</property>
+                                                                                <signal name="clicked" handler="bitrate_same_as_source" swapped="no" />
                                                                             </object>
                                                                         </child>
                                                                     </object>
@@ -334,7 +347,7 @@
                                                                 <property name="use-underline">true</property>
                                                                 <property name="tooltip-text">Allows Opus to vary the bitrate based on the complexity of the audio.</property>
                                                                 <child>
-                                                                    <object class="GtkSwitch">
+                                                                    <object class="GtkSwitch" id="vbr_switch">
                                                                         <property name="valign">center</property>
                                                                         <!-- <property name="active" bind-source="LoginAdvancedDialog" bind-property="autodiscovery" bind-flags="sync-create|bidirectional" /> -->
                                                                     </object>
@@ -348,7 +361,7 @@
                                                                 <property name="tooltip-text">Provide a hint to the encoder if the audio is music</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
-                                                                    <object class="GtkSwitch">
+                                                                    <object class="GtkSwitch" id="music_switch">
                                                                         <property name="valign">center</property>
                                                                         <!-- <property name="active" bind-source="LoginAdvancedDialog" bind-property="autodiscovery" bind-flags="sync-create|bidirectional" /> -->
                                                                     </object>
@@ -362,7 +375,7 @@
                                                                 <property name="use-underline">true</property>
                                                                 <property name="tooltip-text">Downmixes audio with more channels to stereo audio with two channels.</property>
                                                                 <child>
-                                                                    <object class="GtkSwitch">
+                                                                    <object class="GtkSwitch" id="stereo_switch">
                                                                         <property name="valign">center</property>
                                                                         <!-- <property name="active" bind-source="LoginAdvancedDialog" bind-property="autodiscovery" bind-flags="sync-create|bidirectional" /> -->
                                                                     </object>
@@ -428,13 +441,15 @@
                                                                             <class name="linked" />
                                                                         </style>
                                                                         <child>
-                                                                            <object class="GtkButton">
+                                                                            <object class="GtkButton" id="container_mkv_button">
                                                                                 <property name="label" translatable="yes">MKV</property>
+                                                                                <signal name="clicked" handler="container_mkv" swapped="no" />
                                                                             </object>
                                                                         </child>
                                                                         <child>
-                                                                            <object class="GtkButton">
+                                                                            <object class="GtkButton" id="container_webm_button">
                                                                                 <property name="label" translatable="yes">WEBM</property>
+                                                                                <signal name="clicked" handler="container_webm" swapped="no" />
                                                                             </object>
                                                                         </child>
                                                                     </object>
@@ -450,7 +465,7 @@
                                             <object class="GtkButton">
                                                 <property name="label" translatable="yes">Encode</property>
                                                 <property name="halign">center</property>
-                                                <!-- <property name="action-name">on_open</property> -->
+                                                <signal name="clicked" handler="start_export" swapped="no" />
                                                 <!-- <property name="icon-name">document-open-symbolic</property> -->
                                                 <style>
                                                     <class name="pill" />
@@ -462,8 +477,6 @@
                                 </property>
                             </object>
                         </child>
-
-
                     </object>
                 </child>
                 <child>
