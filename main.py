@@ -1,4 +1,3 @@
-from gi.repository import Gtk, Adw, Gio, Notify
 import sys
 import threading
 import subprocess
@@ -10,6 +9,7 @@ gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 gi.require_version("Notify", "0.7")
 
+from gi.repository import Gtk, Adw, Gio, Notify
 
 Adw.init()
 Notify.init("Aviator")
@@ -31,8 +31,8 @@ def show_about(self):
     self.about.set_website("http://github.com/natesales/aviator")
     self.about.set_website_label("GitHub Repo")
     self.about.set_version("1.0")
-    # Put icon in /usr/share/icons/hicolor/scalable/apps/org.example.example.svg
-    self.about.set_logo_icon_name("org.example.example")
+    # Put icon in /usr/share/icons/hicolor/scalable/apps/net.natesales.Aviator.svg
+    self.about.set_logo_icon_name("net.natesales.Aviator")
     self.about.show()
 
 
@@ -83,7 +83,7 @@ class MainWindow(Adw.Window):
     resolution_width_entry = Gtk.Template.Child()
     resolution_height_entry = Gtk.Template.Child()
     framerate_entry = Gtk.Template.Child()
-    variable_framerate_switch = Gtk.Template.Child()
+    variable_framerate_switch = Gtk.Template.Child() # TODO
     crf_scale = Gtk.Template.Child()
     cpu_scale = Gtk.Template.Child()
 
