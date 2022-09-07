@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="16.0px"
+   height="16.0px"
+   viewBox="0 0 16.0 16.0"
+   version="1.1"
+   id="SVGRoot"
+   sodipodi:docname="aviator_symbolic.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1001"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="42.858895"
+     inkscape:cx="7.2330376"
+     inkscape:cy="10.009591"
+     inkscape:window-width="1503"
+     inkscape:window-height="933"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1007"
+       spacingy="1"
+       spacingx="1" />
+  </sodipodi:namedview>
+  <defs
+     id="defs996" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       d="m 13,2 c 1.5,0 3,1.5 3,3 v 6 c 0,1.5 -1.5,3 -3,3 H 3 C 1.5,14 0,12.5 0,11 V 5 C 0,3.5 1.5,2 3,2 Z m 0,2 H 3 C 2.5,4 2,4.5 2,5 v 6 c 0,0.5 0.5,1 1,1 h 10 c 0.5,0 1,-0.5 1,-1 V 5 C 14,4.5 13.5,4 13,4 Z"
+       fill="#2e3436"
+       id="path672"
+       style="stroke-width:0.233745;fill:#000000"
+       sodipodi:nodetypes="cccccccccccccccccc" />
+    <ellipse
+       style="opacity:0.35;fill:#000000;fill-opacity:1;stroke-width:1.14286"
+       id="path1185"
+       cx="5"
+       cy="6.7142859"
+       rx="1.7142829"
+       ry="1.7142856" />
+    <ellipse
+       style="opacity:0.35;fill:#000000;fill-opacity:1;stroke-width:1.14286"
+       id="path1187"
+       cx="11"
+       cy="6.7142859"
+       rx="1.7142829"
+       ry="1.7142856" />
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke-width:2.00001"
+       id="rect1241"
+       width="4"
+       height="2"
+       x="6"
+       y="9" />
+  </g>
+</svg>
