@@ -1,4 +1,4 @@
-all: clean flatpak run
+all: flatpak run
 
 clean:
 	rm -rf build/ .flatpak-builder/

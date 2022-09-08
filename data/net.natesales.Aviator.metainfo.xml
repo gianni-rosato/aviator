@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>AGPL-3.0-or-later</project_license>
+  <project_license>GPL-3.0-or-later</project_license>
   <content_rating type="oars-1.1"/>
 
   <id>net.natesales.Aviator</id>
   <launchable type="desktop-id">net.natesales.Aviator.desktop</launchable>
 
   <name>Aviator</name>
-  <summary>AV1/OPUS Video Encoder</summary>
+  <summary>Your Video Copilot: AV1/OPUS Video Encoder</summary>
 
   <description>
     <p>
-       AV1/OPUS Video Encoder
+      Aviator enables simple, easy-to-use video encoding for the word's most advanced open video codec, AV1. Encode your favorite media into super efficient files with incredible quality per bit, powered by the SVT-AV1 production encoder with Opus for audio encoding. The sky's the limit for your old home video collection &amp; large 4k smartphone videos, and you can fly in style with a beautiful libadwaita interface. Take off with Aviator!
     </p>
   </description>
 
