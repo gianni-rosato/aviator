@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+import os
+import sys
+import gettext
+import logging
+
+AppDir = __file__.split('@prefix@')[0]  # Directory which contains this app (detected during runtime)
+
+py_install_dir = AppDir + '@py_install_dir@'
+sys.path.insert(1, py_install_dir)
+
+localedir = AppDir + '@locale_dir@'
+gettext.bindtextdomain('aviator', localedir)
+gettext.textdomain('aviator')
+_ = gettext.gettext
+
+# Terminal Text Styles
+style_normal = '\033[0m'
+style_bold   = '\033[1m'
+
+logging.basicConfig(format=f'{style_bold}%(levelname)s:{style_normal} %(message)s')
+
+import main

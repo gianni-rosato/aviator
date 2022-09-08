@@ -1,4 +1,10 @@
-.vscode
-.idea
+.vscode/
+.idea/
 *.webm
 *.mkv
+__pycache__/
+python3-requirements.json
+Aviator.egg-info/
+build/
+dist/
+.flatpak-builder/

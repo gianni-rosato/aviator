@@ -1,24 +1,43 @@
 app-id: net.natesales.Aviator
-runtime: org.freedesktop.Platform
-runtime-version: "22.08"
-sdk: org.freedesktop.Sdk
-command: runner.sh
+command: gdm-settings
+sdk: org.gnome.Sdk
+runtime: org.gnome.Platform
+runtime-version: "42"
+
+finish-args:
+  - --share=ipc
+  - --device=dri
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --talk-name=org.freedesktop.Flatpak
+  - --filesystem=xdg-config/monitors.xml:ro
+  - --filesystem=host-os
+
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /man
+  - /share/doc
+  - /share/gtk-doc
+  - /share/man
+  - /share/pkgconfig
+  - '*.la'
+  - '*.a'
+
 modules:
-  - python3-requirements.json
+#  - name: blueprint-compiler
+#    builddir: true
+#    buildsystem: meson
+#    sources:
+#      - type: archive
+#        url: https://gitlab.gnome.org/jwestman/blueprint-compiler/-/archive/v0.2.0/blueprint-compiler-v0.2.0.tar.bz2
+#        sha256: 74bb99161ba30abfc7302d2b3cbc400f05bcbda21ccb01c4b2e6f8f3f9874ca2
+#    cleanup:
+#      - "*"
+
   - name: aviator
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py build
-      - python3 setup.py install --skip-build --prefix=${FLATPAK_DEST} --root=/ --optimize=1
-      - install -D runner.sh /app/bin/runner.sh
-      # - install -Dm644 /app/share/{pixmaps,icons/hicolor/256x256/apps}/puddletag.png
-      # - install -D -m 644 ${FLATPAK_ID}.appdata.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml
-      # - rm -r /app/share/pixmaps
+    builddir: true
+    buildsystem: meson
     sources:
-      - type: file
-        path: runner.sh
-      - type: file
-        path: setup.py
       - type: dir
-        path: aviator/
-        dest: aviator/
+        path: '.'
