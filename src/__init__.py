@@ -14,26 +14,10 @@ from gi.repository import Gtk, Adw, Gio, Notify
 Adw.init()
 Notify.init("Aviator")
 
+from . import info
+
 BASE_DIR = Path(__file__).resolve().parent
 MAIN_WINDOW = str(BASE_DIR.joinpath("window.ui"))
-
-
-def show_about(self):
-    self.about = Gtk.AboutDialog()
-    # Makes the dialog always appear in from of the parent window
-    self.about.set_transient_for(self) # In front of parent
-    # Makes the parent window unresponsive while dialog is showing
-    self.about.set_modal(self)
-
-    self.about.set_authors(["Nate Sales", "Gianni Rosato"])
-    self.about.set_copyright("Copyright 2022 Nate Sales")
-    self.about.set_license_type(Gtk.License.GPL_3_0)
-    self.about.set_website("http://github.com/natesales/aviator")
-    self.about.set_website_label("GitHub Repo")
-    self.about.set_version("1.0")
-    # Put icon in /usr/share/icons/hicolor/scalable/apps/net.natesales.Aviator.svg
-    self.about.set_logo_icon_name("net.natesales.Aviator")
-    self.about.show()
 
 
 class FileSelectDialog(Gtk.FileChooserDialog):
@@ -73,6 +57,20 @@ class FileSelectDialog(Gtk.FileChooserDialog):
                 self.label.set_label(glocalfile.get_path())
         widget.close()
 
+class AboutDialog(Gtk.AboutDialog):
+    def __init__(self, win):
+        Gtk.AboutDialog.__init__(self)
+        self.props.transient_for = win
+        self.props.modal = True
+        self.props.license_type = Gtk.License.AGPL_3_0
+        self.props.program_name = "Aviator"
+        self.props.logo_icon_name = "net.natesales.Aviator"
+        self.props.version =  "Aviator v" + info.version
+        self.props.comments = "Your Video Copilot"
+        self.props.copyright = "Copyright © 2022 Nate Sales and Gianni Rosato"
+        self.props.website_label = "GitHub"
+        self.props.website = "https://github.com/natesales/aviator"
+        self.props.authors = ["Nate Sales <nate@natesales.net>", "Gianni Rosato <grosatowork@proton.me>"]
 
 @Gtk.Template(filename=MAIN_WINDOW)
 class MainWindow(Adw.Window):
@@ -199,10 +197,25 @@ class App(Adw.Application):
         super().__init__(**kwargs)
         self.connect("activate", self.on_activate)
 
+        about_action = Gio.SimpleAction(name="about")
+        about_action.connect("activate", self.about_dialog)
+        self.add_action(about_action)
+
+        quit_action = Gio.SimpleAction(name="quit")
+        quit_action.connect("activate", self.quit)
+        self.add_action(quit_action)
+
+
     def on_activate(self, app):
         self.win = MainWindow(application=app)
         self.win.present()
 
+    def about_dialog(self, action, user_data):
+        dialog = AboutDialog(self.win)
+        dialog.present()
+
+    def quit(self, action, user_data):
+        exit()
 
 app = App(application_id="net.natesales.Aviator")
 app.run(sys.argv)
