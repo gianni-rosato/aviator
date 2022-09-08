@@ -1,8 +1,7 @@
-all: requirements flatpak run
+all: clean flatpak run
 
-requirements:
-	rm -f python3-requirements.json
-	python3 ~/apps/flatpak-pip-generator --requirements-file requirements.txt
+clean:
+	rm -rf build/ .flatpak-builder/
 
 flatpak:
 	flatpak-builder build net.natesales.Aviator.yml --force-clean --install --user

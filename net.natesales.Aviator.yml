@@ -1,5 +1,5 @@
 app-id: net.natesales.Aviator
-command: gdm-settings
+command: aviator
 sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
 runtime-version: "42"
@@ -25,15 +25,12 @@ cleanup:
   - '*.a'
 
 modules:
-#  - name: blueprint-compiler
-#    builddir: true
-#    buildsystem: meson
-#    sources:
-#      - type: archive
-#        url: https://gitlab.gnome.org/jwestman/blueprint-compiler/-/archive/v0.2.0/blueprint-compiler-v0.2.0.tar.bz2
-#        sha256: 74bb99161ba30abfc7302d2b3cbc400f05bcbda21ccb01c4b2e6f8f3f9874ca2
-#    cleanup:
-#      - "*"
+  - name: ffmpeg
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://ffmpeg.org/releases/ffmpeg-5.1.tar.xz
+        sha256: 55eb6aab5ee235550fa54a33eaf8bf1b4ec66c01453182b12f6a993d75698b03
 
   - name: aviator
     builddir: true

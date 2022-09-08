@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Aviator
+Comment=AV1/OPUS Video Encoder
+Icon=net.natesales.Aviator
+Exec=aviator
+TryExec=aviator
+Terminal=false
+StartupNotify=true
+StartupWMClass=net.natesales.Aviator
+X-SingleMainWindow=true
+Categories=GNOME;GTK;System;

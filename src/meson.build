@@ -24,10 +24,10 @@ configure_file(
 )
 
 source_files = files(
-  'main.py',
+  '__init__.py',
+  'window.ui',
 )
+
 install_data(source_files,
   install_dir: python.get_install_dir() / 'aviator'
 )
-
-subdir('blueprints')

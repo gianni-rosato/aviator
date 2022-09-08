@@ -20,4 +20,4 @@ style_bold   = '\033[1m'
 
 logging.basicConfig(format=f'{style_bold}%(levelname)s:{style_normal} %(message)s')
 
-import main
+import aviator

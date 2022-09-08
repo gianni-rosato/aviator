@@ -24,9 +24,9 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      showgrid="true"
-     inkscape:zoom="48.246665"
-     inkscape:cx="7.6585604"
-     inkscape:cy="6.9434851"
+     inkscape:zoom="42.858895"
+     inkscape:cx="7.2330376"
+     inkscape:cy="10.009591"
      inkscape:window-width="1503"
      inkscape:window-height="933"
      inkscape:window-x="0"
@@ -36,7 +36,8 @@
     <inkscape:grid
        type="xygrid"
        id="grid1007"
-       spacingy="0.5" />
+       spacingy="1"
+       spacingx="1" />
   </sodipodi:namedview>
   <defs
      id="defs996" />
@@ -45,35 +46,31 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       opacity="0.02"
-       fill="none"
-       d="M 15.000003,1.0000007 H 1.0000009 V 15.000002 H 15.000003 Z"
-       id="path670"
-       style="stroke-width:0.178962" />
-    <path
-       d="m 12.000017,2.4998611 c 1.658371,-0.00363 3.003631,1.3416464 3,3 v 4.9999999 c 0.0038,1.658355 -1.341629,3.00363 -3,3 H 4.0000167 c -1.6583696,0.0036 -3.00362977,-1.341646 -3,-3 V 5.4998611 c -0.00363,-1.6583536 1.3416304,-3.0036298 3,-3 z m -3.4e-5,2.0002778 -7.9999663,-2.778e-4 c -0.5526736,-0.00113 -1.0009071,0.4473315 -1,1 v 4.9999999 c -9.07e-4,0.55267 0.4473266,1.001136 1,1 h 8.0000003 c 0.552674,0.0011 1.000906,-0.44733 1,-1 L 13.00013,5.4998649 C 13.00133,4.9470363 12.552851,4.4987272 12.000017,4.4998611 Z"
+       d="m 13,2 c 1.5,0 3,1.5 3,3 v 6 c 0,1.5 -1.5,3 -3,3 H 3 C 1.5,14 0,12.5 0,11 V 5 C 0,3.5 1.5,2 3,2 Z m 0,2 H 3 C 2.5,4 2,4.5 2,5 v 6 c 0,0.5 0.5,1 1,1 h 10 c 0.5,0 1,-0.5 1,-1 V 5 C 14,4.5 13.5,4 13,4 Z"
        fill="#2e3436"
        id="path672"
-       style="stroke-width:0.204527"
-       sodipodi:nodetypes="ccccccccccccccccccc" />
-    <circle
-       style="opacity:0.35;fill:#2e3436;fill-opacity:1"
+       style="stroke-width:0.233745;fill:#000000"
+       sodipodi:nodetypes="cccccccccccccccccc" />
+    <ellipse
+       style="opacity:0.35;fill:#000000;fill-opacity:1;stroke-width:1.14286"
        id="path1185"
-       cx="5.5"
-       cy="7"
-       r="1.5" />
-    <circle
-       style="opacity:0.35;fill:#2e3436;fill-opacity:1"
+       cx="5"
+       cy="6.7142859"
+       rx="1.7142829"
+       ry="1.7142856" />
+    <ellipse
+       style="opacity:0.35;fill:#000000;fill-opacity:1;stroke-width:1.14286"
        id="path1187"
-       cx="10.5"
-       cy="7"
-       r="1.5" />
+       cx="11"
+       cy="6.7142859"
+       rx="1.7142829"
+       ry="1.7142856" />
     <rect
-       style="opacity:1;fill:#2e3436;fill-opacity:1"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke-width:2.00001"
        id="rect1241"
-       width="2"
-       height="1"
-       x="7"
-       y="9.5" />
+       width="4"
+       height="2"
+       x="6"
+       y="9" />
   </g>
 </svg>
