@@ -14,12 +14,7 @@ from gi.repository import Gtk, Adw, Gio
 
 Adw.init()
 
-
-# from . import info
-
-class info:
-    version = "dev"
-
+from . import info
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -196,11 +191,9 @@ class MainWindow(Adw.Window):
         self.metadata = metadata(self.source_file_label.get_text())
 
     def set_defaults(self):
-        self.load_metadata()
-        self.resolution_width_entry.set_text(str(self.metadata[0]))
-        self.resolution_height_entry.set_text(str(self.metadata[1]))
-        self.framerate_entry.set_text(str(self.metadata[2]))
-        self.bitrate_entry.set_text(str(self.metadata[3]))
+        self.bitrate_same_as_source()
+        self.framerate_same_as_source()
+        self.resolution_same_as_source()
 
     # Video
 
@@ -226,12 +219,12 @@ class MainWindow(Adw.Window):
     @Gtk.Template.Callback()
     def framerate_same_as_source(self, button):
         self.load_metadata()
-        self.framerate_entry.set_text(str(self.metadata[2]))
+        self.framerate_entry.set_text(str(round(float(self.metadata[2]))))
 
     @Gtk.Template.Callback()
     def bitrate_same_as_source(self, button):
         self.load_metadata()
-        self.bitrate_entry.set_text(str(self.metadata[3]))
+        self.bitrate_entry.set_text(str(round(float(self.metadata[3]))))
 
     # Export
 
