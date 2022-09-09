@@ -4,6 +4,7 @@
 A lightweight, Flatpak-first, easy-to-use GUI utility for encoding with SVT-AV1 & Opus.
 
 <img src="src/net.natesales.Aviator-splash.png" alt="Splash" width=450/>
+<br>
 
 [![Installs](https://img.shields.io/flathub/downloads/net.natesales.Aviator?style=for-the-badge)](https://flathub.org/apps/details/net.natesales.Aviator)
 ![Code Size](https://img.shields.io/github/languages/code-size/natesales/aviator?style=for-the-badge)
