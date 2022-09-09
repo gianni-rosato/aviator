@@ -204,7 +204,7 @@ class MainWindow(Adw.Window):
         )
 
     @Gtk.Template.Callback()
-    def resolution_same_as_source(self, button):
+    def resolution_same_as_source(self, button=None):
         self.load_metadata()
         self.resolution_width_entry.set_text(str(self.metadata[0]))
         self.resolution_height_entry.set_text(str(self.metadata[1]))
@@ -212,12 +212,12 @@ class MainWindow(Adw.Window):
     # Audio
 
     @Gtk.Template.Callback()
-    def framerate_same_as_source(self, button):
+    def framerate_same_as_source(self, button=None):
         self.load_metadata()
         self.framerate_entry.set_text(str(round(float(self.metadata[2]))))
 
     @Gtk.Template.Callback()
-    def bitrate_same_as_source(self, button):
+    def bitrate_same_as_source(self, button=None):
         self.load_metadata()
         self.bitrate_entry.set_text(str(round(float(self.metadata[3]))))
 
