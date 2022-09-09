@@ -2,33 +2,82 @@ import sys
 import threading
 import subprocess
 import gi
+import json
+import os
 
 from pathlib import Path
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-gi.require_version("Notify", "0.7")
 
-from gi.repository import Gtk, Adw, Gio, Notify
+from gi.repository import Gtk, Adw, Gio
 
 Adw.init()
-Notify.init("Aviator")
 
-from . import info
+
+# from . import info
+
+class info:
+    version = "dev"
+
 
 BASE_DIR = Path(__file__).resolve().parent
-MAIN_WINDOW = str(BASE_DIR.joinpath("window.ui"))
+
+
+# metadata returns the file's resolution, framerate, and audio bitrate
+def metadata(file) -> (float, float, float, float):
+    try:
+        x = subprocess.Popen(["ffprobe",
+                              "-v",
+                              "quiet",
+                              "-print_format",
+                              "json",
+                              "-show_format",
+                              "-show_streams",
+                              file], stdout=subprocess.PIPE).stdout.read()
+        m = json.loads(x)
+        streams = m["streams"]
+        video = streams[0]
+        audio = streams[1]
+        r_fps = video["r_frame_rate"]
+        if "/" in r_fps:
+            r_fps = r_fps.split("/")
+            r_fps = float(float(r_fps[0]) / float(r_fps[1]))
+        r_fps = round(r_fps, 2)
+
+        return video["width"], video["height"], r_fps, float(audio["sample_rate"]) / 1000
+    except Exception as e:
+        print(e)
+        return 0, 0, 0, 0
+
+
+def notify(text):
+    application = Gtk.Application.get_default()
+    notification = Gio.Notification.new(title="Aviator")
+    notification.set_body(text)
+    application.send_notification(None, notification)
+
+
+def first_open():
+    startup_file = os.path.join(Path.home(), ".var/app/net.natesales.Aviator/startup.dat")
+    if os.path.exists(startup_file):
+        return False
+    else:
+        with open(startup_file, "w") as f:
+            f.write("\n")
+        return True
 
 
 class FileSelectDialog(Gtk.FileChooserDialog):
     home = Path.home()
 
-    def __init__(self, parent, select_multiple, label, selection_text, open_only):
+    def __init__(self, parent, select_multiple, label, selection_text, open_only, callback=None):
         super().__init__(transient_for=parent, use_header_bar=True)
         self.select_multiple = select_multiple
         self.label = label
+        self.callback = callback
         self.set_action(action=Gtk.FileChooserAction.OPEN if open_only else Gtk.FileChooserAction.SAVE)
-        self.set_title(title="Select "+selection_text + " files" if self.select_multiple else "Select "+selection_text+" file")
+        self.set_title(title="Select " + selection_text + " files" if self.select_multiple else "Select " + selection_text + " file")
         self.set_modal(modal=True)
         self.set_select_multiple(select_multiple=self.select_multiple)
         self.connect("response", self.dialog_response)
@@ -53,9 +102,12 @@ class FileSelectDialog(Gtk.FileChooserDialog):
                     print(glocalfile.get_path())
             else:
                 glocalfile = self.get_file()
-                print(glocalfile.get_path())
+                # print(glocalfile.get_path())
                 self.label.set_label(glocalfile.get_path())
+        if self.callback is not None:
+            self.callback()
         widget.close()
+
 
 class AboutDialog(Gtk.AboutDialog):
     def __init__(self, win):
@@ -65,14 +117,36 @@ class AboutDialog(Gtk.AboutDialog):
         self.props.license_type = Gtk.License.AGPL_3_0
         self.props.program_name = "Aviator"
         self.props.logo_icon_name = "net.natesales.Aviator"
-        self.props.version =  "Aviator v" + info.version
+        self.props.version = "Aviator v" + info.version
         self.props.comments = "Your Video Copilot"
         self.props.copyright = "Copyright © 2022 Nate Sales and Gianni Rosato"
         self.props.website_label = "GitHub"
         self.props.website = "https://github.com/natesales/aviator"
         self.props.authors = ["Nate Sales <nate@natesales.net>", "Gianni Rosato <grosatowork@proton.me>"]
 
-@Gtk.Template(filename=MAIN_WINDOW)
+
+@Gtk.Template(filename=str(BASE_DIR.joinpath('startup.ui')))
+class OnboardWindow(Adw.Window):
+    __gtype_name__ = "OnboardWindow"
+
+    image = Gtk.Template.Child()
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.image.set_from_file(
+            filename=str(
+                BASE_DIR.joinpath('net.natesales.Aviator-splash.png')
+            )
+        )
+
+    @Gtk.Template.Callback()
+    def go(self, button):
+        app.win = MainWindow(application=app)
+        app.win.present()
+        self.destroy()
+
+
+@Gtk.Template(filename=str(BASE_DIR.joinpath("window.ui")))
 class MainWindow(Adw.Window):
     __gtype_name__ = "AviatorWindow"
 
@@ -81,7 +155,6 @@ class MainWindow(Adw.Window):
     resolution_width_entry = Gtk.Template.Child()
     resolution_height_entry = Gtk.Template.Child()
     framerate_entry = Gtk.Template.Child()
-    variable_framerate_switch = Gtk.Template.Child() # TODO
     crf_scale = Gtk.Template.Child()
     cpu_scale = Gtk.Template.Child()
 
@@ -111,34 +184,66 @@ class MainWindow(Adw.Window):
         self.crf_scale.set_value(0)
         self.crf_scale.set_value(32)
 
+        # resolution, framerate, and audio bitrate
+        self.metadata: (float, float, float, float) = ()
+
+        # TODO: Remove
+        self.source_file_label.set_text("/home/nate/Projects/aviator/test.webm")
+        self.framerate_entry.set_text("16")
+        self.output_file_label.set_text("/home/nate/test.mkv")
+
+    def load_metadata(self):
+        self.metadata = metadata(self.source_file_label.get_text())
+
+    def set_defaults(self):
+        self.load_metadata()
+        self.resolution_width_entry.set_text(str(self.metadata[0]))
+        self.resolution_height_entry.set_text(str(self.metadata[1]))
+        self.framerate_entry.set_text(str(self.metadata[2]))
+        self.bitrate_entry.set_text(str(self.metadata[3]))
+
     # Video
 
     @Gtk.Template.Callback()
     def open_source_file(self, button):
-        FileSelectDialog(parent=self, select_multiple=False, label=self.source_file_label, selection_text="source", open_only=True)
+        FileSelectDialog(
+            parent=self,
+            select_multiple=False,
+            label=self.source_file_label,
+            selection_text="source",
+            open_only=True,
+            callback=self.set_defaults
+        )
 
     @Gtk.Template.Callback()
     def resolution_same_as_source(self, button):
-        # TODO
-        pass
+        self.load_metadata()
+        self.resolution_width_entry.set_text(str(self.metadata[0]))
+        self.resolution_height_entry.set_text(str(self.metadata[1]))
 
     # Audio
 
     @Gtk.Template.Callback()
     def framerate_same_as_source(self, button):
-        # TODO
-        pass
+        self.load_metadata()
+        self.framerate_entry.set_text(str(self.metadata[2]))
 
     @Gtk.Template.Callback()
     def bitrate_same_as_source(self, button):
-        # TODO
-        pass
+        self.load_metadata()
+        self.bitrate_entry.set_text(str(self.metadata[3]))
 
     # Export
 
     @Gtk.Template.Callback()
     def open_output_file(self, button):
-        FileSelectDialog(parent=self, select_multiple=False, label=self.output_file_label, selection_text="output", open_only=False)
+        FileSelectDialog(
+            parent=self,
+            select_multiple=False,
+            label=self.output_file_label,
+            selection_text="output",
+            open_only=False,
+        )
 
     @Gtk.Template.Callback()
     def container_mkv(self, button):
@@ -164,29 +269,28 @@ class MainWindow(Adw.Window):
             output += ".webm"
 
         def run_in_thread():
-            cmd = ["ffmpeg",
-                   "-nostdin",
-                   "-i", self.source_file_label.get_text(),
-                   "-r", self.framerate_entry.get_text(),
-                   "-vf", f"scale={self.resolution_width_entry.get_text()}:{self.resolution_height_entry.get_text()}",
-                   "-c:v", "libsvtav1",
-                   "-crf", str(self.crf_scale.get_value()),
-                   "-preset", str(self.cpu_scale.get_value()),
-                   "-c:a", "libopus",
-                   "-b:a", self.bitrate_entry.get_text() + "K",
-                   "-vbr", "on" if self.vbr_switch.get_state() else "off",
-                   "-compression_level", "10",
-                   output,
-                   ]
+            cmd = [
+                "ffmpeg",
+                "-nostdin",
+                "-i", self.source_file_label.get_text(),
+                "-r", self.framerate_entry.get_text(),
+                "-vf", f"scale={self.resolution_width_entry.get_text()}:{self.resolution_height_entry.get_text()}",
+                "-c:v", "libsvtav1",
+                "-crf", str(self.crf_scale.get_value()),
+                "-preset", str(self.cpu_scale.get_value()),
+                "-c:a", "libopus",
+                "-b:a", self.bitrate_entry.get_text() + "K",
+                "-vbr", "on" if self.vbr_switch.get_state() else "off",
+                "-compression_level", "10",
+                output,
+            ]
             print(cmd)
             proc = subprocess.Popen(cmd)
             proc.wait()
 
             self.encode_button.set_visible(True)
             self.encoding_spinner.set_visible(False)
-            Notify.Notification.new("Encoding " + output + " finished").show()
-
-            return
+            notify("Encoding " + output + " finished")
 
         thread = threading.Thread(target=run_in_thread)
         thread.start()
@@ -205,17 +309,21 @@ class App(Adw.Application):
         quit_action.connect("activate", self.quit)
         self.add_action(quit_action)
 
-
     def on_activate(self, app):
-        self.win = MainWindow(application=app)
-        self.win.present()
+        if first_open():
+            startup_window = OnboardWindow(application=self)
+            startup_window.present()
+        else:
+            self.win = MainWindow(application=app)
+            self.win.present()
 
     def about_dialog(self, action, user_data):
         dialog = AboutDialog(self.win)
         dialog.present()
 
-    def quit(self, action, user_data):
+    def quit(self, action=None, user_data=None):
         exit()
+
 
 app = App(application_id="net.natesales.Aviator")
 app.run(sys.argv)

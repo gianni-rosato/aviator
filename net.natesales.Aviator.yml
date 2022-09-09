@@ -11,7 +11,7 @@ finish-args:
   - --socket=fallback-x11
   - --talk-name=org.freedesktop.Flatpak
   - --filesystem=xdg-config/monitors.xml:ro
-  - --filesystem=host-os
+  - --filesystem=host
 
 cleanup:
   - /include
@@ -25,7 +25,30 @@ cleanup:
   - '*.a'
 
 modules:
+  - name: svt-av1
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - "-DCMAKE_BUILD_TYPE=Release"
+      - "-DBUILD_SHARED_LIBS=ON"
+      - "-DBUILD_APPS=OFF"
+      - "-DBUILD_DEC=ON"
+      - "-DBUILD_ENC=ON"
+      - "-DBUILD_TESTING=OFF"
+    cleanup:
+      - "/include"
+      - "/lib/pkgconfig"
+    sources:
+      - type: git
+        url: https://gitlab.com/AOMediaCodec/SVT-AV1.git
+        tag: v1.2.1
+        commit: 6e24fb7f5f7438bb04061dc1a159f0c5b882d847
+
   - name: ffmpeg
+    config-opts:
+      - "--enable-libdav1d"
+      - "--enable-libsvtav1"
+      - "--enable-libopus"
     buildsystem: autotools
     sources:
       - type: archive
@@ -37,4 +60,4 @@ modules:
     buildsystem: meson
     sources:
       - type: dir
-        path: '.'
+        path: "."

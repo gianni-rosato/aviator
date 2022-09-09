@@ -185,19 +185,6 @@
 
                                                         <child>
                                                             <object class="AdwActionRow">
-                                                                <property name="title" translatable="yes">_Variable Frame Rate</property>
-                                                                <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Variable Framerate makes your output framerate identical to your source's, given "Same as Source" is selected for FPS input.</property>
-                                                                <child>
-                                                                    <object class="GtkSwitch" id="variable_framerate_switch">
-                                                                        <property name="valign">center</property>
-                                                                    </object>
-                                                                </child>
-                                                            </object>
-                                                        </child>
-
-                                                        <child>
-                                                            <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_CRF</property>
                                                                 <property name="tooltip-text">Constant Rate Factor (CRF) determines the size and quality of your output. Higher values mean lower file size and quality while lower values create larger, higher-quality video.</property>
                                                                 <property name="use-underline">true</property>

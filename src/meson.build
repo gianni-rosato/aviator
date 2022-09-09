@@ -19,13 +19,14 @@ configure_file(
             'prefix': get_option('prefix'),
            'version': meson.project_version(),
           'data_dir': get_option('prefix') / get_option('datadir') / meson.project_name(),
-        'build_type': get_option('buildtype'),
   }),
 )
 
 source_files = files(
   '__init__.py',
   'window.ui',
+  'startup.ui',
+  'net.natesales.Aviator-splash.png'
 )
 
 install_data(source_files,
