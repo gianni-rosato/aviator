@@ -182,11 +182,6 @@ class MainWindow(Adw.Window):
         # resolution, framerate, and audio bitrate
         self.metadata: (float, float, float, float) = ()
 
-        # TODO: Remove
-        self.source_file_label.set_text("/home/nate/Projects/aviator/test.webm")
-        self.framerate_entry.set_text("16")
-        self.output_file_label.set_text("/home/nate/test.mkv")
-
     def load_metadata(self):
         self.metadata = metadata(self.source_file_label.get_text())
 
