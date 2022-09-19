@@ -327,6 +327,7 @@
                                                                 <property name="tooltip-text">Allows Opus to vary the bitrate based on the complexity of the audio.</property>
                                                                 <child>
                                                                     <object class="GtkSwitch" id="vbr_switch">
+                                                                        <property name="active">True</property>
                                                                         <property name="valign">center</property>
                                                                         <!-- <property name="active" bind-source="LoginAdvancedDialog" bind-property="autodiscovery" bind-flags="sync-create|bidirectional" /> -->
                                                                     </object>
