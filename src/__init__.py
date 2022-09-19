@@ -4,6 +4,7 @@ import subprocess
 import gi
 import json
 import os
+import time
 
 from pathlib import Path
 
@@ -17,6 +18,36 @@ Adw.init()
 from . import info
 
 BASE_DIR = Path(__file__).resolve().parent
+
+
+def humanize(seconds):
+    seconds = round(seconds)
+    words = ["year", "day", "hour", "minute", "second"]
+
+    if not seconds:
+        return "now"
+    else:
+        m, s = divmod(seconds, 60)
+        h, m = divmod(m, 60)
+        d, h = divmod(h, 24)
+        y, d = divmod(d, 365)
+
+        time = [y, d, h, m, s]
+
+        duration = []
+
+        for x, i in enumerate(time):
+            if i == 1:
+                duration.append(f"{i} {words[x]}")
+            elif i > 1:
+                duration.append(f"{i} {words[x]}s")
+
+        if len(duration) == 1:
+            return duration[0]
+        elif len(duration) == 2:
+            return f"{duration[0]} and {duration[1]}"
+        else:
+            return ", ".join(duration[:-1]) + " and " + duration[-1]
 
 
 # metadata returns the file's resolution, framerate, and audio bitrate
@@ -257,6 +288,7 @@ class MainWindow(Adw.Window):
             output += ".webm"
 
         def run_in_thread():
+            encode_start = time.time()
             cmd = [
                 "ffmpeg",
                 "-nostdin",
@@ -275,10 +307,11 @@ class MainWindow(Adw.Window):
             print(cmd)
             proc = subprocess.Popen(cmd)
             proc.wait()
+            encode_end = time.now() - encode_start()
 
             self.encode_button.set_visible(True)
             self.encoding_spinner.set_visible(False)
-            notify("Encoding " + output + " finished")
+            notify(f"({humanize(encode_end)}) Finished encoding {output}")
 
         thread = threading.Thread(target=run_in_thread)
         thread.start()
