@@ -58,6 +58,7 @@
                                                 <property name="margin-top">32</property>
                                                 <property name="label" translatable="yes">Open</property>
                                                 <property name="halign">center</property>
+                                                <property name="tooltip-text">Open your source media</property>
                                                 <!-- <property name="icon-name">document-open-symbolic</property> -->
                                                 <signal name="clicked" handler="open_source_file" swapped="no" />
                                                 <style>
@@ -106,6 +107,7 @@
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Resolution</property>
                                                                 <property name="use-underline">true</property>
+                                                                <property name="tooltip-text">Sets the output resolution. "Same as source" sets it to be the same as the source media.</property>
                                                                 <child>
                                                                     <object class="GtkBox">
                                                                         <!-- <child>
@@ -186,7 +188,7 @@
                                                         <child>
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_CRF</property>
-                                                                <property name="tooltip-text">Constant Rate Factor (CRF) determines the size and quality of your output. Higher values mean lower file size and quality while lower values create larger, higher-quality video.</property>
+                                                                <property name="tooltip-text">Constant Rate Factor (CRF) determines the size and quality of your output. Higher values mean lower file size and quality while lower values create larger, higher-quality videos.</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
                                                                     <object class="GtkScale" id="crf_scale">
@@ -363,6 +365,7 @@
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Output File</property>
                                                                 <property name="use-underline">true</property>
+                                                                <property name="tooltip-text">Select the output directory &amp; type in a filename</property>
                                                                 <child>
                                                                     <object class="GtkBox">
                                                                         <child>
