@@ -296,6 +296,8 @@ class MainWindow(Adw.Window):
                 "-r", self.framerate_entry.get_text(),
                 "-vf", f"scale={self.resolution_width_entry.get_text()}:{self.resolution_height_entry.get_text()}",
                 "-c:v", "libsvtav1",
+                "-c", "copy",
+                "-map", "0",
                 "-crf", str(self.crf_scale.get_value()),
                 "-preset", str(self.cpu_scale.get_value()),
                 "-c:a", "libopus",
