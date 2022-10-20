@@ -51,19 +51,19 @@
     </screenshot>
   </screenshots>
 
-  <releases>
-    <release version="0.1.0" date="2022-09-08">
-      <description>
-        <p>Initial release</p>
-      </description>
-    </release>
-    
+  <releases>    
     <release version="0.1.1" date="2022-10-20">
       <description>
         <p>Fix: support multiple streams</p>
         <p>Fix: add encode time to end notification</p>
         <p>Fix: enable VBR by default</p>
         <p>Fix: tooltip text typo</p>
+      </description>
+    </release>
+
+    <release version="0.1.0" date="2022-09-08">
+      <description>
+        <p>Initial release</p>
       </description>
     </release>
   </releases>
