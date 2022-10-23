@@ -309,7 +309,7 @@ class MainWindow(Adw.Window):
             print(cmd)
             proc = subprocess.Popen(cmd)
             proc.wait()
-            encode_end = time.now() - encode_start()
+            encode_end = time.time() - encode_start()
 
             self.encode_button.set_visible(True)
             self.encoding_spinner.set_visible(False)
