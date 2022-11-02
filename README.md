@@ -3,7 +3,7 @@
 
 A lightweight, Flatpak-first, easy-to-use GUI utility for encoding with SVT-AV1 & Opus.
 
-<img src="assets/splash.webp" alt="Splash" width=450/>
+<img src="assets/aviator_splash2.avif" alt="Splash" width=450/>
 <br>
 <br>
 
