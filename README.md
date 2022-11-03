@@ -55,4 +55,4 @@ Let us know if you have any issues in our Issues section. Thank you for using Av
 
 ### Credits
 
-Actively developed by [Nate Sales](github.com/natesales/) & [Gianni Rosato](github.com/Amateurintheflesh/)
+Actively developed by [Nate Sales](https://github.com/natesales/) & [Gianni Rosato](https://github.com/Amateurintheflesh/)
