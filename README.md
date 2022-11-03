@@ -34,7 +34,13 @@ Aviator comes bundled with its own version of ffmpeg that is capable of encoding
 
 ### Aviator's Defaults
 
-By default, when you load a video file some parameters will be set to match the source as closely as possible. These parameters include the resolution, framerate, and audio bitrate. Aviator's SVT-AV1 speed preset is set to 6 by default, with a CQ (Constant Quality) level of 32. You can set a CQ level from 0 to 63 using the slider, with larger numerical values indicating smaller filesize at the expense of visual quality. You can look at the detailed specifications behind each speed preset [here](https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/Docs/CommonQuestions.md#what-presets-do). Speed 6 offers a good balance between speed & compression efficiency at any CQ level. Audio is reencoded even if the bitrate is set to be the same as the source audio. Audio is encoded to Opus, which is a highly efficient free audio codec that is often more efficient than competitors like AAC & MP3 audio. Because of Opus's incredible efficiency, audio tracks will be encoded at 48kbps if no source bitrate is detected. Opus reaches audio transparency at around 128kbps.
+<img src="assets/aviator_vid.avif" alt="Aviator Video Settings" width=480/>
+
+By default, when you load a video file some parameters will be set to match the source as closely as possible. These parameters include the resolution, framerate, and audio bitrate. Aviator's SVT-AV1 speed preset is set to 6 by default, with a CQ (Constant Quality) level of 32. You can set a CQ level from 0 to 63 using the slider, with larger numerical values indicating smaller filesize at the expense of visual quality. You can look at the detailed specifications behind each speed preset [here](https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/Docs/CommonQuestions.md#what-presets-do). Speed 6 offers a good balance between speed & compression efficiency at any CQ level. 
+
+<img src="assets/aviator_audio.avif" alt="Aviator Audio Settings" width=480/>
+
+Audio is reencoded even if the bitrate is set to be the same as the source audio. Audio is encoded to Opus, which is a highly efficient free audio codec that is often more efficient than competitors like AAC & MP3 audio. Because of Opus's incredible efficiency, audio tracks will be encoded at 48kbps if no source bitrate is detected. Opus reaches audio transparency at around 128kbps.
 
 ### Roadmap & Limitations
 
@@ -52,6 +58,8 @@ In the future, we would like to:
 - Revamp the About page
 
 Let us know if you have any issues in our Issues section. Thank you for using Aviator!
+
+<img src="assets/aviator_output.avif" alt="Aviator Output UI" width=480/>
 
 ### Credits
 
