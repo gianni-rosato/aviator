@@ -12,6 +12,7 @@ A lightweight, Flatpak-first, easy-to-use GUI utility for encoding with SVT-AV1 
 [![License](https://img.shields.io/github/license/natesales/q?style=for-the-badge)](https://raw.githubusercontent.com/natesales/q/main/LICENSE)
 
 [![Please do not theme this app](https://stopthemingmy.app/badge.svg)](https://stopthemingmy.app)
+[![Liberapay](https://img.shields.io/liberapay/receives/computerbuster.svg?logo=liberapay)](https://liberapay.com/computerbuster/donate)
 </div>
 
 ### About
