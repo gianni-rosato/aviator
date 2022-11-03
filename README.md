@@ -49,7 +49,7 @@ Currently, Aviator cannot handle:
 - Video streams with multiple audio streams
 - Video streams with subtitles
 
-These are considered bugs, and we are working on fixing this ASAP.
+These are considered bugs, and we are working on fixing them ASAP.
 
 In the future, we would like to:
 - Add a progress bar
