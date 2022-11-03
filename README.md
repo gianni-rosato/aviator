@@ -11,6 +11,7 @@ A lightweight, Flatpak-first, easy-to-use GUI utility for encoding with SVT-AV1 
 ![Code Size](https://img.shields.io/github/languages/code-size/natesales/aviator?style=for-the-badge)
 [![License](https://img.shields.io/github/license/natesales/q?style=for-the-badge)](https://raw.githubusercontent.com/natesales/q/main/LICENSE)
 
+[![Please do not theme this app](https://stopthemingmy.app/badge.svg)](https://stopthemingmy.app)
 </div>
 
 ### About
