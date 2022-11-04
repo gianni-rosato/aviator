@@ -29,7 +29,7 @@ Aviator is available on Flathub. You can learn how to set up Flatpak on your dis
 
 ### Why AV1?
 
-AV1 aims to be more efficient than HEVC & VP9 by around 30%, and more efficient than h.264 by 50%. Traditionally, a lot of AV1 encoder implementations have been pretty slow compared to competing codecs, but the production encoder SVT-AV1 is decently speedy. We decided to use SVT-AV1 in order to give users a scalable and fast AV1 encoder implementation that "just works," for the most part.
+AV1 aims to be more efficient than HEVC & VP9 by around 30%, and more efficient than h.264 by 50%. Traditionally, a lot of AV1 encoder implementations have been pretty slow compared to competing codecs' encoders, but the production encoder SVT-AV1 is decently speedy. We decided to use SVT-AV1 in order to give users a scalable and fast AV1 encoder implementation that "just works," for the most part.
 
 Aviator comes bundled with its own version of ffmpeg that is capable of encoding AV1 video using SVT-AV1.
 
