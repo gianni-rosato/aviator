@@ -35,6 +35,8 @@ Aviator comes bundled with its own version of ffmpeg that is capable of encoding
 
 ### Aviator's Defaults
 
+Hovering over most user configurable options in Aviator will produce a helpful tooltip that you can look at to make options more clear.
+
 <img src="assets/aviator_vid.avif" alt="Aviator Video Settings" width=480/>
 
 By default, when you load a video file some parameters will be set to match the source as closely as possible. These parameters include the resolution, framerate, and audio bitrate. Aviator's SVT-AV1 speed preset is set to 6 by default, with a CQ (Constant Quality) level of 32. You can set a CQ level from 0 to 63 using the slider, with larger numerical values indicating smaller filesize at the expense of visual quality. You can look at the detailed specifications behind each speed preset [here](https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/Docs/CommonQuestions.md#what-presets-do). Speed 6 offers a good balance between speed & compression efficiency at any CQ level. 
