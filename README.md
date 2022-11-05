@@ -15,25 +15,39 @@ A lightweight, Flatpak-first, easy-to-use GUI utility for encoding with SVT-AV1 
 [![Liberapay](https://img.shields.io/liberapay/receives/computerbuster.svg?logo=liberapay)](https://liberapay.com/computerbuster/donate)
 </div>
 
-### About
+## About
 
 Aviator enables simple, easy-to-use video encoding for the word's most advanced open video codec, AV1. Encode your favorite media into super efficient files with incredible quality per bit, powered by the SVT-AV1 production encoder with Opus for audio encoding. The sky's the limit for your old home video collection &amp; large 4k smartphone videos, and you can fly in style with a beautiful libadwaita interface. Take off with Aviator!
 
 Aviator is designed to be a no frills, easy to use AV1 encoder that any beginner can pick up and immediately understand how to use. 
 
-### Installation
+## Installation
+
+### Flathub
 
 Aviator is available on Flathub. You can learn how to set up Flatpak on your distro of choice [here](https://flatpak.org/setup/).
 
 <a href="https://flathub.org/apps/details/net.natesales.Aviator"><img width="200" alt="Download on Flathub" src="https://flathub.org/assets/badges/flathub-badge-en.png"/></a>
 
-### Why AV1?
+### Building from Source
+
+Make sure you have all required dependencies before building from source. This includes `flatpak-builder`, `python3` & `gcc`
+
+```bash
+git clone https://github.com/natesales/aviator
+cd aviator
+make
+```
+
+Any third party packaging formats are not officially supported by Aviator, and if you have bugs with them, please do not submit them as issues as we do not officially support third party packaged versions of Aviator.
+
+## Why AV1?
 
 AV1 aims to be more efficient than HEVC & VP9 by around 30%, and more efficient than h.264 by 50%. Traditionally, a lot of AV1 encoder implementations have been pretty slow compared to competing codecs' encoders, but the production encoder SVT-AV1 is decently speedy. We decided to use SVT-AV1 in order to give users a scalable and fast AV1 encoder implementation that "just works," for the most part.
 
 Aviator comes bundled with its own version of ffmpeg that is capable of encoding AV1 video using SVT-AV1.
 
-### Aviator's Defaults
+## Aviator's Defaults
 
 Hovering over most user configurable options in Aviator will produce a helpful tooltip that you can look at to make options more clear.
 
@@ -45,7 +59,7 @@ By default, when you load a video file some parameters will be set to match the 
 
 Audio is reencoded even if the bitrate is set to be the same as the source audio. Audio is encoded to Opus, which is a highly efficient free audio codec that is often more efficient than competitors like AAC & MP3 audio. Because of Opus's incredible efficiency, audio tracks will be encoded at 48kbps if no source bitrate is detected. Opus reaches audio transparency at around 128kbps.
 
-### Roadmap & Limitations
+## Roadmap & Limitations
 
 Currently, Aviator cannot handle:
 - Video streams with multiple audio streams
@@ -65,6 +79,6 @@ Let us know if you have any issues in our Issues section. Thank you for using Av
 
 <img src="assets/aviator_output.avif" alt="Aviator Output UI" width=480/>
 
-### Credits
+## Credits
 
 Actively developed by [Nate Sales](https://github.com/natesales/) & [Gianni Rosato](https://github.com/Amateurintheflesh/)
