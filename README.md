@@ -62,7 +62,6 @@ Audio is reencoded even if the bitrate is set to be the same as the source audio
 ## Roadmap & Limitations
 
 Currently, Aviator cannot handle:
-- Video streams with multiple audio streams
 - Video streams with subtitles
 
 These are considered bugs, and we are working on fixing them ASAP.
