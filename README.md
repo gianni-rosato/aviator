@@ -39,7 +39,7 @@ cd aviator
 make
 ```
 
-Any third party packaging formats are not officially supported by Aviator, and if you have bugs with them, please do not submit them as issues as we do not officially support third party packaged versions of Aviator.
+Any third party packaging formats are not officially supported by Aviator, and if you encounter bugs while using them please do not submit them as issues as we do not officially support third party packaged versions of Aviator.
 
 ## Why AV1?
 
