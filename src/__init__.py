@@ -1,5 +1,5 @@
+import logging
 import sys
-import os
 import threading
 import subprocess
 import gi
@@ -54,14 +54,18 @@ def humanize(seconds):
 # metadata returns the file's resolution, framerate, and audio bitrate
 def metadata(file) -> (float, float, float, float):
     try:
-        x = subprocess.Popen(["ffprobe",
-                              "-v",
-                              "quiet",
-                              "-print_format",
-                              "json",
-                              "-show_format",
-                              "-show_streams",
-                              file], stdout=subprocess.PIPE).stdout.read()
+        cmd = [
+            "ffprobe",
+            "-v",
+            "quiet",
+            "-print_format",
+            "json",
+            "-show_format",
+            "-show_streams",
+            file,
+        ]
+        logging.debug("Running ffprobe: " + " ".join(cmd))
+        x = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout.read()
         m = json.loads(x)
         streams = m["streams"]
         video = streams[0]
@@ -74,7 +78,7 @@ def metadata(file) -> (float, float, float, float):
 
         return video["width"], video["height"], r_fps, float(audio["sample_rate"]) / 1000
     except Exception as e:
-        print(e)
+        logging.error("Get metadata:", e)
         return 0, 0, 0, 0
 
 
@@ -214,16 +218,24 @@ class MainWindow(Adw.Window):
         # resolution, framerate, and audio bitrate
         self.metadata: (float, float, float, float) = ()
 
+        # Absolute source path file
+        self.source_file_absolute = ""
+
     def load_metadata(self):
-        self.metadata = metadata(self.source_file_label.get_text())
+        self.metadata = metadata(self.source_file_absolute)
 
     def set_defaults(self):
         self.bitrate_same_as_source()
         self.framerate_same_as_source()
         self.resolution_same_as_source()
 
+    def handle_file_select(self):
+        self.set_defaults()
+
         # Trim file path
-        self.source_file_label.set_text(os.path.basename(self.source_file_label.get_text()))
+        if "/" in self.source_file_label.get_text():
+            self.source_file_absolute = self.source_file_label.get_text()
+            self.source_file_label.set_text(os.path.basename(self.source_file_absolute))
 
     # Video
 
@@ -235,7 +247,7 @@ class MainWindow(Adw.Window):
             label=self.source_file_label,
             selection_text="source",
             open_only=True,
-            callback=self.set_defaults
+            callback=self.handle_file_select
         )
 
     @Gtk.Template.Callback()
@@ -296,7 +308,7 @@ class MainWindow(Adw.Window):
             cmd = [
                 "ffmpeg",
                 "-nostdin",
-                "-i", self.source_file_label.get_text(),
+                "-i", self.source_file_absolute,
                 "-r", self.framerate_entry.get_text(),
                 "-vf", f"scale={self.resolution_width_entry.get_text()}:{self.resolution_height_entry.get_text()}",
                 "-c:v", "libsvtav1",
