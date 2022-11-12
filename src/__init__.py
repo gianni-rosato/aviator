@@ -1,4 +1,5 @@
 import sys
+import os
 import threading
 import subprocess
 import gi
@@ -220,6 +221,9 @@ class MainWindow(Adw.Window):
         self.bitrate_same_as_source()
         self.framerate_same_as_source()
         self.resolution_same_as_source()
+
+        # Trim file path
+        self.source_file_label.set_text(os.path.basename(self.source_file_label.get_text()))
 
     # Video
 
