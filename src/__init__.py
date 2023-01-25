@@ -139,23 +139,6 @@ class FileSelectDialog(Gtk.FileChooserDialog):
             self.callback()
         widget.close()
 
-
-class AboutDialog(Gtk.AboutDialog):
-    def __init__(self, win):
-        Gtk.AboutDialog.__init__(self)
-        self.props.transient_for = win
-        self.props.modal = True
-        self.props.license_type = Gtk.License.AGPL_3_0
-        self.props.program_name = "Aviator"
-        self.props.logo_icon_name = "net.natesales.Aviator"
-        self.props.version = "Aviator v" + info.version
-        self.props.comments = "Your Video Copilot"
-        self.props.copyright = "Copyright © 2022 Nate Sales and Gianni Rosato"
-        self.props.website_label = "GitHub"
-        self.props.website = "https://github.com/natesales/aviator"
-        self.props.authors = ["Nate Sales <nate@natesales.net>", "Gianni Rosato <grosatowork@proton.me>"]
-
-
 @Gtk.Template(filename=str(BASE_DIR.joinpath('startup.ui')))
 class OnboardWindow(Adw.Window):
     __gtype_name__ = "OnboardWindow"
@@ -356,8 +339,26 @@ class App(Adw.Application):
             self.win.present()
 
     def about_dialog(self, action, user_data):
-        dialog = AboutDialog(self.win)
-        dialog.present()
+        about = Adw.AboutWindow(transient_for=self.win,
+                                application_name="Aviator",
+                                application_icon="net.natesales.Aviator",
+                                developer_name="Nate Sales & Gianni Rosato",
+                                version="Aviator v" + info.version,
+                                copyright="Copyright © 2023 Nate Sales & Gianni Rosato",
+                                license_type=Gtk.License.GPL_3_0_ONLY,
+                                website="https://github.com/natesales/aviator",
+                                issue_url="https://github.com/natesales/aviator/issues")
+        # about.set_translator_credits(translators())
+        about.set_developers(["Nate Sales <nate@natesales.net>"])
+        about.set_designers(["Gianni Rosato <grosatowork@proton.me>"])
+        # # about.add_acknowledgement_section()
+        # about.add_acknowledgement_section(
+        about.add_legal_section(
+            title='FFmpeg',
+            copyright='Copyright © 2023 FFmpeg',
+            license_type=Gtk.License.GPL_3_0_ONLY,
+        )
+        about.present()
 
     def quit(self, action=None, user_data=None):
         exit()
