@@ -1,7 +1,7 @@
 app-id: net.natesales.Aviator
 command: aviator
 sdk: org.gnome.Sdk
-sdk-extensions: ["org.freedesktop.Sdk.Extension.rust-stable"]
+sdk-extensions: ["org.freedesktop.Sdk.Extension.rust-stable", "org.freedesktop.Sdk.Extension.llvm14"]
 runtime: org.gnome.Platform
 runtime-version: "43"
 
