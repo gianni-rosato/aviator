@@ -1,10 +1,17 @@
 app-id: net.natesales.Aviator
 command: aviator
 sdk: org.gnome.Sdk
-sdk-extensions: ["org.freedesktop.Sdk.Extension.rust-stable"]
 runtime: org.gnome.Platform
 runtime-version: "43"
 &ext-version: "22.08"
+
+add-build-extensions:
+  org.freedesktop.Sdk.Extension.rust-stable:
+    directory: rust-stable
+    add-ld-path: .
+    version: *ext-version
+    no-autodownload: true
+    autodelete: false
 
 finish-args:
   - --share=ipc
