@@ -1,7 +1,6 @@
 app-id: net.natesales.Aviator
 command: aviator
 sdk: org.gnome.Sdk
-runtime: org.gnome.Platform
 runtime-version: "43"
 &ext-version: "22.08"
 
