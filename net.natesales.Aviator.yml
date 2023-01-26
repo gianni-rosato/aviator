@@ -1,6 +1,7 @@
 app-id: net.natesales.Aviator
 command: aviator
 sdk: org.gnome.Sdk
+runtime: org.gnome.Platform
 runtime-version: "43"
 &ext-version: "22.08"
 
@@ -72,16 +73,6 @@ modules:
         url: https://github.com/vapoursynth/vapoursynth/archive/refs/tags/R61.tar.gz
         sha256: a5d4feeb056679dd1204153250d7c1d38e5a639e995d3c4e3a8e2e8fe1425b75
 
-  - name: av1an
-    buildsystem: simple
-    sources:
-      - type: archive
-        url: https://github.com/master-of-zen/Av1an/archive/refs/tags/0.4.0-release.tar.gz
-        sha256: c59b0965aea45ea8aea08f7c779ad61e5e59858d65cf660e3ad4d3d3908fcbf0
-    build-commands:
-      - cargo build --release --verbose
-      - install target/release/av1an /app/bin/av1an
-
   - name: rav1e
     buildsystem: simple
     sources:
@@ -91,6 +82,16 @@ modules:
     build-commands:
       - cargo build --release --verbose
       - install target/release/rav1e /app/bin/rav1e
+
+  - name: av1an
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://github.com/master-of-zen/Av1an/archive/refs/tags/0.4.0-release.tar.gz
+        sha256: c59b0965aea45ea8aea08f7c779ad61e5e59858d65cf660e3ad4d3d3908fcbf0
+    build-commands:
+      - cargo build --release --verbose
+      - install target/release/av1an /app/bin/av1an
 
   - name: aviator
     builddir: true
