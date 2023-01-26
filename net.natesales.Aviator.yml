@@ -1,9 +1,23 @@
 app-id: net.natesales.Aviator
 command: aviator
 sdk: org.gnome.Sdk
-sdk-extensions: ["org.freedesktop.Sdk.Extension.rust-stable", "org.freedesktop.Sdk.Extension.llvm14"]
-runtime: org.gnome.Platform
 runtime-version: "43"
+&ext-version: "22.08"
+
+add-build-extensions:
+  org.freedesktop.Sdk.Extension.rust-stable:
+    directory: rust-stable
+    add-ld-path: .
+    version: *ext-version
+    no-autodownload: true
+    autodelete: false
+
+  org.freedesktop.Sdk.Extension.llvm14:
+    directory: llvm14
+    add-ld-path: .
+    version: *ext-version
+    no-autodownload: true
+    autodelete: false
 
 finish-args:
   - --share=ipc
@@ -18,8 +32,8 @@ build-options:
   env: 
     CARGO_HOME: /run/build/done/cargo
     PROTOC: /app/bin/protoc
-  prepend-ld-library-path: /usr/lib/sdk/llvm13/lib
-  prepend-path: /usr/lib/sdk/llvm13/bin
+  prepend-ld-library-path: /usr/lib/sdk/llvm14/lib
+  prepend-path: /usr/lib/sdk/llvm14/bin
 
 cleanup:
   - /include
