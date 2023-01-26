@@ -4,6 +4,7 @@ sdk: org.gnome.Sdk
 sdk-extensions: ["org.freedesktop.Sdk.Extension.rust-stable"]
 runtime: org.gnome.Platform
 runtime-version: "43"
+&ext-version: "22.08"
 
 finish-args:
   - --share=ipc
