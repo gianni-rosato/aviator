@@ -20,7 +20,6 @@ from . import info
 
 BASE_DIR = Path(__file__).resolve().parent
 
-
 def humanize(seconds):
     seconds = round(seconds)
     words = ["year", "day", "hour", "minute", "second"]
@@ -169,7 +168,7 @@ class MainWindow(Adw.Window):
     resolution_width_entry = Gtk.Template.Child()
     resolution_height_entry = Gtk.Template.Child()
     framerate_entry = Gtk.Template.Child()
-    crf_scale = Gtk.Template.Child()
+    quantizer_scale = Gtk.Template.Child()
     cpu_scale = Gtk.Template.Child()
 
     # Audio page
@@ -195,8 +194,8 @@ class MainWindow(Adw.Window):
         # Reset value to remove extra decimal
         self.cpu_scale.set_value(0)
         self.cpu_scale.set_value(6)
-        self.crf_scale.set_value(0)
-        self.crf_scale.set_value(32)
+        self.quantizer_scale.set_value(0)
+        self.quantizer_scale.set_value(80)
 
         # resolution, framerate, and audio bitrate
         self.metadata: (float, float, float, float) = ()
@@ -289,25 +288,25 @@ class MainWindow(Adw.Window):
         def run_in_thread():
             encode_start = time.time()
             cmd = [
-                "ffmpeg",
-                "-nostdin",
+                "av1an",
                 "-i", self.source_file_absolute,
-                "-r", self.framerate_entry.get_text(),
-                "-vf", f"scale={self.resolution_width_entry.get_text()}:{self.resolution_height_entry.get_text()}",
-                "-c:v", "libsvtav1",
-                "-map", "0",
-                "-crf", str(self.crf_scale.get_value()),
-                "-preset", str(self.cpu_scale.get_value()),
-                "-c:a", "libopus",
-                "-b:a", self.bitrate_entry.get_text() + "K",
-                "-vbr", "on" if self.vbr_switch.get_state() else "off",
-                "-compression_level", "10",
-                output,
+                "-y",
+                "--split-method", "av-scenechange",
+                "-m", "hybrid",
+                "-c", "ffmpeg",
+                "-e", "rav1e",
+                "--force",
+                "--video-params", f"--tiles 1 -s {int(self.cpu_scale.get_value())} --quantizer {int(self.quantizer_scale.get_value())} --threads 1",
+                "--pix-format", "yuv420p10le",
+                "-a", f"-c:a libopus -b:a {self.bitrate_entry.get_text()}K -compression_level 10 -vbr " + "on" if self.vbr_switch.get_state() else "off",
+                "-f", f"-vf scale={self.resolution_width_entry.get_text()}:{self.resolution_height_entry.get_text()} -sws_flags lanczos",
+                "-w", "0",
+                "-o", output,
             ]
             print(cmd)
             proc = subprocess.Popen(cmd)
             proc.wait()
-            encode_end = time.time() - encode_start()
+            encode_end = time.time() - encode_start
 
             self.encode_button.set_visible(True)
             self.encoding_spinner.set_visible(False)
@@ -329,6 +328,7 @@ class App(Adw.Application):
         quit_action = Gio.SimpleAction(name="quit")
         quit_action.connect("activate", self.quit)
         self.add_action(quit_action)
+        os.system("rav1e --version")
 
     def on_activate(self, app):
         if first_open():
