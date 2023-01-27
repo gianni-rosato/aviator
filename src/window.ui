@@ -213,11 +213,11 @@
 
                                                         <child>
                                                             <object class="AdwActionRow">
-                                                                <property name="title" translatable="yes">_CPU</property>
+                                                                <property name="title" translatable="yes">_Speed</property>
                                                                 <property name="tooltip-text">This value determines how hard your system will work to encode your video. Lower values mean your system will take longer to encode the video, but the files will be higher quality. Higher values will encode less efficiently, but much more quickly.</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
-                                                                    <object class="GtkScale" id="cpu_scale">
+                                                                    <object class="GtkScale" id="speed_scale">
                                                                         <property name="halign">end</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="draw-value">1</property>

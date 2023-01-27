@@ -169,7 +169,7 @@ class MainWindow(Adw.Window):
     resolution_height_entry = Gtk.Template.Child()
     framerate_entry = Gtk.Template.Child()
     quantizer_scale = Gtk.Template.Child()
-    cpu_scale = Gtk.Template.Child()
+    speed_scale = Gtk.Template.Child()
 
     # Audio page
     bitrate_entry = Gtk.Template.Child()
@@ -192,8 +192,8 @@ class MainWindow(Adw.Window):
         self.container = "mkv"
 
         # Reset value to remove extra decimal
-        self.cpu_scale.set_value(0)
-        self.cpu_scale.set_value(6)
+        self.speed_scale.set_value(0)
+        self.speed_scale.set_value(6)
         self.quantizer_scale.set_value(0)
         self.quantizer_scale.set_value(80)
 
@@ -296,7 +296,7 @@ class MainWindow(Adw.Window):
                 "-c", "ffmpeg",
                 "-e", "rav1e",
                 "--force",
-                "--video-params", f"--tiles 1 -s {int(self.cpu_scale.get_value())} --quantizer {int(self.quantizer_scale.get_value())} --threads 1",
+                "--video-params", f"--tiles 1 -s {int(self.speed_scale.get_value())} --quantizer {int(self.quantizer_scale.get_value())} --threads 1",
                 "--pix-format", "yuv420p10le",
                 "-a", f"-c:a libopus -b:a {self.bitrate_entry.get_text()}K -compression_level 10 -vbr " + "on" if self.vbr_switch.get_state() else "off",
                 "-f", f"-vf scale={self.resolution_width_entry.get_text()}:{self.resolution_height_entry.get_text()} -sws_flags lanczos",
