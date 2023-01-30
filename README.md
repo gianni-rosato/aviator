@@ -1,7 +1,7 @@
 <div align="center">
 <h1>Aviator</h1>
 
-A lightweight, Flatpak-first, easy-to-use GUI utility for encoding with SVT-AV1 & Opus.
+A Flatpak-first easy-to-use GUI for encoding with rav1e & libopus.
 
 <img src="assets/aviator_splash2.avif" alt="Splash" width=450/>
 <br>
@@ -16,9 +16,9 @@ A lightweight, Flatpak-first, easy-to-use GUI utility for encoding with SVT-AV1 
 
 ## About
 
-Aviator enables simple, easy-to-use video encoding for the word's most advanced open video codec, AV1. Encode your favorite media into super efficient files with incredible quality per bit, powered by the SVT-AV1 production encoder with Opus for audio encoding. The sky's the limit for your old home video collection &amp; large 4k smartphone videos, and you can fly in style with a beautiful libadwaita interface. Take off with Aviator!
+Aviator enables simple & easy video encoding for the word's most advanced open video codec, AV1. Encode your favorite media into super efficient files with incredible quality per bit, powered by the fast, memory-safe rav1e encoder with libopus for audio encoding. The sky's the limit for your old home video collection, large 4k smartphone videos, screen recordings, Blu-ray rips, you name it - take off with Aviator!
 
-Aviator is designed to be a no frills, easy to use AV1 encoder that any beginner can pick up and immediately understand how to use. 
+Aviator is designed to be a no frills, easy to use AV1 encoding GUI that any beginner can pick up and immediately understand how to use. 
 
 ## Installation
 
@@ -38,21 +38,23 @@ cd aviator
 make
 ```
 
-Any third party packaging formats are not officially supported by Aviator, and if you encounter bugs while using them please do not submit them as issues as we do not officially support third party packaged versions of Aviator.
+Third party packaging formats are not officially supported by Aviator, and if you encounter bugs while using them please do not submit them as issues; we do not officially support third party packaged versions of Aviator.
 
 ## Why AV1?
 
-AV1 aims to be more efficient than HEVC & VP9 by around 30%, and more efficient than h.264 by 50%. Traditionally, a lot of AV1 encoder implementations have been pretty slow compared to competing codecs' encoders, but the production encoder SVT-AV1 is decently speedy. We decided to use SVT-AV1 in order to give users a scalable and fast AV1 encoder implementation that "just works," for the most part.
+AV1 aims to be more efficient than HEVC & VP9 by around 30%, and more efficient than h.264 by 50%. Traditionally, a lot of AV1 encoder implementations have been pretty slow compared to competing codecs' encoders, but the Rust-based rav1e encoder has seen decent increases in speed recently and is improving more every day. We decided to use rav1e in order to give users a memory-safe AV1 encoder implementation that prioritizes visual quality &amp; "just works," for the most part.
 
-Aviator comes bundled with its own version of ffmpeg that is capable of encoding AV1 video using SVT-AV1.
+One downside of rav1e is that despite being generally quicker than the libaom AV1 reference encoder, it is quite a bit slower than the SVT-AV1 production encoder. To combat this while maintaining high visual quality, Aviator utilizes a tool called [Av1an](https://github.com/master-of-zen/Av1an) that is capable of detecting scene changes in a video & splitting the video into multiple shorter videos (chunks) based on those scene changes, then encoding these chunks in parallel. This works especially well with longer videos. Aviator will determine the number of chunks to use based on Av1an's internal chunk allocator, which calculates the number of chunks your system can handle based on your logical CPU cores & the amount of RAM you have available. Encoding speed scales with the number of chunks you have, so more chunks is faster but harder on your CPU & memory.
+
+Aviator comes bundled with its own version of ffmpeg that is capable decoding videos to detect source information, upscaling & downscaling videos with a sharp scaling algorithm called lanczos, & encoding audio using the Opus audio codec via libopus.
 
 ## Aviator's Defaults
 
-Hovering over most user configurable options in Aviator will produce a helpful tooltip that you can look at to make options more clear.
+Hovering over most user configurable options in Aviator will produce a helpful tooltip that you can look at to make things more clear.
 
 <img src="assets/aviator_vid.avif" alt="Aviator Video Settings" width=480/>
 
-By default, when you load a video file some parameters will be set to match the source as closely as possible. These parameters include the resolution, framerate, and audio bitrate. Aviator's SVT-AV1 speed preset is set to 6 by default, with a CQ (Constant Quality) level of 32. You can set a CQ level from 0 to 63 using the slider, with larger numerical values indicating smaller filesize at the expense of visual quality. You can look at the detailed specifications behind each speed preset [here](https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/Docs/CommonQuestions.md#what-presets-do). Speed 6 offers a good balance between speed & compression efficiency at any CQ level. 
+When you load a video file into Aviator, resolution & audio bitrate are set to match the source as closely as possible. Aviator's rav1e speed preset is set to 6 by default, with a Quantizer level of 80. You can set the Quantizer level from 1 to 255 using the slider, with larger numerical values indicating smaller filesize at the expense of visual quality. Speed 6 offers a good balance between speed & compression efficiency at any Quantizer level; higher values will encode faster at the expense of visual quality, while lower values will encode more efficiently but more slowly.
 
 <img src="assets/aviator_audio.avif" alt="Aviator Audio Settings" width=480/>
 
@@ -61,9 +63,9 @@ Audio is reencoded even if the bitrate is set to be the same as the source audio
 ## Roadmap & Limitations
 
 Currently, Aviator cannot handle:
-- Video streams with subtitles
+- Video streams with subtitles encoded to .webm
 
-These are considered bugs, and we are working on fixing them ASAP.
+These are considered bugs, and we are working on fixing them ASAP. In the meantime, we'd prefer you choose the .mkv container if you are having trouble with subtitles.
 
 In the future, we would like to:
 - Add a progress bar
@@ -79,4 +81,4 @@ Let us know if you have any issues in our Issues section. Thank you for using Av
 
 ## Credits
 
-Actively developed by [Nate Sales](https://github.com/natesales/) & [Gianni Rosato](https://github.com/Amateurintheflesh/)
+Actively developed by [Nate Sales](https://github.com/natesales/) & [Gianni Rosato](https://github.com/gianni-rosato/)
