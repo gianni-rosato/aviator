@@ -107,7 +107,7 @@
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Resolution</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Sets the output resolution. "Same as source" sets it to be the same as the source media.</property>
+                                                                <property name="tooltip-text">Sets the output resolution. "Match Source" sets the width &amp; height to be the same as the source media. If a value from the source media isn't detected, it will default to 1536*864.</property>
                                                                 <child>
                                                                     <object class="GtkBox">
                                                                         <!-- <child>
@@ -141,7 +141,7 @@
                                                                                 </child>
                                                                                 <child>
                                                                                     <object class="GtkButton">
-                                                                                        <property name="label" translatable="yes">Same as source</property>
+                                                                                        <property name="label" translatable="yes">Match Source</property>
                                                                                         <signal name="clicked" handler="resolution_same_as_source" swapped="no" />
                                                                                     </object>
                                                                                 </child>
@@ -154,41 +154,8 @@
 
                                                         <child>
                                                             <object class="AdwActionRow">
-                                                                <property name="title" translatable="yes">_Frame Rate</property>
-                                                                <property name="use-underline">true</property>
-                                                                <child>
-                                                                    <object class="GtkBox">
-                                                                        <child>
-                                                                            <object class="GtkBox">
-                                                                                <property name="margin-top">8</property>
-                                                                                <property name="margin-bottom">8</property>
-                                                                                <property name="tooltip-text">Framerate determines how many frames your video displays per second. It is not recommended to set this higher than the video's native framerate.</property>
-                                                                                <style>
-                                                                                    <class name="linked" />
-                                                                                </style>
-                                                                                <child>
-                                                                                    <object class="GtkEntry" id="framerate_entry">
-                                                                                        <property name="placeholder-text" translatable="yes">FPS</property>
-                                                                                        <property name="max-width-chars">6</property>
-                                                                                    </object>
-                                                                                </child>
-                                                                                <child>
-                                                                                    <object class="GtkButton">
-                                                                                        <property name="label" translatable="yes">Same as source</property>
-                                                                                        <signal name="clicked" handler="framerate_same_as_source" swapped="no" />
-                                                                                    </object>
-                                                                                </child>
-                                                                            </object>
-                                                                        </child>
-                                                                    </object>
-                                                                </child>
-                                                            </object>
-                                                        </child>
-
-                                                        <child>
-                                                            <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Quantizer</property>
-                                                                <property name="tooltip-text">The quantizer's value determines the size and quality of your output. Higher values mean lower file size and quality while lower values create larger, higher-quality videos.</property>
+                                                                <property name="tooltip-text">The quantizer's value determines the size &amp; quality of your output. Higher values mean lower file size &amp; quality while lower values create larger, higher-quality videos.</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
                                                                     <object class="GtkScale" id="quantizer_scale">
@@ -286,7 +253,7 @@
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Bitrate</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Sets the audio bitrate to a value in kbps. Higher values mean better quality.</property>
+                                                                <property name="tooltip-text">Sets the audio bitrate to a value in kbps. Higher values mean better quality at the expense of filesize. We recommend a value between 128 &amp; 32. "Match Source" sets the bitrate to be the same as the audio in the source media. If a value from the source media isn't detected, it will default to 48 kbps. </property>
                                                                 <child>
                                                                     <!-- <child>
                                                                             <object class="GtkLabel">
@@ -311,7 +278,7 @@
                                                                         </child>
                                                                         <child>
                                                                             <object class="GtkButton">
-                                                                                <property name="label" translatable="yes">Same as source</property>
+                                                                                <property name="label" translatable="yes">Match Source</property>
                                                                                 <signal name="clicked" handler="bitrate_same_as_source" swapped="no" />
                                                                             </object>
                                                                         </child>
@@ -324,7 +291,7 @@
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Variable Bit Rate</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Allows Opus to vary the bitrate based on the complexity of the audio.</property>
+                                                                <property name="tooltip-text">Allows Opus to vary the audio bitrate based on the complexity of the audio. It is highly recommended to leave this enabled.</property>
                                                                 <child>
                                                                     <object class="GtkSwitch" id="vbr_switch">
                                                                         <property name="active">True</property>
@@ -366,7 +333,7 @@
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Output File</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Select the output directory &amp; type in a filename</property>
+                                                                <property name="tooltip-text">Select the output directory &amp; type in a filename.</property>
                                                                 <child>
                                                                     <object class="GtkBox">
                                                                         <child>
@@ -400,7 +367,7 @@
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Container</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">The container your video is stored in, which is associated with the file extension.</property>
+                                                                <property name="tooltip-text">The container your video is stored in, which is associated with the file extension. MKV is a universal video container with widespread support, while WebM is designed for web compatibility &amp; may break subtitles.</property>
                                                                 <child>
                                                                     <object class="GtkBox">
                                                                         <property name="margin-top">10</property>

@@ -50,8 +50,8 @@ def humanize(seconds):
             return ", ".join(duration[:-1]) + " and " + duration[-1]
 
 
-# metadata returns the file's resolution, framerate, and audio bitrate
-def metadata(file) -> (float, float, float, float):
+# metadata returns the file's resolution and audio bitrate
+def metadata(file) -> (float, float, float):
     try:
         cmd = [
             "ffprobe",
@@ -69,16 +69,11 @@ def metadata(file) -> (float, float, float, float):
         streams = m["streams"]
         video = streams[0]
         audio = streams[1]
-        r_fps = video["r_frame_rate"]
-        if "/" in r_fps:
-            r_fps = r_fps.split("/")
-            r_fps = float(float(r_fps[0]) / float(r_fps[1]))
-        r_fps = round(r_fps, 2)
 
-        return video["width"], video["height"], r_fps, float(audio["sample_rate"]) / 1000
+        return video["width"], video["height"], float(audio["sample_rate"]) / 1000
     except Exception as e:
         logging.error("Get metadata:", e)
-        return 0, 0, 0, 0
+        return 1536, 864, 48
 
 
 def notify(text):
@@ -167,7 +162,6 @@ class MainWindow(Adw.Window):
     source_file_label = Gtk.Template.Child()
     resolution_width_entry = Gtk.Template.Child()
     resolution_height_entry = Gtk.Template.Child()
-    framerate_entry = Gtk.Template.Child()
     quantizer_scale = Gtk.Template.Child()
     speed_scale = Gtk.Template.Child()
 
@@ -197,8 +191,8 @@ class MainWindow(Adw.Window):
         self.quantizer_scale.set_value(0)
         self.quantizer_scale.set_value(80)
 
-        # resolution, framerate, and audio bitrate
-        self.metadata: (float, float, float, float) = ()
+        # resolution and audio bitrate
+        self.metadata: (float, float, float) = ()
 
         # Absolute source path file
         self.source_file_absolute = ""
@@ -208,7 +202,6 @@ class MainWindow(Adw.Window):
 
     def set_defaults(self):
         self.bitrate_same_as_source()
-        self.framerate_same_as_source()
         self.resolution_same_as_source()
 
     def handle_file_select(self):
@@ -241,14 +234,9 @@ class MainWindow(Adw.Window):
     # Audio
 
     @Gtk.Template.Callback()
-    def framerate_same_as_source(self, button=None):
-        self.load_metadata()
-        self.framerate_entry.set_text(str(round(float(self.metadata[2]))))
-
-    @Gtk.Template.Callback()
     def bitrate_same_as_source(self, button=None):
         self.load_metadata()
-        self.bitrate_entry.set_text(str(round(float(self.metadata[3]))))
+        self.bitrate_entry.set_text(str(round(float(self.metadata[2]))))
 
     # Export
 
@@ -344,19 +332,34 @@ class App(Adw.Application):
                                 application_icon="net.natesales.Aviator",
                                 developer_name="Nate Sales & Gianni Rosato",
                                 version="Aviator v" + info.version,
-                                copyright="Copyright © 2023 Nate Sales & Gianni Rosato",
-                                license_type=Gtk.License.GPL_3_0_ONLY,
+                                copyright="Copyright © 2023 Nate Sales &amp; Gianni Rosato",
+                                license_type=Gtk.License.GPL_3_0,
                                 website="https://github.com/natesales/aviator",
                                 issue_url="https://github.com/natesales/aviator/issues")
         # about.set_translator_credits(translators())
-        about.set_developers(["Nate Sales <nate@natesales.net>"])
+        about.set_developers(["Nate Sales <nate@natesales.net>","Gianni Rosato <grosatowork@proton.me>"])
         about.set_designers(["Gianni Rosato <grosatowork@proton.me>"])
-        # # about.add_acknowledgement_section()
-        # about.add_acknowledgement_section(
+        about.add_acknowledgement_section(
+            ("Special thanks to the AV1 Community for your knowledge &amp; inspiration!"),
+            [
+                "AV1 Discord https://discord.gg/SjumTJEsFD",
+            ]
+        )
+        # about.add_acknowledgement_section()
+        about.add_legal_section(
+            title='Av1an',
+            copyright='Copyright © 2023 Av1an',
+            license_type=Gtk.License.GPL_3_0,
+        )
         about.add_legal_section(
             title='FFmpeg',
             copyright='Copyright © 2023 FFmpeg',
-            license_type=Gtk.License.GPL_3_0_ONLY,
+            license_type=Gtk.License.GPL_3_0,
+        )
+        about.add_legal_section(
+            title='rav1e',
+            copyright='Copyright © 2023 xiph.org',
+            license_type=Gtk.License.BSD,
         )
         about.present()
 
