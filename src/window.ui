@@ -15,7 +15,7 @@
         </section>
     </menu>
     <template class="AviatorWindow" parent="AdwWindow">
-        <property name="modal">True</property>
+        <property name="modal">False</property>
         <property name="width-request">360</property>
         <property name="title" translatable="yes">Aviator</property>
         <property name="content">
@@ -63,7 +63,6 @@
                                                 <signal name="clicked" handler="open_source_file" swapped="no" />
                                                 <style>
                                                     <class name="pill" />
-                                                    <class name="sugested-action" />
                                                 </style>
                                             </object>
                                         </child>
@@ -404,7 +403,7 @@
                                                 <!-- <property name="icon-name">document-open-symbolic</property> -->
                                                 <style>
                                                     <class name="pill" />
-                                                    <class name="sugested-action" />
+                                                    <class name="suggested-action" />
                                                 </style>
                                             </object>
                                         </child>
