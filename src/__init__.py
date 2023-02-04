@@ -176,6 +176,7 @@ class MainWindow(Adw.Window):
     container = "mkv"
     encode_button = Gtk.Template.Child()
     encoding_spinner = Gtk.Template.Child()
+    progress_bar = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -196,6 +197,11 @@ class MainWindow(Adw.Window):
 
         # Absolute source path file
         self.source_file_absolute = ""
+
+        # Set progress bar to 0
+        self.progress_bar.set_fraction(0)
+
+        self.progress_debounce = time.time()
 
     def load_metadata(self):
         self.metadata = metadata(self.source_file_absolute)
@@ -276,7 +282,7 @@ class MainWindow(Adw.Window):
         def run_in_thread():
             encode_start = time.time()
             cmd = [
-                "av1an",
+                "/home/gianni13700k/Documents/projects/av1an-nate/target/release/av1an",
                 "-i", self.source_file_absolute,
                 "-y",
                 "--split-method", "av-scenechange",
@@ -284,16 +290,30 @@ class MainWindow(Adw.Window):
                 "-c", "ffmpeg",
                 "-e", "rav1e",
                 "--force",
-                "--video-params", f"--tiles 1 -s {int(self.speed_scale.get_value())} --quantizer {int(self.quantizer_scale.get_value())} --threads 1",
+                "--video-params", f"--tiles 1 -s {int(self.speed_scale.get_value())} --quantizer {int(self.quantizer_scale.get_value())} --threads 1 --no-scene-detection",
                 "--pix-format", "yuv420p10le",
                 "-a", f"-c:a libopus -b:a {self.bitrate_entry.get_text()}K -compression_level 10 -vbr " + "on" if self.vbr_switch.get_state() else "off",
                 "-f", f"-vf scale={self.resolution_width_entry.get_text()}:{self.resolution_height_entry.get_text()} -sws_flags lanczos",
                 "-w", "0",
                 "-o", output,
             ]
-            print(cmd)
-            proc = subprocess.Popen(cmd)
-            proc.wait()
+
+            print(" ".join(cmd))
+            process = subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                                     universal_newlines=True)
+            last_update = time.time()
+            for line in process.stdout:
+                print(line.strip())
+                tokens = line.strip().split(":")
+                if len(tokens) == 2 and (tokens[0] == "Scene Detection" or tokens[0] == "Encoding"):
+                    step = tokens[0]
+                    frac = tokens[1].split("/")
+                    progress = int(frac[0])/int(frac[1])
+                    progress = round(progress,2)
+                    if time.time() - last_update > 1:
+                        self.progress_bar.set_fraction(progress)
+                        last_update = time.time()
+            process.wait()
             encode_end = time.time() - encode_start
 
             self.encode_button.set_visible(True)

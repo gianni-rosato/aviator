@@ -76,11 +76,11 @@ modules:
   - name: rav1e
     buildsystem: simple
     sources:
-      - type: archive
-        url: https://github.com/xiph/rav1e/archive/refs/tags/v0.6.3.tar.gz
-        sha256: 660a243dd9ee3104c0844a7af819b406193a7726614a032324557f81bb2bebaa
+      - type: git
+        url: https://github.com/BlueSwordM/rav1e
+        commit: 39dc19eff45a57b3f68e5f64c407b789ee41ae9e
     build-commands:
-      - cargo build --release --verbose
+      - RUSTFLAGS="-C target-cpu=generic" cargo build --release --verbose
       - install target/release/rav1e /app/bin/rav1e
 
   - name: av1an

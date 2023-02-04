@@ -409,6 +409,18 @@
                                         </child>
 
                                         <child>
+                                            <object class="GtkProgressBar" id="progress_bar">
+                                                <property name="hexpand">1</property>
+                                                <property name="pulse-step">1</property>
+                                                <property name="show-text">1</property>
+                                                <property name="margin-top">48</property>
+                                                <property name="margin-bottom">24</property>
+                                                <property name="margin-start">128</property>
+                                                <property name="margin-end">128</property>
+                                            </object>
+                                        </child>
+
+                                        <child>
                                             <object class="GtkSpinner" id="encoding_spinner">
                                                 <property name="valign">center</property>
                                                 <property name="width-request">32</property>
