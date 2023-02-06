@@ -300,6 +300,21 @@
                                                                 </child>
                                                             </object>
                                                         </child>
+
+                                                        <child>
+                                                            <object class="AdwActionRow">
+                                                                <property name="title" translatable="yes">_Downmix to Stereo</property>
+                                                                <property name="use-underline">true</property>
+                                                                <property name="tooltip-text">Mixes audio inputs with more than two channels (5.1 surround, 7.1 surround, etc) down to two audio channels.</property>
+                                                                <child>
+                                                                    <object class="GtkSwitch" id="downmix_switch">
+                                                                        <property name="active">False</property>
+                                                                        <property name="valign">center</property>
+                                                                        <!-- <property name="active" bind-source="LoginAdvancedDialog" bind-property="autodiscovery" bind-flags="sync-create|bidirectional" /> -->
+                                                                    </object>
+                                                                </child>
+                                                            </object>
+                                                        </child>
                                                     </object>
                                                 </child>
                                             </object>

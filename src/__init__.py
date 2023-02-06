@@ -168,6 +168,7 @@ class MainWindow(Adw.Window):
     # Audio page
     bitrate_entry = Gtk.Template.Child()
     vbr_switch = Gtk.Template.Child()
+    downmix_switch = Gtk.Template.Child()
 
     # Export page
     output_file_label = Gtk.Template.Child()
@@ -292,7 +293,8 @@ class MainWindow(Adw.Window):
                 "--force",
                 "--video-params", f"--tiles 1 -s {int(self.speed_scale.get_value())} --quantizer {int(self.quantizer_scale.get_value())} --threads 1 --no-scene-detection",
                 "--pix-format", "yuv420p10le",
-                "-a", f"-c:a libopus -b:a {self.bitrate_entry.get_text()}K -compression_level 10 -vbr " + "on" if self.vbr_switch.get_state() else "off",
+                "--audio-params", f"-c:a libopus -b:a {self.bitrate_entry.get_text()}K -compression_level 10 -vbr " + "on" if self.vbr_switch.get_state() else "off",
+                f"-af " + "pan=stereo|FL=0.5*FC+0.707*FL+0.707*BL+0.5*LFE|FR=0.5*FC+0.707*FR+0.707*BR+0.5*LFE" if self.downmix_switch.get_state() else "volume=1",
                 "-f", f"-vf scale={self.resolution_width_entry.get_text()}:{self.resolution_height_entry.get_text()} -sws_flags lanczos",
                 "-w", "0",
                 "-o", output,
