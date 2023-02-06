@@ -286,7 +286,7 @@ class MainWindow(Adw.Window):
                 "-i", self.source_file_absolute,
                 "-y",
                 "--split-method", "av-scenechange",
-                "-m", "hybrid",
+                "-m", "lsmash",
                 "-c", "ffmpeg",
                 "-e", "rav1e",
                 "--force",
