@@ -284,7 +284,7 @@ class MainWindow(Adw.Window):
             encode_start = time.time()
 
             audioparams1 = f"-c:a libopus -b:a {self.bitrate_entry.get_text()}K -compression_level 10 -vbr " + "on" if self.vbr_switch.get_state() else "off"
-            audioparams2 = f"-af " + "pan=stereo|FL=0.5*FC+0.707*FL+0.707*BL+0.5*LFE|FR=0.5*FC+0.707*FR+0.707*BR+0.5*LFE" if self.downmix_switch.get_state() else "volume=1"
+            audioparams2 = "-ac 2" if self.downmix_switch.get_state() else ""
 
             audioparams = " ".join([audioparams1, audioparams2])
 
