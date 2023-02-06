@@ -282,11 +282,11 @@ class MainWindow(Adw.Window):
         def run_in_thread():
             encode_start = time.time()
             cmd = [
-                "/home/gianni13700k/Documents/projects/av1an-nate/target/release/av1an",
+                "av1an",
                 "-i", self.source_file_absolute,
                 "-y",
                 "--split-method", "av-scenechange",
-                "-m", "lsmash",
+                "-m", "hybrid",
                 "-c", "ffmpeg",
                 "-e", "rav1e",
                 "--force",

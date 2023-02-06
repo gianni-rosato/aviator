@@ -62,20 +62,6 @@ modules:
         url: https://github.com/vapoursynth/vapoursynth/archive/refs/tags/R61.tar.gz
         sha256: a5d4feeb056679dd1204153250d7c1d38e5a639e995d3c4e3a8e2e8fe1425b75
 
-  - name: liblsmash
-    buildsystem: autotools
-    sources:
-      - type: git
-        url: https://github.com/l-smash/l-smash
-        commit: 18a9ed25c7ff79a7f4f4bf850c345c72179b8998
-
-  - name: lsmash-plugin
-    buildsystem: meson
-    sources:
-      - type: git
-        url: https://github.com/gianni-rosato/L-SMASH-Works
-        commit: 8be76cebd60b8fcef02363b130a40b1e8acd167b
-
   - name: ffmpeg
     config-opts:
       - --enable-static
@@ -102,10 +88,11 @@ modules:
   - name: av1an
     buildsystem: simple
     sources:
-      - type: archive
-        url: https://github.com/master-of-zen/Av1an/archive/refs/tags/0.4.0-release.tar.gz
-        sha256: c59b0965aea45ea8aea08f7c779ad61e5e59858d65cf660e3ad4d3d3908fcbf0
+      - type: git
+        url: https://github.com/natesales/Av1an/
+        commit: 8b6c79809fd09175453f5c4d0b856c20f57d4e49
     build-commands:
+      - git branch progressbar
       - cargo build --release --verbose
       - install target/release/av1an /app/bin/av1an
 
