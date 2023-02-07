@@ -207,7 +207,7 @@
                                                         <child>
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Grain Synth</property>
-                                                                <property name="tooltip-text">This value determines how much artificial grain will be applied to your video. </property>
+                                                                <property name="tooltip-text">This value determines how much artificial grain will be applied to your video. Values are equivalent to ISO; 1 would be equal to ISO 100, 24 would be ISO 2400, etc.</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
                                                                     <object class="GtkScale" id="grain_scale">
