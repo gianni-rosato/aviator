@@ -164,6 +164,7 @@ class MainWindow(Adw.Window):
     resolution_height_entry = Gtk.Template.Child()
     quantizer_scale = Gtk.Template.Child()
     speed_scale = Gtk.Template.Child()
+    grain_scale = Gtk.Template.Child()
 
     # Audio page
     bitrate_entry = Gtk.Template.Child()
@@ -177,6 +178,7 @@ class MainWindow(Adw.Window):
     container = "mkv"
     encode_button = Gtk.Template.Child()
     encoding_spinner = Gtk.Template.Child()
+    stop_button = Gtk.Template.Child()
     progress_bar = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
@@ -192,6 +194,9 @@ class MainWindow(Adw.Window):
         self.speed_scale.set_value(6)
         self.quantizer_scale.set_value(0)
         self.quantizer_scale.set_value(80)
+        self.grain_scale.set_value(0)
+        self.grain_scale.set_value(6)
+        self.grain_scale.set_value(0)
 
         # resolution and audio bitrate
         self.metadata: (float, float, float) = ()
@@ -201,8 +206,8 @@ class MainWindow(Adw.Window):
 
         # Set progress bar to 0
         self.progress_bar.set_fraction(0)
-
-        self.progress_debounce = time.time()
+        self.progress_bar.set_text("0%")
+        self.process = None
 
     def load_metadata(self):
         self.metadata = metadata(self.source_file_absolute)
@@ -273,6 +278,7 @@ class MainWindow(Adw.Window):
     def start_export(self, button):
         self.encode_button.set_visible(False)
         self.encoding_spinner.set_visible(True)
+        self.stop_button.set_visible(True)
 
         output = self.output_file_label.get_text()
         if self.container == "mkv" and not output.endswith(".mkv"):
@@ -296,6 +302,8 @@ class MainWindow(Adw.Window):
                 "-m", "hybrid",
                 "-c", "ffmpeg",
                 "-e", "rav1e",
+                "--photon-noise", f"{int(self.grain_scale.get_value())}",
+                "--chroma-noise",
                 "--force",
                 "--video-params", f"--tiles 1 -s {int(self.speed_scale.get_value())} --quantizer {int(self.quantizer_scale.get_value())} --threads 1 --no-scene-detection",
                 "--pix-format", "yuv420p10le",
@@ -306,10 +314,10 @@ class MainWindow(Adw.Window):
             ]
 
             print(" ".join(cmd))
-            process = subprocess.Popen(cmd, stdout=subprocess.PIPE,
+            self.process = subprocess.Popen(cmd, stdout=subprocess.PIPE,
                                      universal_newlines=True)
-            last_update = time.time()
-            for line in process.stdout:
+            last_update = time.time_ns()
+            for line in self.process.stdout:
                 print(line.strip())
                 tokens = line.strip().split(":")
                 if len(tokens) == 2 and (tokens[0] == "Scene Detection" or tokens[0] == "Encoding"):
@@ -317,19 +325,33 @@ class MainWindow(Adw.Window):
                     frac = tokens[1].split("/")
                     progress = int(frac[0])/int(frac[1])
                     progress = round(progress,2)
-                    if time.time() - last_update > 1:
+                    if time.time_ns() - last_update > 300000000:
                         self.progress_bar.set_fraction(progress)
-                        last_update = time.time()
-            process.wait()
-            encode_end = time.time() - encode_start
+                        self.progress_bar.set_text(f"{step} ~ {int(progress*100)}%")
+                        last_update = time.time_ns()
+            self.process.wait()
+            self.progress_bar.set_fraction(0)
+            self.progress_bar.set_text("Encode Finished ~ 0%")
+            if self.process.returncode == 0:
+                encode_end = time.time() - encode_start
+                notify(f"({humanize(encode_end)}) Finished encoding {output}")
+                self.stop_button.set_visible(False)
+            else:
+                notify(f"Encoding stopped")
+                self.stop_button.set_visible(False)
 
             self.encode_button.set_visible(True)
             self.encoding_spinner.set_visible(False)
-            notify(f"({humanize(encode_end)}) Finished encoding {output}")
 
         thread = threading.Thread(target=run_in_thread)
         thread.start()
 
+    @Gtk.Template.Callback()
+    def stop_encode(self, button):
+        print("Killing av1an...")
+        if self.process is not None:
+            self.process.terminate()
+            print("Killed av1an")
 
 class App(Adw.Application):
     def __init__(self, **kwargs):
