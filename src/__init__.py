@@ -331,13 +331,14 @@ class MainWindow(Adw.Window):
                         last_update = time.time_ns()
             self.process.wait()
             self.progress_bar.set_fraction(0)
-            self.progress_bar.set_text("Encode Finished ~ 0%")
             if self.process.returncode == 0:
                 encode_end = time.time() - encode_start
-                notify(f"({humanize(encode_end)}) Finished encoding {output}")
+                notify(f"Encode finished in {humanize(encode_end)}! ✈️")
+                self.progress_bar.set_text(f"Encode finished in {humanize(encode_end)}! ✈️ ~ 0%")
                 self.stop_button.set_visible(False)
             else:
-                notify(f"Encoding stopped")
+                notify(f"Encode Stopped")
+                self.progress_bar.set_text("Encode Stopped ~ 0%")
                 self.stop_button.set_visible(False)
 
             self.encode_button.set_visible(True)

@@ -279,7 +279,7 @@
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Bitrate</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Sets the audio bitrate to a value in kbps. Higher values mean better quality at the expense of filesize. We recommend a value between 128 &amp; 32. "Match Source" sets the bitrate to be the same as the audio in the source media. If a value from the source media isn't detected, it will default to 48 kbps. </property>
+                                                                <property name="tooltip-text">Sets the audio bitrate to a value in kbps. Higher values mean better quality at the expense of filesize. We recommend a value between 32 &amp; 128 for stereo audio, >224 for 5.1 Surround, &amp; >336 for 7.1 Surround. "Match Source" sets the bitrate to be the same as the audio in the source media. If a value from the source media isn't detected, this will default to 48 kbps. </property>
                                                                 <child>
                                                                     <!-- <child>
                                                                             <object class="GtkLabel">
@@ -332,7 +332,7 @@
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Downmix to Stereo</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Mixes audio inputs with more than two channels (5.1 surround, 7.1 surround, etc) down to two audio channels.</property>
+                                                                <property name="tooltip-text">Mixes audio inputs with more than two channels (5.1 Surround, 7.1 Surround, etc) down to two audio channels.</property>
                                                                 <child>
                                                                     <object class="GtkSwitch" id="downmix_switch">
                                                                         <property name="active">False</property>
@@ -474,6 +474,7 @@
                                                                                 
                                         <child>
                                             <object class="GtkButton" id="stop_button">
+                                                <property name="margin-top">24</property>
                                                 <property name="label" translatable="yes">Stop</property>
                                                 <property name="halign">center</property>
                                                 <property name="visible">false</property>
