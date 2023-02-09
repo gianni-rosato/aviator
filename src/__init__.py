@@ -6,6 +6,7 @@ import gi
 import json
 import os
 import time
+import shutil
 
 from pathlib import Path
 
@@ -298,6 +299,7 @@ class MainWindow(Adw.Window):
                 "av1an",
                 "-i", self.source_file_absolute,
                 "-y",
+                "--temp", "av1an-cache",
                 "--split-method", "av-scenechange",
                 "-m", "hybrid",
                 "-c", "ffmpeg",
@@ -352,6 +354,7 @@ class MainWindow(Adw.Window):
         print("Killing av1an...")
         if self.process is not None:
             self.process.terminate()
+            shutil.rmtree("av1an-cache")
             print("Killed av1an")
 
 class App(Adw.Application):
