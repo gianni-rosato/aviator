@@ -3,20 +3,19 @@ command: aviator
 sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
 runtime-version: "43"
-&ext-version: "22.08"
 
 add-build-extensions:
   org.freedesktop.Sdk.Extension.rust-stable:
     directory: rust-stable
     add-ld-path: .
-    version: *ext-version
+    version: 22.08
     no-autodownload: true
     autodelete: false
 
   org.freedesktop.Sdk.Extension.llvm14:
     directory: llvm14
     add-ld-path: .
-    version: *ext-version
+    version: 22.08
     no-autodownload: true
     autodelete: false
 
