@@ -8,14 +8,14 @@ add-build-extensions:
   org.freedesktop.Sdk.Extension.rust-stable:
     directory: rust-stable
     add-ld-path: .
-    version: 22.08
+    version: "22.08"
     no-autodownload: true
     autodelete: false
 
   org.freedesktop.Sdk.Extension.llvm14:
     directory: llvm14
     add-ld-path: .
-    version: 22.08
+    version: "22.08"
     no-autodownload: true
     autodelete: false
 
