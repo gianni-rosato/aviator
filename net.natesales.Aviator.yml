@@ -1,0 +1,107 @@
+app-id: net.natesales.Aviator
+command: aviator
+sdk: org.gnome.Sdk
+runtime: org.gnome.Platform
+runtime-version: "43"
+
+add-build-extensions:
+  org.freedesktop.Sdk.Extension.rust-stable:
+    directory: rust-stable
+    add-ld-path: .
+    version: "22.08"
+    no-autodownload: true
+    autodelete: false
+
+  org.freedesktop.Sdk.Extension.llvm14:
+    directory: llvm14
+    add-ld-path: .
+    version: "22.08"
+    no-autodownload: true
+    autodelete: false
+
+finish-args:
+  - --share=ipc
+  - --device=dri
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --filesystem=host
+
+build-options: 
+  append-path: /usr/lib/sdk/rust-stable/bin
+  env: 
+    CARGO_HOME: /run/build/done/cargo
+    PROTOC: /app/bin/protoc
+  prepend-ld-library-path: /usr/lib/sdk/llvm14/lib
+  prepend-path: /usr/lib/sdk/llvm14/bin
+
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /man
+  - /share/doc
+  - /share/gtk-doc
+  - /share/man
+  - /share/pkgconfig
+  - '*.la'
+  - '*.a'
+
+modules:
+  - name: zimg
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://github.com/sekrit-twc/zimg/archive/refs/tags/release-3.0.4.tar.gz
+        sha256: 219d1bc6b7fde1355d72c9b406ebd730a4aed9c21da779660f0a4c851243e32f
+
+  - name: vapoursynth
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://github.com/vapoursynth/vapoursynth/archive/refs/tags/R61.tar.gz
+        sha256: a5d4feeb056679dd1204153250d7c1d38e5a639e995d3c4e3a8e2e8fe1425b75
+
+  - name: ffmpeg
+    config-opts:
+      - --enable-static
+      - --enable-gpl
+      - --enable-libdav1d
+      - --enable-libopus
+      - --enable-libzimg
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: http://ffmpeg.org/releases/ffmpeg-5.1.2.tar.xz
+        sha256: 619e706d662c8420859832ddc259cd4d4096a48a2ce1eefd052db9e440eef3dc
+
+  - name: rav1e
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://github.com/BlueSwordM/rav1e
+        commit: 39dc19eff45a57b3f68e5f64c407b789ee41ae9e
+      - "rav1e-sources.json"
+    build-commands:
+      - RUSTFLAGS="-C target-cpu=generic" cargo --offline fetch --manifest-path Cargo.toml --verbose
+      - RUSTFLAGS="-C target-cpu=generic" cargo --offline build --release --verbose
+      - install target/release/rav1e /app/bin/rav1e
+
+  - name: av1an
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://github.com/natesales/Av1an/
+        commit: 8b6c79809fd09175453f5c4d0b856c20f57d4e49
+      - "av1an-sources.json"
+    build-commands:
+      - git branch progressbar
+      - RUSTFLAGS="-C target-cpu=generic" cargo --offline fetch --manifest-path Cargo.toml --verbose
+      - RUSTFLAGS="-C target-cpu=generic" cargo --offline build --release --verbose
+      - install target/release/av1an /app/bin/av1an
+
+  - name: aviator
+    builddir: true
+    buildsystem: meson
+    sources:
+      - type: dir
+        path: "."
+
