@@ -54,9 +54,11 @@ Hovering over most user configurable options in Aviator will produce a helpful t
 
 ### Video
 
-<img src="assets/aviator_vid.webp" alt="Aviator Video Settings" width=480/>
+<img src="assets/aviator_video.webp" alt="Aviator Video Settings" width=480/>
 
-When you load a video file into Aviator, resolution & audio bitrate are set to match the source as closely as possible. Aviator's rav1e speed preset is set to 6 by default, with a Quantizer level of 80. You can set the Quantizer level from 1 to 255 using the slider, with larger numerical values indicating smaller filesize at the expense of visual quality. Speed 6 offers a good balance between speed & compression efficiency at any Quantizer level; higher values will encode faster at the expense of visual quality, while lower values will encode more efficiently but more slowly.
+When you load a video file into Aviator, resolution & audio bitrate are set to match the source as closely as possible. Aviator's rav1e speed preset is set to 6 by default, with a default Quantizer level of 80. You can set the Quantizer level from 1 to 255 using the slider, with larger numerical values indicating smaller filesize at the expense of visual quality. Speed 6 offers a good balance between speed & compression efficiency at any Quantizer level; higher values will encode faster at the expense of visual quality, while lower values will encode more efficiently but more slowly.
+
+The Grain Synth slider allows you to add artifical grain to your video to mimic its natural grain, which applies the artificial grain at decode time as a filter which makes it easier to encode grainy videos at high fidelity. The grain levels are based on ISO noise, so 1 would be equal to ISO 100, 24 equal to ISO 2400, etc.
 
 ### Audio
 
@@ -73,17 +75,14 @@ The container your video is stored in is associated with the file extension. Avi
 ## Roadmap & Limitations
 
 Currently, Aviator cannot handle:
-- Video streams with subtitles encoded to .webm
+- Video streams with subtitles encoding to .webm
 
 These are considered bugs, and we are working on fixing them ASAP. In the meantime, we'd prefer you choose the .mkv container if you are having trouble with subtitles.
 
 In the future, we would like to:
-- Add a progress bar
-- Add maximize & minimize buttons in the header bar
-- Add a "Stop Encode," button
 - Add a queue, potentially
+- Add an option to copy your audio without reencoding (that disables WebM output)
 - Revamp outputting a file
-- Revamp the About page
 
 Let us know if you have any issues in our Issues section. Thank you for using Aviator!
 
