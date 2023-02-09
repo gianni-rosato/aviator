@@ -82,7 +82,8 @@ modules:
         url: https://github.com/BlueSwordM/rav1e
         commit: 39dc19eff45a57b3f68e5f64c407b789ee41ae9e
     build-commands:
-      - RUSTFLAGS="-C target-cpu=generic" cargo build --release --verbose
+      - RUSTFLAGS="-C target-cpu=generic" cargo --offline fetch --manifest-path Cargo.toml --verbose
+      - RUSTFLAGS="-C target-cpu=generic" cargo --offline build --release --verbose
       - install target/release/rav1e /app/bin/rav1e
 
   - name: av1an
@@ -94,7 +95,8 @@ modules:
         commit: 8b6c79809fd09175453f5c4d0b856c20f57d4e49
     build-commands:
       - git branch progressbar
-      - cargo build --release --verbose
+      - RUSTFLAGS="-C target-cpu=generic" cargo --offline fetch --manifest-path Cargo.toml --verbose
+      - RUSTFLAGS="-C target-cpu=generic" cargo --offline build --release --verbose
       - install target/release/av1an /app/bin/av1an
 
   - name: aviator
