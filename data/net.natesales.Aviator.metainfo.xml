@@ -52,6 +52,25 @@
   </screenshots>
 
   <releases>
+    <release version="1.0.0" date="2023-02-09">
+      <description>
+        <p>I know it has been a long time coming, but this time, we have a plethora of changes to report!
+          - We've switched our encoding framework to the Rust-based rav1e encoder alongside a video chunking tool called av1an, also written in Rust
+          - Support for more buttons than just the close button in the header bar
+          - Chroma grain synthesis parameter
+          - New tooltips, alongside fixes for the old ones
+          - Fully functional progress bar
+          - A "Stop Encode" button
+          - Optionally downmix audio channels to stereo (for Surround sources)
+          - New About window using AdwAboutWindow
+          - Better defaults
+          - Better Welcome window
+          - Better notifications
+          And probably more minor tweaks that I'm forgetting. Enjoy taking off alongside our shiny new Aviator!
+        </p>
+      </description>
+    </release>
+    
     <release version="0.1.2" date="2022-10-23">
       <description>
         <p>Fix: typos</p>

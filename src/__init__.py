@@ -6,6 +6,7 @@ import gi
 import json
 import os
 import time
+import shutil
 
 from pathlib import Path
 
@@ -19,7 +20,6 @@ Adw.init()
 from . import info
 
 BASE_DIR = Path(__file__).resolve().parent
-
 
 def humanize(seconds):
     seconds = round(seconds)
@@ -51,8 +51,8 @@ def humanize(seconds):
             return ", ".join(duration[:-1]) + " and " + duration[-1]
 
 
-# metadata returns the file's resolution, framerate, and audio bitrate
-def metadata(file) -> (float, float, float, float):
+# metadata returns the file's resolution and audio bitrate
+def metadata(file) -> (float, float, float):
     try:
         cmd = [
             "ffprobe",
@@ -70,16 +70,11 @@ def metadata(file) -> (float, float, float, float):
         streams = m["streams"]
         video = streams[0]
         audio = streams[1]
-        r_fps = video["r_frame_rate"]
-        if "/" in r_fps:
-            r_fps = r_fps.split("/")
-            r_fps = float(float(r_fps[0]) / float(r_fps[1]))
-        r_fps = round(r_fps, 2)
 
-        return video["width"], video["height"], r_fps, float(audio["sample_rate"]) / 1000
+        return video["width"], video["height"], float(audio["sample_rate"]) / 1000
     except Exception as e:
         logging.error("Get metadata:", e)
-        return 0, 0, 0, 0
+        return 1536, 864, 48
 
 
 def notify(text):
@@ -139,23 +134,6 @@ class FileSelectDialog(Gtk.FileChooserDialog):
             self.callback()
         widget.close()
 
-
-class AboutDialog(Gtk.AboutDialog):
-    def __init__(self, win):
-        Gtk.AboutDialog.__init__(self)
-        self.props.transient_for = win
-        self.props.modal = True
-        self.props.license_type = Gtk.License.AGPL_3_0
-        self.props.program_name = "Aviator"
-        self.props.logo_icon_name = "net.natesales.Aviator"
-        self.props.version = "Aviator v" + info.version
-        self.props.comments = "Your Video Copilot"
-        self.props.copyright = "Copyright © 2022 Nate Sales and Gianni Rosato"
-        self.props.website_label = "GitHub"
-        self.props.website = "https://github.com/natesales/aviator"
-        self.props.authors = ["Nate Sales <nate@natesales.net>", "Gianni Rosato <grosatowork@proton.me>"]
-
-
 @Gtk.Template(filename=str(BASE_DIR.joinpath('startup.ui')))
 class OnboardWindow(Adw.Window):
     __gtype_name__ = "OnboardWindow"
@@ -185,13 +163,14 @@ class MainWindow(Adw.Window):
     source_file_label = Gtk.Template.Child()
     resolution_width_entry = Gtk.Template.Child()
     resolution_height_entry = Gtk.Template.Child()
-    framerate_entry = Gtk.Template.Child()
-    crf_scale = Gtk.Template.Child()
-    cpu_scale = Gtk.Template.Child()
+    quantizer_scale = Gtk.Template.Child()
+    speed_scale = Gtk.Template.Child()
+    grain_scale = Gtk.Template.Child()
 
     # Audio page
     bitrate_entry = Gtk.Template.Child()
     vbr_switch = Gtk.Template.Child()
+    downmix_switch = Gtk.Template.Child()
 
     # Export page
     output_file_label = Gtk.Template.Child()
@@ -200,6 +179,8 @@ class MainWindow(Adw.Window):
     container = "mkv"
     encode_button = Gtk.Template.Child()
     encoding_spinner = Gtk.Template.Child()
+    stop_button = Gtk.Template.Child()
+    progress_bar = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -210,23 +191,30 @@ class MainWindow(Adw.Window):
         self.container = "mkv"
 
         # Reset value to remove extra decimal
-        self.cpu_scale.set_value(0)
-        self.cpu_scale.set_value(6)
-        self.crf_scale.set_value(0)
-        self.crf_scale.set_value(32)
+        self.speed_scale.set_value(0)
+        self.speed_scale.set_value(6)
+        self.quantizer_scale.set_value(0)
+        self.quantizer_scale.set_value(80)
+        self.grain_scale.set_value(0)
+        self.grain_scale.set_value(6)
+        self.grain_scale.set_value(0)
 
-        # resolution, framerate, and audio bitrate
-        self.metadata: (float, float, float, float) = ()
+        # resolution and audio bitrate
+        self.metadata: (float, float, float) = ()
 
         # Absolute source path file
         self.source_file_absolute = ""
+
+        # Set progress bar to 0
+        self.progress_bar.set_fraction(0)
+        self.progress_bar.set_text("0%")
+        self.process = None
 
     def load_metadata(self):
         self.metadata = metadata(self.source_file_absolute)
 
     def set_defaults(self):
         self.bitrate_same_as_source()
-        self.framerate_same_as_source()
         self.resolution_same_as_source()
 
     def handle_file_select(self):
@@ -259,14 +247,9 @@ class MainWindow(Adw.Window):
     # Audio
 
     @Gtk.Template.Callback()
-    def framerate_same_as_source(self, button=None):
-        self.load_metadata()
-        self.framerate_entry.set_text(str(round(float(self.metadata[2]))))
-
-    @Gtk.Template.Callback()
     def bitrate_same_as_source(self, button=None):
         self.load_metadata()
-        self.bitrate_entry.set_text(str(round(float(self.metadata[3]))))
+        self.bitrate_entry.set_text(str(round(float(self.metadata[2]))))
 
     # Export
 
@@ -296,6 +279,7 @@ class MainWindow(Adw.Window):
     def start_export(self, button):
         self.encode_button.set_visible(False)
         self.encoding_spinner.set_visible(True)
+        self.stop_button.set_visible(True)
 
         output = self.output_file_label.get_text()
         if self.container == "mkv" and not output.endswith(".mkv"):
@@ -305,34 +289,73 @@ class MainWindow(Adw.Window):
 
         def run_in_thread():
             encode_start = time.time()
+
+            audioparams1 = f"-c:a libopus -b:a {self.bitrate_entry.get_text()}K -compression_level 10 -vbr " + "on" if self.vbr_switch.get_state() else "off"
+            audioparams2 = "-ac 2" if self.downmix_switch.get_state() else ""
+
+            audioparams = " ".join([audioparams1, audioparams2])
+
             cmd = [
-                "ffmpeg",
-                "-nostdin",
+                "av1an",
                 "-i", self.source_file_absolute,
-                "-r", self.framerate_entry.get_text(),
-                "-vf", f"scale={self.resolution_width_entry.get_text()}:{self.resolution_height_entry.get_text()}",
-                "-c:v", "libsvtav1",
-                "-map", "0",
-                "-crf", str(self.crf_scale.get_value()),
-                "-preset", str(self.cpu_scale.get_value()),
-                "-c:a", "libopus",
-                "-b:a", self.bitrate_entry.get_text() + "K",
-                "-vbr", "on" if self.vbr_switch.get_state() else "off",
-                "-compression_level", "10",
-                output,
+                "-y",
+                "--temp", "av1an-cache",
+                "--split-method", "av-scenechange",
+                "-m", "hybrid",
+                "-c", "ffmpeg",
+                "-e", "rav1e",
+                "--photon-noise", f"{int(self.grain_scale.get_value())}",
+                "--chroma-noise",
+                "--force",
+                "--video-params", f"--tiles 1 -s {int(self.speed_scale.get_value())} --quantizer {int(self.quantizer_scale.get_value())} --threads 1 --no-scene-detection",
+                "--pix-format", "yuv420p10le",
+                "--audio-params", audioparams,
+                "-f", f"-vf scale={self.resolution_width_entry.get_text()}:{self.resolution_height_entry.get_text()} -sws_flags lanczos",
+                "-w", "0",
+                "-o", output,
             ]
-            print(cmd)
-            proc = subprocess.Popen(cmd)
-            proc.wait()
-            encode_end = time.time() - encode_start()
+
+            print(" ".join(cmd))
+            self.process = subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                                     universal_newlines=True)
+            last_update = time.time_ns()
+            for line in self.process.stdout:
+                print(line.strip())
+                tokens = line.strip().split(":")
+                if len(tokens) == 2 and (tokens[0] == "Scene Detection" or tokens[0] == "Encoding"):
+                    step = tokens[0]
+                    frac = tokens[1].split("/")
+                    progress = int(frac[0])/int(frac[1])
+                    progress = round(progress,2)
+                    if time.time_ns() - last_update > 300000000:
+                        self.progress_bar.set_fraction(progress)
+                        self.progress_bar.set_text(f"{step} ~ {int(progress*100)}%")
+                        last_update = time.time_ns()
+            self.process.wait()
+            self.progress_bar.set_fraction(0)
+            if self.process.returncode == 0:
+                encode_end = time.time() - encode_start
+                notify(f"Encode finished in {humanize(encode_end)}! ✈️")
+                self.progress_bar.set_text(f"Encode finished in {humanize(encode_end)}! ✈️ ~ 0%")
+                self.stop_button.set_visible(False)
+            else:
+                notify(f"Encode Stopped")
+                self.progress_bar.set_text("Encode Stopped ~ 0%")
+                self.stop_button.set_visible(False)
 
             self.encode_button.set_visible(True)
             self.encoding_spinner.set_visible(False)
-            notify(f"({humanize(encode_end)}) Finished encoding {output}")
 
         thread = threading.Thread(target=run_in_thread)
         thread.start()
 
+    @Gtk.Template.Callback()
+    def stop_encode(self, button):
+        print("Killing av1an...")
+        if self.process is not None:
+            self.process.terminate()
+            shutil.rmtree("av1an-cache")
+            print("Killed av1an")
 
 class App(Adw.Application):
     def __init__(self, **kwargs):
@@ -346,6 +369,7 @@ class App(Adw.Application):
         quit_action = Gio.SimpleAction(name="quit")
         quit_action.connect("activate", self.quit)
         self.add_action(quit_action)
+        os.system("rav1e --version")
 
     def on_activate(self, app):
         if first_open():
@@ -356,8 +380,41 @@ class App(Adw.Application):
             self.win.present()
 
     def about_dialog(self, action, user_data):
-        dialog = AboutDialog(self.win)
-        dialog.present()
+        about = Adw.AboutWindow(transient_for=self.win,
+                                application_name="Aviator",
+                                application_icon="net.natesales.Aviator",
+                                developer_name="Nate Sales & Gianni Rosato",
+                                version="Aviator v" + info.version,
+                                copyright="Copyright © 2023 Nate Sales &amp; Gianni Rosato",
+                                license_type=Gtk.License.GPL_3_0,
+                                website="https://github.com/natesales/aviator",
+                                issue_url="https://github.com/natesales/aviator/issues")
+        # about.set_translator_credits(translators())
+        about.set_developers(["Nate Sales <nate@natesales.net>","Gianni Rosato <grosatowork@proton.me>"])
+        about.set_designers(["Gianni Rosato <grosatowork@proton.me>"])
+        about.add_acknowledgement_section(
+            ("Special thanks to the AV1 Community for your knowledge &amp; inspiration!"),
+            [
+                "AV1 Discord https://discord.gg/SjumTJEsFD",
+            ]
+        )
+        # about.add_acknowledgement_section()
+        about.add_legal_section(
+            title='Av1an',
+            copyright='Copyright © 2023 Av1an',
+            license_type=Gtk.License.GPL_3_0,
+        )
+        about.add_legal_section(
+            title='FFmpeg',
+            copyright='Copyright © 2023 FFmpeg',
+            license_type=Gtk.License.GPL_3_0,
+        )
+        about.add_legal_section(
+            title='rav1e',
+            copyright='Copyright © 2023 xiph.org',
+            license_type=Gtk.License.BSD,
+        )
+        about.present()
 
     def quit(self, action=None, user_data=None):
         exit()
