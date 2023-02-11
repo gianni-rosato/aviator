@@ -73,17 +73,16 @@ modules:
         url: http://ffmpeg.org/releases/ffmpeg-5.1.2.tar.xz
         sha256: 619e706d662c8420859832ddc259cd4d4096a48a2ce1eefd052db9e440eef3dc
 
-  - name: rav1e
+  - name: aom
     buildsystem: simple
     sources:
       - type: git
-        url: https://github.com/BlueSwordM/rav1e
-        commit: 39dc19eff45a57b3f68e5f64c407b789ee41ae9e
-      - "rav1e-sources.json"
+        url: https://aomedia.googlesource.com/aom/
+        tag: v3.6.0
     build-commands:
-      - RUSTFLAGS="-C target-cpu=generic" cargo --offline fetch --manifest-path Cargo.toml --verbose
-      - RUSTFLAGS="-C target-cpu=generic" cargo --offline build --release --verbose
-      - install target/release/rav1e /app/bin/rav1e
+      - mkdir aom_build
+      - cd aom_build && cmake .. -DBUILD_SHARED_LIBS=1
+      - cd aom_build && make -j$(nproc)
 
   - name: av1an
     buildsystem: simple
@@ -98,10 +97,21 @@ modules:
       - RUSTFLAGS="-C target-cpu=generic" cargo --offline build --release --verbose
       - install target/release/av1an /app/bin/av1an
 
+  - name: rav1e
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://github.com/BlueSwordM/rav1e
+        commit: 39dc19eff45a57b3f68e5f64c407b789ee41ae9e
+      - "rav1e-sources.json"
+    build-commands:
+      - RUSTFLAGS="-C target-cpu=generic" cargo --offline fetch --manifest-path Cargo.toml --verbose
+      - RUSTFLAGS="-C target-cpu=generic" cargo --offline build --release --verbose
+      - install target/release/rav1e /app/bin/rav1e
+
   - name: aviator
     builddir: true
     buildsystem: meson
     sources:
       - type: dir
         path: "."
-
