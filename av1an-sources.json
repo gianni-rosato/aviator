@@ -704,14 +704,14 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/ffmpeg-the-third/ffmpeg-the-third-1.1.1+ffmpeg-5.1.2.crate",
-        "sha256": "0e56dd8b5cad15284e4960166a33fcaa6473b90f901807f0dc8af5c5c79d8bbb",
-        "dest": "cargo/vendor/ffmpeg-the-third-1.1.1+ffmpeg-5.1.2"
+        "url": "https://static.crates.io/crates/ffmpeg-the-third/ffmpeg-the-third-1.1.0+ffmpeg-5.1.2.crate",
+        "sha256": "a3aa4624bc3bc30507bb4ace7f314a9fa22f9a0e694521886f06f75f8a9083b8",
+        "dest": "cargo/vendor/ffmpeg-the-third-1.1.0+ffmpeg-5.1.2"
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"0e56dd8b5cad15284e4960166a33fcaa6473b90f901807f0dc8af5c5c79d8bbb\", \"files\": {}}",
-        "dest": "cargo/vendor/ffmpeg-the-third-1.1.1+ffmpeg-5.1.2",
+        "contents": "{\"package\": \"a3aa4624bc3bc30507bb4ace7f314a9fa22f9a0e694521886f06f75f8a9083b8\", \"files\": {}}",
+        "dest": "cargo/vendor/ffmpeg-the-third-1.1.0+ffmpeg-5.1.2",
         "dest-filename": ".cargo-checksum.json"
     },
     {

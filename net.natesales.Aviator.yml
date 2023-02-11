@@ -89,6 +89,9 @@ modules:
         url: https://github.com/BlueSwordM/rav1e
         commit: 39dc19eff45a57b3f68e5f64c407b789ee41ae9e
       - "rav1e-sources.json"
+    build-options:
+      env:
+        CARGO_HOME: /run/build/av1an/cargo
     build-commands:
       - RUSTFLAGS="-C target-cpu=generic" cargo --offline fetch --manifest-path Cargo.toml --verbose
       - RUSTFLAGS="-C target-cpu=generic" cargo --offline build --release --verbose
@@ -101,6 +104,9 @@ modules:
         url: https://github.com/natesales/Av1an/
         commit: 8b6c79809fd09175453f5c4d0b856c20f57d4e49
       - "av1an-sources.json"
+    build-options:
+      env:
+        CARGO_HOME: /run/build/av1an/cargo
     build-commands:
       - git branch progressbar
       - RUSTFLAGS="-C target-cpu=generic" cargo --offline fetch --manifest-path Cargo.toml --verbose
