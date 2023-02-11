@@ -55,7 +55,7 @@
   </screenshots>
 
   <releases>
-    <release version="0.2.0" date="2023-02-12">
+    <release version="0.2.0" date="2023-02-11">
       <description>
         <p>I know it has been a long time coming, but this time, we have a plethora of changes to report!
           - Updated SVT-AV1 &amp; tuned for better visual quality
