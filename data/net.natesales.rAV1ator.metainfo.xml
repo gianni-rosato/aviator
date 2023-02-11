@@ -36,8 +36,8 @@
     <binary>rAV1ator</binary>
   </provides>
 
-  <developer_name>Nate Sales</developer_name>
-  <update_contact>nate@natesales.net</update_contact>
+  <developer_name>Gianni Rosato</developer_name>
+  <update_contact>grosatowork@proton.me</update_contact>
 
   <screenshots>
     <screenshot type="default">
@@ -93,7 +93,7 @@
     </release>
   </releases>
 
-  <url type="homepage">https://github.com/natesales/rAV1ator</url>
-  <url type="bugtracker">https://github.com/natesales/rAV1ator/issues</url>
-  <url type="donation">https://github.com/natesales</url>
+  <url type="homepage">https://github.com/gianni-rosato/aviator/tree/rAV1ator</url>
+  <url type="bugtracker">https://github.com/gianni-rosato/aviator/issues</url>
+  <url type="donation">https://github.com/gianni-rosato</url>
 </component>

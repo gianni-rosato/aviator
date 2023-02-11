@@ -35,12 +35,12 @@ flatpak --user install project-volo net.natesales.rAV1ator
 Make sure you have all required dependencies before building from source. This includes `flatpak-builder`, `python3` & `gcc`
 
 ```bash
-git clone https://github.com/natesales/rAV1ator
-cd rAV1ator
+git clone git clone https://github.com/gianni-rosato/aviator/ -b rAV1ator
+cd aviator
 make
 ```
 
-Third party packaging formats are not officially supported by rAV1ator, and if you encounter bugs while using them please do not submit them as issues; we do not officially support third party packaged versions of rAV1ator.
+Third party packaging formats are not officially supported by rAV1ator, and if you encounter bugs while using them please do not submit them as issues.
 
 ## Why AV1?
 
