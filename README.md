@@ -50,6 +50,10 @@ One downside of rav1e is that despite being generally quicker than the libaom AV
 
 rAV1ator comes bundled with its own version of ffmpeg that is capable decoding videos to detect source information, upscaling & downscaling videos with a sharp scaling algorithm called lanczos, & encoding audio using the Opus audio codec via libopus.
 
+## Why no Flathub?
+
+Flathub doesn't allow us to use the network at build time to build our dependencies, which makes it impossible to build our app. If you'd prefer, our other app called [Aviator] is available on Flathub with a different encoding framework based on SVT-AV1 & FFmpeg instead of rav1e & Av1an. You can check it out [here](https://beta.flathub.org/apps/net.natesales.Aviator).
+
 ## rAV1ator's Defaults
 
 Hovering over most user configurable options in rAV1ator will produce a helpful tooltip that you can look at to make things more clear.
