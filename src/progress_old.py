@@ -14,7 +14,7 @@ cmd = [
     "--force",
     "--video-params", "--tiles 1 -s 6 --quantizer 100 --threads 1",
     "-w", "0",
-    "-o", "/home/gianni13700k/Videos/marq-ipgon-aviator.mkv",
+    "-o", "/home/gianni13700k/Videos/marq-ipgon-rAV1ator.mkv",
 ]
 print(" ".join(cmd))
 process = subprocess.Popen(cmd, stdout=subprocess.PIPE,

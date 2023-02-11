@@ -1,4 +1,4 @@
-project('aviator',
+project('rAV1ator',
   version: '1.0.0',
   meson_version: '>= 0.59',
 )

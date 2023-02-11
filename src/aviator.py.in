@@ -10,8 +10,8 @@ py_install_dir = AppDir + '@py_install_dir@'
 sys.path.insert(1, py_install_dir)
 
 localedir = AppDir + '@locale_dir@'
-gettext.bindtextdomain('aviator', localedir)
-gettext.textdomain('aviator')
+gettext.bindtextdomain('rAV1ator', localedir)
+gettext.textdomain('rAV1ator')
 _ = gettext.gettext
 
 # Terminal Text Styles
@@ -20,4 +20,4 @@ style_bold   = '\033[1m'
 
 logging.basicConfig(format=f'{style_bold}%(levelname)s:{style_normal} %(message)s')
 
-import aviator
+import rAV1ator

@@ -1,5 +1,5 @@
 configure_file(
-          input: 'aviator.py.in',
+          input: 'rAV1ator.py.in',
          output: meson.project_name(),
         install: true,
     install_dir: get_option('bindir'),
@@ -14,7 +14,7 @@ configure_file(
           input: 'info.py.in',
          output: '@BASENAME@',
         install: true,
-    install_dir: python.get_install_dir() / 'aviator',
+    install_dir: python.get_install_dir() / 'rAV1ator',
   configuration: configuration_data({
             'prefix': get_option('prefix'),
            'version': meson.project_version(),
@@ -26,9 +26,9 @@ source_files = files(
   '__init__.py',
   'window.ui',
   'startup.ui',
-  'net.natesales.Aviator-splash.png'
+  'net.natesales.rAV1ator-splash.png'
 )
 
 install_data(source_files,
-  install_dir: python.get_install_dir() / 'aviator'
+  install_dir: python.get_install_dir() / 'rAV1ator'
 )

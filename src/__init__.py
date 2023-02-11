@@ -79,13 +79,13 @@ def metadata(file) -> (float, float, float):
 
 def notify(text):
     application = Gtk.Application.get_default()
-    notification = Gio.Notification.new(title="Aviator")
+    notification = Gio.Notification.new(title="rAV1ator")
     notification.set_body(text)
     application.send_notification(None, notification)
 
 
 def first_open():
-    startup_file = os.path.join(Path.home(), ".var/app/net.natesales.Aviator/startup.dat")
+    startup_file = os.path.join(Path.home(), ".var/app/net.natesales.rAV1ator/startup.dat")
     if os.path.exists(startup_file):
         return False
     else:
@@ -144,7 +144,7 @@ class OnboardWindow(Adw.Window):
         super().__init__(**kwargs)
         self.image.set_from_file(
             filename=str(
-                BASE_DIR.joinpath('net.natesales.Aviator-splash.png')
+                BASE_DIR.joinpath('net.natesales.rAV1ator-splash.png')
             )
         )
 
@@ -157,7 +157,7 @@ class OnboardWindow(Adw.Window):
 
 @Gtk.Template(filename=str(BASE_DIR.joinpath("window.ui")))
 class MainWindow(Adw.Window):
-    __gtype_name__ = "AviatorWindow"
+    __gtype_name__ = "rAV1atorWindow"
 
     # Video page
     source_file_label = Gtk.Template.Child()
@@ -381,14 +381,14 @@ class App(Adw.Application):
 
     def about_dialog(self, action, user_data):
         about = Adw.AboutWindow(transient_for=self.win,
-                                application_name="Aviator",
-                                application_icon="net.natesales.Aviator",
+                                application_name="rAV1ator",
+                                application_icon="net.natesales.rAV1ator",
                                 developer_name="Nate Sales & Gianni Rosato",
-                                version="Aviator v" + info.version,
+                                version="rAV1ator v" + info.version,
                                 copyright="Copyright © 2023 Nate Sales &amp; Gianni Rosato",
                                 license_type=Gtk.License.GPL_3_0,
-                                website="https://github.com/natesales/aviator",
-                                issue_url="https://github.com/natesales/aviator/issues")
+                                website="https://github.com/natesales/rAV1ator",
+                                issue_url="https://github.com/natesales/rAV1ator/issues")
         # about.set_translator_credits(translators())
         about.set_developers(["Nate Sales <nate@natesales.net>","Gianni Rosato <grosatowork@proton.me>"])
         about.set_designers(["Gianni Rosato <grosatowork@proton.me>"])
@@ -420,5 +420,5 @@ class App(Adw.Application):
         exit()
 
 
-app = App(application_id="net.natesales.Aviator")
+app = App(application_id="net.natesales.rAV1ator")
 app.run(sys.argv)

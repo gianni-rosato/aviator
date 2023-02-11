@@ -14,10 +14,10 @@
             </item>
         </section>
     </menu>
-    <template class="AviatorWindow" parent="AdwWindow">
+    <template class="rAV1atorWindow" parent="AdwWindow">
         <property name="modal">False</property>
         <property name="width-request">360</property>
-        <property name="title" translatable="yes">Aviator</property>
+        <property name="title" translatable="yes">rAV1ator</property>
         <property name="content">
             <object class="GtkBox">
                 <property name="orientation">vertical</property>

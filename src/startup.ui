@@ -3,7 +3,7 @@
     <requires lib="gtk" version="4.0"/>
     <requires lib="libadwaita" version="1.0"/>
     <template class="OnboardWindow" parent="AdwWindow">
-        <property name="title" translatable="yes">Aviator</property>
+        <property name="title" translatable="yes">rAV1ator</property>
         <property name="resizable">False</property>
         <property name="deletable">True</property>
         <property name="modal">True</property>
@@ -30,7 +30,7 @@
 
                         <child>
                             <object class="AdwStatusPage">
-                                <property name="title" translatable="yes">Welcome to Aviator</property>
+                                <property name="title" translatable="yes">Welcome to rAV1ator</property>
                                 <property name="description" translatable="yes">Your video copilot is ready for takeoff!</property>
                             </object>
                         </child>

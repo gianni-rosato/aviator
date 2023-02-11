@@ -1,5 +1,5 @@
-app-id: net.natesales.Aviator
-command: aviator
+app-id: net.natesales.rAV1ator
+command: rAV1ator
 sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
 runtime-version: "43"
@@ -97,7 +97,7 @@ modules:
       - cargo build --release --verbose
       - install target/release/av1an /app/bin/av1an
 
-  - name: aviator
+  - name: rAV1ator
     builddir: true
     buildsystem: meson
     sources:

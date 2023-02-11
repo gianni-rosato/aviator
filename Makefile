@@ -10,7 +10,7 @@ clean:
 	rm -rf build/ .flatpak-builder/
 
 flatpak:
-	flatpak-builder build net.natesales.Aviator.yml --force-clean --install --user
+	flatpak-builder build net.natesales.rAV1ator.yml --force-clean --install --user
 
 run:
-	flatpak run net.natesales.Aviator
+	flatpak run net.natesales.rAV1ator
