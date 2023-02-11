@@ -36,18 +36,21 @@
     <binary>aviator</binary>
   </provides>
 
-  <developer_name>Nate Sales</developer_name>
-  <update_contact>nate@natesales.net</update_contact>
+  <developer_name>Gianni Rosato</developer_name>
+  <update_contact>grosatowork@proton.me</update_contact>
 
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/natesales/aviator/main/assets/video.png</image>
+      <image>https://raw.githubusercontent.com/gianni-rosato/aviator/main/assets/aviator_welcome.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/natesales/aviator/main/assets/audio.png</image>
+      <image>https://raw.githubusercontent.com/gianni-rosato/aviator/main/assets/aviator_video.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/natesales/aviator/main/assets/export.png</image>
+      <image>https://raw.githubusercontent.com/gianni-rosato/aviator/main/assets/aviator_audio.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/gianni-rosato/aviator/main/assets/aviator_output.png</image>
     </screenshot>
   </screenshots>
 
@@ -66,7 +69,7 @@
           - Better defaults
           - Better Welcome window
           - Better notifications
-          And probably more minor tweaks that I'm forgetting. Enjoy taking off alongside our shiny new Aviator!
+          And probably more minor tweaks that I'm forgetting. Enjoy!
         </p>
       </description>
     </release>
