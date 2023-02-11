@@ -7,6 +7,7 @@ import json
 import os
 import time
 import shutil
+from ffmpeg_progress_yield import FfmpegProgress
 
 from pathlib import Path
 
@@ -163,7 +164,7 @@ class MainWindow(Adw.Window):
     source_file_label = Gtk.Template.Child()
     resolution_width_entry = Gtk.Template.Child()
     resolution_height_entry = Gtk.Template.Child()
-    quantizer_scale = Gtk.Template.Child()
+    crf_scale = Gtk.Template.Child()
     speed_scale = Gtk.Template.Child()
     grain_scale = Gtk.Template.Child()
 
@@ -193,8 +194,8 @@ class MainWindow(Adw.Window):
         # Reset value to remove extra decimal
         self.speed_scale.set_value(0)
         self.speed_scale.set_value(6)
-        self.quantizer_scale.set_value(0)
-        self.quantizer_scale.set_value(80)
+        self.crf_scale.set_value(0)
+        self.crf_scale.set_value(32)
         self.grain_scale.set_value(0)
         self.grain_scale.set_value(6)
         self.grain_scale.set_value(0)
@@ -209,6 +210,7 @@ class MainWindow(Adw.Window):
         self.progress_bar.set_fraction(0)
         self.progress_bar.set_text("0%")
         self.process = None
+        self.encode_start = None
 
     def load_metadata(self):
         self.metadata = metadata(self.source_file_absolute)
@@ -275,6 +277,16 @@ class MainWindow(Adw.Window):
         self.container_webm_button.set_has_frame(True)
         self.container = "webm"
 
+    def report_encode_finish(self,encode_start):
+        encode_end = time.time() - encode_start
+        notify(f"Encode finished in {humanize(encode_end)}! ✈️")
+        self.progress_bar.set_fraction(0)
+        self.progress_bar.set_text("Encode Finished ~ 0%")
+        self.stop_button.set_visible(False)
+
+        self.encode_button.set_visible(True)
+        self.encoding_spinner.set_visible(False)
+
     @Gtk.Template.Callback()
     def start_export(self, button):
         self.encode_button.set_visible(False)
@@ -288,74 +300,72 @@ class MainWindow(Adw.Window):
             output += ".webm"
 
         def run_in_thread():
-            encode_start = time.time()
-
-            audioparams1 = f"-c:a libopus -b:a {self.bitrate_entry.get_text()}K -compression_level 10 -vbr " + "on" if self.vbr_switch.get_state() else "off"
-            audioparams2 = "-ac 2" if self.downmix_switch.get_state() else ""
-
-            audioparams = " ".join([audioparams1, audioparams2])
 
             cmd = [
-                "av1an",
-                "-i", self.source_file_absolute,
+                "ffmpeg",
+                "-nostdin",
                 "-y",
-                "--temp", "av1an-cache",
-                "--split-method", "av-scenechange",
-                "-m", "hybrid",
-                "-c", "ffmpeg",
-                "-e", "rav1e",
-                "--photon-noise", f"{int(self.grain_scale.get_value())}",
-                "--chroma-noise",
-                "--force",
-                "--video-params", f"--tiles 1 -s {int(self.speed_scale.get_value())} --quantizer {int(self.quantizer_scale.get_value())} --threads 1 --no-scene-detection",
-                "--pix-format", "yuv420p10le",
-                "--audio-params", audioparams,
-                "-f", f"-vf scale={self.resolution_width_entry.get_text()}:{self.resolution_height_entry.get_text()} -sws_flags lanczos",
-                "-w", "0",
-                "-o", output,
+                "-i", self.source_file_absolute,
+                "-vf", f"scale={self.resolution_width_entry.get_text()}:{self.resolution_height_entry.get_text()}",
+                "-sws_flags", "lanczos",
+                "-c:v", "libsvtav1",
+                "-crf", str(int(self.crf_scale.get_value())),
+                "-preset", str(int(self.speed_scale.get_value())),
+                "-pix_fmt", "yuv420p10le",
+                "-svtav1-params", f"film-grain={int(self.grain_scale.get_value())}",
+                "-svtav1-params", "input-depth=10",
+                "-svtav1-params", "tune=0",
+                "-svtav1-params", "keyint=10s",
+                "-c:a", "libopus",
+                "-b:a", self.bitrate_entry.get_text() + "K",
+                "-vbr", "on" if self.vbr_switch.get_state() else "off",
+                "-ac", "2" if self.downmix_switch.get_state() else "0",
+                output,
             ]
 
-            print(" ".join(cmd))
-            self.process = subprocess.Popen(cmd, stdout=subprocess.PIPE,
-                                     universal_newlines=True)
-            last_update = time.time_ns()
-            for line in self.process.stdout:
-                print(line.strip())
-                tokens = line.strip().split(":")
-                if len(tokens) == 2 and (tokens[0] == "Scene Detection" or tokens[0] == "Encoding"):
-                    step = tokens[0]
-                    frac = tokens[1].split("/")
-                    progress = int(frac[0])/int(frac[1])
-                    progress = round(progress,2)
-                    if time.time_ns() - last_update > 300000000:
-                        self.progress_bar.set_fraction(progress)
-                        self.progress_bar.set_text(f"{step} ~ {int(progress*100)}%")
-                        last_update = time.time_ns()
-            self.process.wait()
-            self.progress_bar.set_fraction(0)
-            if self.process.returncode == 0:
-                encode_end = time.time() - encode_start
-                notify(f"Encode finished in {humanize(encode_end)}! ✈️")
-                self.progress_bar.set_text(f"Encode finished in {humanize(encode_end)}! ✈️ ~ 0%")
-                self.stop_button.set_visible(False)
-            else:
-                notify(f"Encode Stopped")
-                self.progress_bar.set_text("Encode Stopped ~ 0%")
-                self.stop_button.set_visible(False)
+            print(cmd)
+            self.encode_start = time.time()
+            self.process = FfmpegProgress(cmd)
+            for progress in self.process.run_command_with_progress():
+                print(f"{progress}/100")
+                self.progress_bar.set_fraction(progress/100)
+                self.progress_bar.set_text(f"Encoding ~ {int(progress)}%")
+            self.report_encode_finish(self.encode_start)
 
-            self.encode_button.set_visible(True)
-            self.encoding_spinner.set_visible(False)
+
+            # print(" ".join(cmd))
+            # self.process = subprocess.Popen(cmd, stdout=subprocess.PIPE,
+            #                           universal_newlines=True)
+            # last_update = time.time_ns()
+            # # for line in self.process.stdout:
+            # #     print(line.strip())
+            # #     tokens = line.strip()
+            #     # if len(tokens) == 2 and (tokens[0] == "Scene Detection" or tokens[0] == "Encoding"):
+            #     # step = tokens[0]
+            #     # tokens = int(tokens)/100
+            # if time.time_ns() - last_update > 500000000:
+            #     self.progress_bar.set_fraction(progress)
+            #     self.progress_bar.set_text(f"Encoding ~ {progress}%")
+            #     last_update = time.time_ns()
+            # self.process.wait()
+            # self.progress_bar.set_fraction(0)
+            # if self.process.returncode == 0:
+            #     encode_end = time.time() - encode_start
+            #     notify(f"Encode finished in {humanize(encode_end)}! ✈️")
+            #     self.progress_bar.set_text(f"Encode finished in {humanize(encode_end)}! ✈️ ~ 0%")
+            #     self.stop_button.set_visible(False)
+            # else: 
 
         thread = threading.Thread(target=run_in_thread)
         thread.start()
 
     @Gtk.Template.Callback()
     def stop_encode(self, button):
-        print("Killing av1an...")
+        print("Killing encoding job...")
         if self.process is not None:
-            self.process.terminate()
-            shutil.rmtree("av1an-cache")
-            print("Killed av1an")
+            self.process.quit()
+            print("Killed encoding job")
+            self.report_encode_finish(self.encode_start)
 
 class App(Adw.Application):
     def __init__(self, **kwargs):
@@ -369,7 +379,7 @@ class App(Adw.Application):
         quit_action = Gio.SimpleAction(name="quit")
         quit_action.connect("activate", self.quit)
         self.add_action(quit_action)
-        os.system("rav1e --version")
+        os.system("SvtAv1EncApp --version")
 
     def on_activate(self, app):
         if first_open():
@@ -400,18 +410,13 @@ class App(Adw.Application):
         )
         # about.add_acknowledgement_section()
         about.add_legal_section(
-            title='Av1an',
-            copyright='Copyright © 2023 Av1an',
-            license_type=Gtk.License.GPL_3_0,
-        )
-        about.add_legal_section(
             title='FFmpeg',
             copyright='Copyright © 2023 FFmpeg',
             license_type=Gtk.License.GPL_3_0,
         )
         about.add_legal_section(
-            title='rav1e',
-            copyright='Copyright © 2023 xiph.org',
+            title='svt-av1',
+            copyright='Copyright © 2023 Alliance for Open Media',
             license_type=Gtk.License.BSD,
         )
         about.present()

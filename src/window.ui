@@ -153,20 +153,20 @@
 
                                                         <child>
                                                             <object class="AdwActionRow">
-                                                                <property name="title" translatable="yes">_Quantizer</property>
-                                                                <property name="tooltip-text">The quantizer's value determines the size &amp; quality of your output. Higher values mean lower file size &amp; quality while lower values create larger, higher-quality videos.</property>
+                                                                <property name="title" translatable="yes">CRF</property>
+                                                                <property name="tooltip-text">The CRF value determines the size &amp; quality of your output. Higher values mean lower file size &amp; quality while lower values create larger, higher-quality videos.</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
-                                                                    <object class="GtkScale" id="quantizer_scale">
+                                                                    <object class="GtkScale" id="crf_scale">
                                                                         <property name="halign">end</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="draw-value">1</property>
                                                                         <property name="digits">0</property>
-                                                                        <property name="value-pos">top</property>
+                                                                        <property name="value-pos">left</property>
                                                                         <property name="width-request">300</property>
                                                                         <property name="adjustment">
                                                                             <object class="GtkAdjustment">
-                                                                                <property name="upper">255</property>
+                                                                                <property name="upper">63</property>
                                                                                 <property name="lower">1</property>
                                                                                 <property name="step-increment">1</property>
                                                                                 <property name="page-increment">1</property>
@@ -188,11 +188,11 @@
                                                                         <property name="valign">center</property>
                                                                         <property name="draw-value">1</property>
                                                                         <property name="digits">0</property>
-                                                                        <property name="value-pos">top</property>
+                                                                        <property name="value-pos">left</property>
                                                                         <property name="width-request">300</property>
                                                                         <property name="adjustment">
                                                                             <object class="GtkAdjustment">
-                                                                                <property name="upper">10</property>
+                                                                                <property name="upper">12</property>
                                                                                 <property name="value">6</property>
                                                                                 <property name="lower">0</property>
                                                                                 <property name="step-increment">1</property>
@@ -207,7 +207,7 @@
                                                         <child>
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Grain Synth</property>
-                                                                <property name="tooltip-text">This value determines how much artificial grain will be applied to your video. Values are equivalent to ISO; 1 would be equal to ISO 100, 24 would be ISO 2400, etc.</property>
+                                                                <property name="tooltip-text">This value determines how much artificial grain will be applied to your video. Use when your source has grain.</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
                                                                     <object class="GtkScale" id="grain_scale">
@@ -215,11 +215,11 @@
                                                                         <property name="valign">center</property>
                                                                         <property name="draw-value">1</property>
                                                                         <property name="digits">0</property>
-                                                                        <property name="value-pos">top</property>
+                                                                        <property name="value-pos">left</property>
                                                                         <property name="width-request">300</property>
                                                                         <property name="adjustment">
                                                                             <object class="GtkAdjustment">
-                                                                                <property name="upper">64</property>
+                                                                                <property name="upper">50</property>
                                                                                 <property name="value">0</property>
                                                                                 <property name="lower">0</property>
                                                                                 <property name="step-increment">1</property>

@@ -4,21 +4,6 @@ sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
 runtime-version: "43"
 
-add-build-extensions:
-  org.freedesktop.Sdk.Extension.rust-stable:
-    directory: rust-stable
-    add-ld-path: .
-    version: "22.08"
-    no-autodownload: true
-    autodelete: false
-
-  org.freedesktop.Sdk.Extension.llvm14:
-    directory: llvm14
-    add-ld-path: .
-    version: "22.08"
-    no-autodownload: true
-    autodelete: false
-
 finish-args:
   - --share=ipc
   - --device=dri
@@ -46,19 +31,23 @@ cleanup:
   - '*.a'
 
 modules:
-  - name: zimg
-    buildsystem: autotools
+  - name: svt-av1
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - "-DCMAKE_BUILD_TYPE=Release"
+      - "-DBUILD_SHARED_LIBS=ON"
+      - "-DBUILD_APPS=OFF"
+      - "-DBUILD_DEC=ON"
+      - "-DBUILD_ENC=ON"
+      - "-DBUILD_TESTING=OFF"
+    cleanup:
+      - "/include"
+      - "/lib/pkgconfig"
     sources:
-      - type: archive
-        url: https://github.com/sekrit-twc/zimg/archive/refs/tags/release-3.0.4.tar.gz
-        sha256: 219d1bc6b7fde1355d72c9b406ebd730a4aed9c21da779660f0a4c851243e32f
-
-  - name: vapoursynth
-    buildsystem: autotools
-    sources:
-      - type: archive
-        url: https://github.com/vapoursynth/vapoursynth/archive/refs/tags/R61.tar.gz
-        sha256: a5d4feeb056679dd1204153250d7c1d38e5a639e995d3c4e3a8e2e8fe1425b75
+      - type: git
+        url: https://gitlab.com/AOMediaCodec/SVT-AV1.git
+        commit: 93fc87b0ff0823d5703d31516cb4093aff86c848
 
   - name: ffmpeg
     config-opts:
@@ -66,52 +55,34 @@ modules:
       - --enable-gpl
       - --enable-libdav1d
       - --enable-libopus
-      - --enable-libzimg
+      - --enable-libsvtav1
     buildsystem: autotools
     sources:
       - type: archive
         url: http://ffmpeg.org/releases/ffmpeg-5.1.2.tar.xz
         sha256: 619e706d662c8420859832ddc259cd4d4096a48a2ce1eefd052db9e440eef3dc
 
-  - name: aom
-    buildsystem: cmake-ninja
-    builddir: true
-    sources:
-      - type: git
-        url: https://aomedia.googlesource.com/aom/
-        tag: v3.6.0
-    config-opts: [-DBUILD_SHARED_LIBS=1]
-
-  - name: rav1e
+  - build-commands:
+    - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
+      --prefix=${FLATPAK_DEST} "ffmpeg-python" --no-build-isolation
     buildsystem: simple
+    name: python3-ffmpeg-python
     sources:
-      - type: git
-        url: https://github.com/BlueSwordM/rav1e
-        commit: 39dc19eff45a57b3f68e5f64c407b789ee41ae9e
-      - "rav1e-sources.json"
-    build-options:
-      env:
-        CARGO_HOME: /run/build/av1an/cargo
-    build-commands:
-      - RUSTFLAGS="-C target-cpu=generic" cargo --offline fetch --manifest-path Cargo.toml --verbose
-      - RUSTFLAGS="-C target-cpu=generic" cargo --offline build --release --verbose
-      - install target/release/rav1e /app/bin/rav1e
-
-  - name: av1an
+    - sha256: ac441a0404e053f8b6a1113a77c0f452f1cfc62f6344a769475ffdc0f56c23c5
+      type: file
+      url: https://files.pythonhosted.org/packages/d7/0c/56be52741f75bad4dc6555991fabd2e07b432d333da82c11ad701123888a/ffmpeg_python-0.2.0-py3-none-any.whl
+    - sha256: 34a17436ed1e96697a86f9de3d15a3b0be01d8bc8de9c1dffd59fb8234ed5307
+      type: file
+      url: https://files.pythonhosted.org/packages/8f/2e/cf6accf7415237d6faeeebdc7832023c90e0282aa16fd3263db0eb4715ec/future-0.18.3.tar.gz
+  - build-commands:
+    - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
+      --prefix=${FLATPAK_DEST} "ffmpeg-progress-yield" --no-build-isolation
     buildsystem: simple
+    name: python3-ffmpeg-progress-yield
     sources:
-      - type: git
-        url: https://github.com/natesales/Av1an/
-        commit: 8b6c79809fd09175453f5c4d0b856c20f57d4e49
-      - "av1an-sources.json"
-    build-options:
-      env:
-        CARGO_HOME: /run/build/av1an/cargo
-    build-commands:
-      - git branch progressbar
-      - RUSTFLAGS="-C target-cpu=generic" cargo --offline fetch --manifest-path Cargo.toml --verbose
-      - RUSTFLAGS="-C target-cpu=generic" cargo --offline build --release --verbose
-      - install target/release/av1an /app/bin/av1an
+    - sha256: f8fe0bc342cbe443e18b68ccb3e3067f5211ead0331cbfd7adbb50a7a9f00d57
+      type: file
+      url: https://files.pythonhosted.org/packages/c9/b5/2d262c84f18d1b230a7b916bb8e0158642b6b803d91f5f9717d8d32ec36b/ffmpeg_progress_yield-0.7.0-py2.py3-none-any.whl
 
   - name: aviator
     builddir: true

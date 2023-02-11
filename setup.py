@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 
 setup(
     name='Aviator',
-    version='1.0.0',
+    version='0.2.0',
     description='AV1/OPUS Encoder GUI',
-    author='Nate Sales',
-    author_email='nate@natesales.net',
+    author='Gianni Rosato',
+    author_email='grosatowork@proton.me',
     packages=find_packages(),
     package_data={'': ['window.ui']},
     include_package_data=True,
