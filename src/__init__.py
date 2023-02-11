@@ -384,7 +384,7 @@ class App(Adw.Application):
                                 application_name="rAV1ator",
                                 application_icon="net.natesales.rAV1ator",
                                 developer_name="Nate Sales & Gianni Rosato",
-                                version="rAV1ator v" + info.version,
+                                version=info.version,
                                 copyright="Copyright © 2023 Nate Sales &amp; Gianni Rosato",
                                 license_type=Gtk.License.GPL_3_0,
                                 website="https://github.com/natesales/rAV1ator",
