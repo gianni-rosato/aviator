@@ -415,7 +415,7 @@ class App(Adw.Application):
             license_type=Gtk.License.GPL_3_0,
         )
         about.add_legal_section(
-            title='svt-av1',
+            title='SVT-AV1',
             copyright='Copyright © 2023 Alliance for Open Media',
             license_type=Gtk.License.BSD,
         )
