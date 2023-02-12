@@ -16,7 +16,7 @@ A Flatpak-first easy-to-use GUI for encoding with SVT-AV1 & libopus.
 
 ## About
 
-Aviator enables simple & easy video encoding for the word's most advanced open video codec, AV1. Encode your favorite media into super efficient files with incredible quality per bit, powered by the fast SVT-AV1 encoder with libopus for audio encoding. The sky's the limit for your old home video collection, large 4k smartphone videos, screen recordings, Blu-ray rips, you name it - take off with Aviator!
+Aviator enables simple & easy video encoding for the world's most advanced open video codec, AV1. Encode your favorite media into super efficient files with incredible quality per bit, powered by the fast SVT-AV1 encoder with libopus for audio encoding. The sky's the limit for your old home video collection, large 4k smartphone videos, screen recordings, Blu-ray rips, you name it - take off with Aviator!
 
 Aviator is designed to be a no frills, easy to use AV1 encoding GUI that any beginner can pick up and immediately understand how to use. 
 
