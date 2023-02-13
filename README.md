@@ -24,7 +24,8 @@ rAV1ator is designed to be a no frills, easy to use AV1 encoding GUI that any be
 
 rAV1ator is available in my personal Flatpak repository. Given you have Flatpak on your system, you can install it by running:
 
-```flatpak --user remote-add --no-gpg-verify project-volo https://giannirosato.com/repo
+```
+flatpak --user remote-add --no-gpg-verify project-volo https://giannirosato.com/repo
 flatpak --user install project-volo net.natesales.rAV1ator
 ```
 
