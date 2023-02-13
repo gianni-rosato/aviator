@@ -7,8 +7,6 @@ A Flatpak-first easy-to-use GUI for encoding with rav1e & libopus.
 <br>
 <br>
 
-[![Installs](https://img.shields.io/flathub/downloads/net.natesales.rAV1ator?style=for-the-badge)](https://flathub.org/apps/details/net.natesales.rAV1ator)
-![Code Size](https://img.shields.io/github/languages/code-size/gianni-rosato/aviator/tree/rAV1ator?style=for-the-badge)
 [![License](https://img.shields.io/github/license/natesales/q?style=for-the-badge)](https://raw.githubusercontent.com/natesales/q/main/LICENSE)
 
 [![Please do not theme this app](https://stopthemingmy.app/badge.svg)](https://stopthemingmy.app)
