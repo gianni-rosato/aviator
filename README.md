@@ -51,7 +51,7 @@ rAV1ator comes bundled with its own version of ffmpeg that is capable decoding v
 
 ## Why no Flathub?
 
-Flathub doesn't allow us to use the network at build time to build our dependencies, which makes it impossible to build our app. If you'd prefer, our other app called [Aviator] is available on Flathub with a different encoding framework based on SVT-AV1 & FFmpeg instead of rav1e & Av1an. You can check it out [here](https://beta.flathub.org/apps/net.natesales.Aviator).
+Flathub doesn't allow us to use the network at build time to build our dependencies, which makes it impossible to build our app. If you'd prefer, our other app called [Aviator](https://github.com/gianni-rosato/aviator) is available on Flathub with a different encoding framework based on SVT-AV1 & FFmpeg instead of rav1e & Av1an. You can check it out [here](https://beta.flathub.org/apps/net.natesales.Aviator).
 
 ## rAV1ator's Defaults
 
