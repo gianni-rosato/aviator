@@ -308,6 +308,7 @@ class MainWindow(Adw.Window):
                 "-i", self.source_file_absolute,
                 "-vf", f"scale={self.resolution_width_entry.get_text()}:{self.resolution_height_entry.get_text()}",
                 "-sws_flags", "lanczos",
+                "-map", "0:v",
                 "-c:v", "libsvtav1",
                 "-crf", str(int(self.crf_scale.get_value())),
                 "-preset", str(int(self.speed_scale.get_value())),
@@ -316,10 +317,13 @@ class MainWindow(Adw.Window):
                 "-svtav1-params", "input-depth=10",
                 "-svtav1-params", "tune=0",
                 "-svtav1-params", "keyint=10s",
+                "-map", "0:a",
                 "-c:a", "libopus",
                 "-b:a", self.bitrate_entry.get_text() + "K",
                 "-vbr", "on" if self.vbr_switch.get_state() else "off",
                 "-ac", "2" if self.downmix_switch.get_state() else "0",
+                "-map", "0:s" if self.container == "mkv" else "-0:s",
+                "-c:s", "copy",
                 output,
             ]
 
@@ -379,7 +383,6 @@ class App(Adw.Application):
         quit_action = Gio.SimpleAction(name="quit")
         quit_action.connect("activate", self.quit)
         self.add_action(quit_action)
-        os.system("SvtAv1EncApp --version")
 
     def on_activate(self, app):
         if first_open():
@@ -394,7 +397,7 @@ class App(Adw.Application):
                                 application_name="Aviator",
                                 application_icon="net.natesales.Aviator",
                                 developer_name="Nate Sales & Gianni Rosato",
-                                version="Aviator v" + info.version,
+                                version=info.version,
                                 copyright="Copyright © 2023 Nate Sales &amp; Gianni Rosato",
                                 license_type=Gtk.License.GPL_3_0,
                                 website="https://github.com/natesales/aviator",
@@ -405,7 +408,7 @@ class App(Adw.Application):
         about.add_acknowledgement_section(
             ("Special thanks to the AV1 Community for your knowledge &amp; inspiration!"),
             [
-                "AV1 Discord https://discord.gg/SjumTJEsFD",
+                "AV1 Community https://discord.gg/SjumTJEsFD",
             ]
         )
         # about.add_acknowledgement_section()

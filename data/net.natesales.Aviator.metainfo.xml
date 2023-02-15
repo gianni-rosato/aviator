@@ -55,6 +55,15 @@
   </screenshots>
 
   <releases>
+    <release version="0.2.1" date="2023-02-14">
+      <description>
+        <p>Fix: audio mapping, so all streams are reencoded</p>
+        <p>Fix: typos</p>
+        <p>Fix: more concise version number in about window</p>
+        <p>Fix: proper subtitle handling for WebM</p>
+      </description>
+    </release>
+    
     <release version="0.2.0" date="2023-02-11">
       <description>
         <p>I know it has been a long time coming, but this time, we have a plethora of changes to report!
