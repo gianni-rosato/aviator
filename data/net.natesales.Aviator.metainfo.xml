@@ -55,6 +55,12 @@
   </screenshots>
 
   <releases>
+    <release version="0.2.1a" date="2023-02-14">
+      <description>
+        <p>Fix: subtitle &amp; audio mapping. If your encodes were not moving past 0%, this should fix it.</p>
+      </description>
+    </release>
+
     <release version="0.2.1" date="2023-02-14">
       <description>
         <p>Fix: audio mapping, so all streams are reencoded</p>
