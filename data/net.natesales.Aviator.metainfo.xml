@@ -55,6 +55,14 @@
   </screenshots>
 
   <releases>
+
+    <release version="0.2.2" date="2023-05-02">
+      <description>
+        <p>Updated to FFmpeg 6.0</p>
+        <p>Updated to SVT-AV1 1.5.0</p>
+      </description>
+    </release>
+
     <release version="0.2.1a" date="2023-02-14">
       <description>
         <p>Fix: subtitle &amp; audio mapping. If your encodes were not moving past 0%, this should fix it.</p>
