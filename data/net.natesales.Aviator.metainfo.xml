@@ -56,6 +56,16 @@
 
   <releases>
 
+    <release version="0.3.0" date="2023-05-10">
+      <description>
+        <p>New "Copy Audio" switch that allows passing the audio through without reencoding (disables WebM output)</p>
+        <p>Improved resolution scaling, introducing four different options for scaling algorithms &amp; automatic width/height adjustment based on one input value.</p>
+        <p>Removed "Match Source" buttons - resolution will match source if left empty, &amp; audio shouldn't be reencoded at an identical bitrate.</p>
+        <p>Removed VBR switch for audio.</p>
+        <p>Credited Trix for their help with rAV1ator that has transferred to Aviator. Thanks, Trix!</p>
+      </description>
+    </release>
+
     <release version="0.2.2" date="2023-05-02">
       <description>
         <p>Updated to FFmpeg 6.0</p>

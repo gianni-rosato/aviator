@@ -164,17 +164,19 @@ class MainWindow(Adw.Window):
     source_file_label = Gtk.Template.Child()
     resolution_width_entry = Gtk.Template.Child()
     resolution_height_entry = Gtk.Template.Child()
+    scaling_method = Gtk.Template.Child()
     crf_scale = Gtk.Template.Child()
     speed_scale = Gtk.Template.Child()
     grain_scale = Gtk.Template.Child()
 
     # Audio page
     bitrate_entry = Gtk.Template.Child()
-    vbr_switch = Gtk.Template.Child()
     downmix_switch = Gtk.Template.Child()
+    audio_copy_switch = Gtk.Template.Child()
 
     # Export page
     output_file_label = Gtk.Template.Child()
+    warning_image_webm = Gtk.Template.Child()
     container_mkv_button = Gtk.Template.Child()
     container_webm_button = Gtk.Template.Child()
     container = "mkv"
@@ -215,13 +217,23 @@ class MainWindow(Adw.Window):
     def load_metadata(self):
         self.metadata = metadata(self.source_file_absolute)
 
-    def set_defaults(self):
-        self.bitrate_same_as_source()
-        self.resolution_same_as_source()
+    # @Gtk.Template.Callback()
+    # def empty_or_not_empty(self, entry):
+    #     if self.bitrate_entry.get_text() == "":
+    #         self.container_mkv("clicked")
+    #         self.container_webm_button.set_sensitive(False)
+    #     else:
+    #         self.container_webm_button.set_sensitive(True)
+
+    @Gtk.Template.Callback()
+    def empty_or_not_empty(self, switch):
+        if self.audio_copy_switch.get_state():
+            self.container_mkv("clicked")
+            self.container_webm_button.set_sensitive(False)
+        else:
+            self.container_webm_button.set_sensitive(True)
 
     def handle_file_select(self):
-        self.set_defaults()
-
         # Trim file path
         if "/" in self.source_file_label.get_text():
             self.source_file_absolute = self.source_file_label.get_text()
@@ -231,6 +243,7 @@ class MainWindow(Adw.Window):
 
     @Gtk.Template.Callback()
     def open_source_file(self, button):
+        self.bitrate_entry.set_text(str(48))
         FileSelectDialog(
             parent=self,
             select_multiple=False,
@@ -239,19 +252,6 @@ class MainWindow(Adw.Window):
             open_only=True,
             callback=self.handle_file_select
         )
-
-    @Gtk.Template.Callback()
-    def resolution_same_as_source(self, button=None):
-        self.load_metadata()
-        self.resolution_width_entry.set_text(str(self.metadata[0]))
-        self.resolution_height_entry.set_text(str(self.metadata[1]))
-
-    # Audio
-
-    @Gtk.Template.Callback()
-    def bitrate_same_as_source(self, button=None):
-        self.load_metadata()
-        self.bitrate_entry.set_text(str(round(float(self.metadata[2]))))
 
     # Export
 
@@ -268,12 +268,14 @@ class MainWindow(Adw.Window):
     @Gtk.Template.Callback()
     def container_mkv(self, button):
         self.container_webm_button.set_has_frame(False)
+        self.warning_image_webm.set_visible(False)
         self.container_mkv_button.set_has_frame(True)
         self.container = "mkv"
 
     @Gtk.Template.Callback()
     def container_webm(self, button):
         self.container_mkv_button.set_has_frame(False)
+        self.warning_image_webm.set_visible(True)
         self.container_webm_button.set_has_frame(True)
         self.container = "webm"
 
@@ -300,14 +302,45 @@ class MainWindow(Adw.Window):
             output += ".webm"
 
         def run_in_thread():
+            
+            width = height = None
+
+            try:
+                width = int(self.resolution_width_entry.get_text())
+            except ValueError:
+                pass
+
+            try:
+                height = int(self.resolution_height_entry.get_text())
+            except ValueError:
+                pass
+
+            if width is not None and height is None:
+                height = -2
+            elif width is None and height is not None:
+                width = -2
+
+            if self.scaling_method.get_selected_item() == "Lanczos":
+                method = "lanczos"
+            elif self.scaling_method.get_selected_item() == "Mitchell":
+                method = "bicubic:param0=1/3:param1=1/3"
+            elif self.scaling_method.get_selected_item() == "BicubicDidee":
+                method = "bicubic:param0=-1/2:param1=1/4"
+            else:
+                method = "bicubic:param0=0:param1=1/2"
+
+            if width is not None and height is not None:
+                resolution = f"scale={width}:{height}:flags={method}"
+            else:
+                resolution = "-y"
 
             cmd = [
                 "ffmpeg",
                 "-nostdin",
                 "-y",
                 "-i", self.source_file_absolute,
-                "-vf", f"scale={self.resolution_width_entry.get_text()}:{self.resolution_height_entry.get_text()}",
-                "-sws_flags", "lanczos",
+                "-vf" if width is not None and height is not None else "-y",
+                resolution,
                 "-map", "0:v",
                 "-c:v", "libsvtav1",
                 "-crf", str(int(self.crf_scale.get_value())),
@@ -318,9 +351,8 @@ class MainWindow(Adw.Window):
                 "-svtav1-params", "tune=0",
                 "-svtav1-params", "keyint=10s",
                 "-map", "0:a?",
-                "-c:a", "libopus",
+                "-c:a", "copy" if self.audio_copy_switch.get_state() else "libopus",
                 "-b:a", self.bitrate_entry.get_text() + "K",
-                "-vbr", "on" if self.vbr_switch.get_state() else "off",
                 "-ac", "2" if self.downmix_switch.get_state() else "0",
                 "-map", "0:s?" if self.container == "mkv" else "-0:s",
                 "-c:s", "copy",
@@ -335,30 +367,6 @@ class MainWindow(Adw.Window):
                 self.progress_bar.set_fraction(progress/100)
                 self.progress_bar.set_text(f"Encoding ~ {int(progress)}%")
             self.report_encode_finish(self.encode_start)
-
-
-            # print(" ".join(cmd))
-            # self.process = subprocess.Popen(cmd, stdout=subprocess.PIPE,
-            #                           universal_newlines=True)
-            # last_update = time.time_ns()
-            # # for line in self.process.stdout:
-            # #     print(line.strip())
-            # #     tokens = line.strip()
-            #     # if len(tokens) == 2 and (tokens[0] == "Scene Detection" or tokens[0] == "Encoding"):
-            #     # step = tokens[0]
-            #     # tokens = int(tokens)/100
-            # if time.time_ns() - last_update > 500000000:
-            #     self.progress_bar.set_fraction(progress)
-            #     self.progress_bar.set_text(f"Encoding ~ {progress}%")
-            #     last_update = time.time_ns()
-            # self.process.wait()
-            # self.progress_bar.set_fraction(0)
-            # if self.process.returncode == 0:
-            #     encode_end = time.time() - encode_start
-            #     notify(f"Encode finished in {humanize(encode_end)}! ✈️")
-            #     self.progress_bar.set_text(f"Encode finished in {humanize(encode_end)}! ✈️ ~ 0%")
-            #     self.stop_button.set_visible(False)
-            # else: 
 
         thread = threading.Thread(target=run_in_thread)
         thread.start()
@@ -403,15 +411,14 @@ class App(Adw.Application):
                                 website="https://github.com/natesales/aviator",
                                 issue_url="https://github.com/natesales/aviator/issues")
         # about.set_translator_credits(translators())
-        about.set_developers(["Nate Sales <nate@natesales.net>","Gianni Rosato <grosatowork@proton.me>"])
+        about.set_developers(["Nate Sales <nate@natesales.net>","Gianni Rosato <grosatowork@proton.me>","Trix<>"])
         about.set_designers(["Gianni Rosato <grosatowork@proton.me>"])
         about.add_acknowledgement_section(
-            ("Special thanks to the AV1 Community for your knowledge &amp; inspiration!"),
+            ("Special thanks to the AV1 Community"),
             [
                 "AV1 Community https://discord.gg/SjumTJEsFD",
             ]
         )
-        # about.add_acknowledgement_section()
         about.add_legal_section(
             title='FFmpeg',
             copyright='Copyright © 2023 FFmpeg',

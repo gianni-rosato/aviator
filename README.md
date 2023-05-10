@@ -56,7 +56,7 @@ Hovering over most user configurable options in Aviator will produce a helpful t
 
 By default, when you load a video file some parameters will be set to match the source as closely as possible. These parameters include the resolution and audio bitrate. Aviator's SVT-AV1 speed preset is set to 6 by default, with a CRF (Constant Rate Factor) level of 32. You can set a CRF from 0 to 63 using the slider, with larger numerical values indicating smaller filesize at the expense of visual quality. You can look at the detailed specifications behind each speed preset [here](https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/Docs/CommonQuestions.md#what-presets-do). Speed 6 offers a good balance between speed & compression efficiency at any CRF level.
 
-The Grain Synth slider allows you to add artifical grain to your video to mimic its natural grain, which applies the artificial grain at decode time as a filter which makes it easier to encode grainy videos at high fidelity.
+The Grain Synth slider allows you to add artificial grain to your video to mimic its natural grain, which applies the artificial grain at decode time as a filter which makes it easier to encode grainy videos at high fidelity.
 
 ### Audio
 

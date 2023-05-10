@@ -58,7 +58,7 @@
                                                 <property name="margin-top">32</property>
                                                 <property name="label" translatable="yes">Open</property>
                                                 <property name="halign">center</property>
-                                                <property name="tooltip-text">Open your source media</property>
+                                                <property name="tooltip-text">Open your source media.</property>
                                                 <!-- <property name="icon-name">document-open-symbolic</property> -->
                                                 <signal name="clicked" handler="open_source_file" swapped="no" />
                                                 <style>
@@ -97,6 +97,7 @@
                                                                 <child>
                                                                     <object class="GtkLabel" id="source_file_label">
                                                                         <property name="label" translatable="yes"></property>
+                                                                        <property name="tooltip-text">Displays the path to the source file.</property>
                                                                     </object>
                                                                 </child>
                                                             </object>
@@ -106,7 +107,7 @@
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Resolution</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Sets the output resolution. "Match Source" sets the width &amp; height to be the same as the source media. If a value from the source media isn't detected, it will default to 1536*864.</property>
+                                                                <property name="tooltip-text">Sets the output resolution. Width &amp; height will match the source media if left empty. Putting in one value will automatically calculate the other based on the source video's aspect ratio.</property>
                                                                 <child>
                                                                     <object class="GtkBox">
                                                                         <!-- <child>
@@ -139,9 +140,22 @@
                                                                                     </object>
                                                                                 </child>
                                                                                 <child>
-                                                                                    <object class="GtkButton">
-                                                                                        <property name="label" translatable="yes">Match Source</property>
-                                                                                        <signal name="clicked" handler="resolution_same_as_source" swapped="no" />
+                                                                                    <object class="GtkDropDown" id="scaling_method">
+                                                                                        <property name="tooltip-text">Change the downscaling method.
+Catrom is sharp, but may introduce ringing.
+Lanczos is sharper than Catrom with more potential ringing.
+Mitchell is softer than both.
+BicubicDidee strikes a good balance between sharpness &amp; ringing.                    </property>
+                                                                                        <property name="model">
+                                                                                            <object class="GtkStringList">
+                                                                                                <items>
+                                                                                                    <item translatable="yes">Catrom</item>
+                                                                                                    <item translatable="yes">Lanczos</item>
+                                                                                                    <item translatable="yes">Mitchell</item>
+                                                                                                    <item translatable="yes">BicubicDidee</item>
+                                                                                                </items>
+                                                                                            </object>
+                                                                                        </property>
                                                                                     </object>
                                                                                 </child>
                                                                             </object>
@@ -279,17 +293,8 @@
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Bitrate</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Sets the audio bitrate to a value in kbps. Higher values mean better quality at the expense of filesize. We recommend a value between 32 &amp; 128 for stereo audio, >224 for 5.1 Surround, &amp; >336 for 7.1 Surround. "Match Source" sets the bitrate to be the same as the audio in the source media. If a value from the source media isn't detected, this will default to 48 kbps. </property>
+                                                                <property name="tooltip-text">Sets the audio bitrate to a value in kbps. Higher values mean better quality at the expense of filesize. We recommend a value between 32 &amp; 128 for stereo audio, >224 for 5.1 Surround, &amp; >336 for 7.1 Surround. If a value from the source media isn't detected, this will default to 48 kbps. </property>
                                                                 <child>
-                                                                    <!-- <child>
-                                                                            <object class="GtkLabel">
-                                                                                <property name="margin-top">24</property>
-                                                                                <property name="margin-bottom">24</property>
-                                                                                <property name="margin-start">24</property>
-                                                                                <property name="margin-end">24</property>
-                                                                                <property name="label" translatable="yes">Resolution</property>
-                                                                            </object>
-                                                                        </child> -->
                                                                     <object class="GtkBox">
                                                                         <property name="margin-top">8</property>
                                                                         <property name="margin-bottom">8</property>
@@ -299,30 +304,9 @@
                                                                         <child>
                                                                             <object class="GtkEntry" id="bitrate_entry">
                                                                                 <property name="placeholder-text" translatable="yes">kbps</property>
-                                                                                <property name="max-width-chars">6</property>
+                                                                                <property name="max-width-chars">3</property>
                                                                             </object>
                                                                         </child>
-                                                                        <child>
-                                                                            <object class="GtkButton">
-                                                                                <property name="label" translatable="yes">Match Source</property>
-                                                                                <signal name="clicked" handler="bitrate_same_as_source" swapped="no" />
-                                                                            </object>
-                                                                        </child>
-                                                                    </object>
-                                                                </child>
-                                                            </object>
-                                                        </child>
-
-                                                        <child>
-                                                            <object class="AdwActionRow">
-                                                                <property name="title" translatable="yes">_Variable Bit Rate</property>
-                                                                <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Allows Opus to vary the audio bitrate based on the complexity of the audio. It is highly recommended to leave this enabled.</property>
-                                                                <child>
-                                                                    <object class="GtkSwitch" id="vbr_switch">
-                                                                        <property name="active">True</property>
-                                                                        <property name="valign">center</property>
-                                                                        <!-- <property name="active" bind-source="LoginAdvancedDialog" bind-property="autodiscovery" bind-flags="sync-create|bidirectional" /> -->
                                                                     </object>
                                                                 </child>
                                                             </object>
@@ -338,6 +322,20 @@
                                                                         <property name="active">False</property>
                                                                         <property name="valign">center</property>
                                                                         <!-- <property name="active" bind-source="LoginAdvancedDialog" bind-property="autodiscovery" bind-flags="sync-create|bidirectional" /> -->
+                                                                    </object>
+                                                                </child>
+                                                            </object>
+                                                        </child>
+                                                        
+                                                        <child>
+                                                            <object class="AdwActionRow">
+                                                                <property name="title" translatable="yes">_Copy Audio</property>
+                                                                <property name="use-underline">true</property>
+                                                                <property name="tooltip-text">Ignores the options above &amp; copies audio directly from the source untouched. Disables WebM output.</property>
+                                                                <child>
+                                                                    <object class="GtkSwitch" id="audio_copy_switch">
+                                                                        <property name="active">False</property>
+                                                                        <property name="valign">center</property>
                                                                     </object>
                                                                 </child>
                                                             </object>
@@ -417,6 +415,14 @@
                                                                             <class name="linked" />
                                                                         </style>
                                                                         <child>
+                                                                            <object class="GtkImage" id="warning_image_webm">
+                                                                                <property name="icon-name">dialog-warning</property>
+                                                                                <property name="visible">false</property>
+                                                                                <property name="margin-end">20</property>
+                                                                                <property name="tooltip-text" translatable="yes">Selecting WebM output will strip subtitles for compatibility reasons.</property>
+                                                                            </object>
+                                                                        </child>
+                                                                        <child>
                                                                             <object class="GtkButton" id="container_mkv_button">
                                                                                 <property name="label" translatable="yes">MKV</property>
                                                                                 <signal name="clicked" handler="container_mkv" swapped="no" />
@@ -425,6 +431,7 @@
                                                                         <child>
                                                                             <object class="GtkButton" id="container_webm_button">
                                                                                 <property name="label" translatable="yes">WEBM</property>
+                                                                                <property name="sensitive">false</property>
                                                                                 <signal name="clicked" handler="container_webm" swapped="no" />
                                                                             </object>
                                                                         </child>
@@ -441,8 +448,8 @@
                                             <object class="GtkButton" id="encode_button">
                                                 <property name="label" translatable="yes">Encode</property>
                                                 <property name="halign">center</property>
+                                                <property name="tooltip-text">Begin encoding! Watch the progress bar to see how quickly your encode is progressing.</property>
                                                 <signal name="clicked" handler="start_export" swapped="no" />
-                                                <!-- <property name="icon-name">document-open-symbolic</property> -->
                                                 <style>
                                                     <class name="pill" />
                                                     <class name="suggested-action" />
