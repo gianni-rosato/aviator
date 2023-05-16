@@ -139,7 +139,7 @@
                                                                                         <property name="max-width-chars">6</property>
                                                                                     </object>
                                                                                 </child>
-                                                                                <child>
+                                                                                <!-- <child>
                                                                                     <object class="GtkDropDown" id="scaling_method">
                                                                                         <property name="tooltip-text">Change the downscaling method.
 Catrom is sharp, but may introduce ringing.
@@ -157,7 +157,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                                                             </object>
                                                                                         </property>
                                                                                     </object>
-                                                                                </child>
+                                                                                </child> -->
                                                                             </object>
                                                                         </child>
                                                                     </object>
@@ -223,6 +223,15 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                                 <property name="title" translatable="yes">_Grain Synth</property>
                                                                 <property name="tooltip-text">This value determines how much artificial grain will be applied to your video. Use when your source has grain.</property>
                                                                 <property name="use-underline">true</property>
+                                                                <child>
+                                                                    <object class="GtkCheckButton" id="denoise_toggle">
+                                                                        <property name="active">False</property>
+                                                                        <property name="label">Denoise</property>
+                                                                        <property name="valign">center</property>
+                                                                        <property name="hexpand">False</property>
+                                                                        <property name="tooltip-text">Denoises the input video before adding film grain. Determined based on the amount of added grain. Can reduce detail retention, so it is disabled by default.</property>
+                                                                    </object>
+                                                                </child>
                                                                 <child>
                                                                     <object class="GtkScale" id="grain_scale">
                                                                         <property name="halign">end</property>
@@ -335,6 +344,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                                 <child>
                                                                     <object class="GtkSwitch" id="audio_copy_switch">
                                                                         <property name="active">False</property>
+                                                                        <signal name="state-set" handler="empty_or_not_empty" swapped="no"/>
                                                                         <property name="valign">center</property>
                                                                     </object>
                                                                 </child>
@@ -431,7 +441,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                                         <child>
                                                                             <object class="GtkButton" id="container_webm_button">
                                                                                 <property name="label" translatable="yes">WEBM</property>
-                                                                                <property name="sensitive">false</property>
+                                                                                <property name="sensitive">true</property>
                                                                                 <signal name="clicked" handler="container_webm" swapped="no" />
                                                                             </object>
                                                                         </child>

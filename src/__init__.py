@@ -164,10 +164,11 @@ class MainWindow(Adw.Window):
     source_file_label = Gtk.Template.Child()
     resolution_width_entry = Gtk.Template.Child()
     resolution_height_entry = Gtk.Template.Child()
-    scaling_method = Gtk.Template.Child()
+    # scaling_method = Gtk.Template.Child()
     crf_scale = Gtk.Template.Child()
     speed_scale = Gtk.Template.Child()
     grain_scale = Gtk.Template.Child()
+    denoise_toggle = Gtk.Template.Child()
 
     # Audio page
     bitrate_entry = Gtk.Template.Child()
@@ -217,21 +218,14 @@ class MainWindow(Adw.Window):
     def load_metadata(self):
         self.metadata = metadata(self.source_file_absolute)
 
-    # @Gtk.Template.Callback()
-    # def empty_or_not_empty(self, entry):
-    #     if self.bitrate_entry.get_text() == "":
-    #         self.container_mkv("clicked")
-    #         self.container_webm_button.set_sensitive(False)
-    #     else:
-    #         self.container_webm_button.set_sensitive(True)
-
     @Gtk.Template.Callback()
-    def empty_or_not_empty(self, switch):
+    def empty_or_not_empty(self, switch, gboolean):
         if self.audio_copy_switch.get_state():
+            self.container_webm_button.set_sensitive(True)
+        else:
+            self.container_mkv_button.set_has_frame(True)
             self.container_mkv("clicked")
             self.container_webm_button.set_sensitive(False)
-        else:
-            self.container_webm_button.set_sensitive(True)
 
     def handle_file_select(self):
         # Trim file path
@@ -320,14 +314,16 @@ class MainWindow(Adw.Window):
             elif width is None and height is not None:
                 width = -2
 
-            if self.scaling_method.get_selected_item() == "Lanczos":
-                method = "lanczos"
-            elif self.scaling_method.get_selected_item() == "Mitchell":
-                method = "bicubic:param0=1/3:param1=1/3"
-            elif self.scaling_method.get_selected_item() == "BicubicDidee":
-                method = "bicubic:param0=-1/2:param1=1/4"
-            else:
-                method = "bicubic:param0=0:param1=1/2"
+            method = "bicubic:param0=0:param1=1/2"
+
+            # if self.scaling_method.get_selected_item() == "Lanczos":
+            #     method = "lanczos"
+            # elif self.scaling_method.get_selected_item() == "Mitchell":
+            #     method = "bicubic:param0=1/3:param1=1/3"
+            # elif self.scaling_method.get_selected_item() == "BicubicDidee":
+            #     method = "bicubic:param0=-1/2:param1=1/4"
+            # else:
+            #     method = "bicubic:param0=0:param1=1/2"
 
             if width is not None and height is not None:
                 resolution = f"scale={width}:{height}:flags={method}"
@@ -350,6 +346,7 @@ class MainWindow(Adw.Window):
                 "-svtav1-params", "input-depth=10",
                 "-svtav1-params", "tune=0",
                 "-svtav1-params", "keyint=10s",
+                "-svtav1-params", "film-grain-denoise=1" if self.denoise_toggle.get_active() else "film-grain-denoise=0",
                 "-map", "0:a?",
                 "-c:a", "copy" if self.audio_copy_switch.get_state() else "libopus",
                 "-b:a", self.bitrate_entry.get_text() + "K",
