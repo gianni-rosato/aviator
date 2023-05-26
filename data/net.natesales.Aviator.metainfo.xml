@@ -56,6 +56,14 @@
 
   <releases>
 
+    <release version="0.4.0" date="2023-05-26">
+      <description>
+        <p>Custom, perceptually optimized fork of SVT-AV1 featuring a bleeding edge tune that outperforms the latest release in visual quality per bit.</p>
+        <p>New audio filters, Volume &amp; Normalization, available through a slider &amp; a toggle respectively on the Audio page.</p>
+        <p>Prettier SVT-AV1 parameter handling in the codebase.</p>
+      </description>
+    </release>
+
     <release version="0.3.0" date="2023-05-10">
       <description>
         <p>New "Copy Audio" switch that allows passing the audio through without reencoding (disables WebM output).</p>
