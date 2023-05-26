@@ -330,6 +330,11 @@ class MainWindow(Adw.Window):
             else:
                 resolution = "-y"
 
+            if self.denoise_toggle.get_active():
+                denoise_val = 1
+            else:
+                denoise_val = 0
+
             cmd = [
                 "ffmpeg",
                 "-nostdin",
@@ -342,17 +347,14 @@ class MainWindow(Adw.Window):
                 "-crf", str(int(self.crf_scale.get_value())),
                 "-preset", str(int(self.speed_scale.get_value())),
                 "-pix_fmt", "yuv420p10le",
-                "-svtav1-params", f"film-grain={int(self.grain_scale.get_value())}",
-                "-svtav1-params", "input-depth=10",
-                "-svtav1-params", "tune=0",
-                "-svtav1-params", "keyint=10s",
-                "-svtav1-params", "film-grain-denoise=1" if self.denoise_toggle.get_active() else "film-grain-denoise=0",
+                "-svtav1-params", f"film-grain={int(self.grain_scale.get_value())}:" + "input-depth=10:tune=2:keyint=10s:" + f"film-grain-denoise={denoise_val}",
                 "-map", "0:a?",
                 "-c:a", "copy" if self.audio_copy_switch.get_state() else "libopus",
                 "-b:a", self.bitrate_entry.get_text() + "K",
                 "-ac", "2" if self.downmix_switch.get_state() else "0",
                 "-map", "0:s?" if self.container == "mkv" else "-0:s",
                 "-c:s", "copy",
+                "-metadata", "comment=\"Encoded with Aviator\"",
                 output,
             ]
 
