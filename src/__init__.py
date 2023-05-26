@@ -174,6 +174,8 @@ class MainWindow(Adw.Window):
     bitrate_entry = Gtk.Template.Child()
     downmix_switch = Gtk.Template.Child()
     audio_copy_switch = Gtk.Template.Child()
+    loudnorm_toggle = Gtk.Template.Child()
+    volume_scale = Gtk.Template.Child()
 
     # Export page
     output_file_label = Gtk.Template.Child()
@@ -202,6 +204,9 @@ class MainWindow(Adw.Window):
         self.grain_scale.set_value(0)
         self.grain_scale.set_value(6)
         self.grain_scale.set_value(0)
+        self.volume_scale.set_value(0)
+        self.volume_scale.set_value(6)
+        self.volume_scale.set_value(0)
 
         # resolution and audio bitrate
         self.metadata: (float, float, float) = ()
@@ -335,6 +340,34 @@ class MainWindow(Adw.Window):
             else:
                 denoise_val = 0
 
+            if self.audio_copy_switch.get_state():
+                audio_filters = "-y"
+            else:
+                if self.volume_scale.get_value() == 0:
+                    if self.loudnorm_toggle.get_active():
+                        audio_filters = "loudnorm"
+                    else:
+                        audio_filters = "-y"
+                else:
+                    if self.loudnorm_toggle.get_active():
+                        audio_filters = f"loudnorm,volume={int(self.volume_scale.get_value())}dB"
+                    else:
+                        audio_filters = f"volume={int(self.volume_scale.get_value())}dB"
+
+            if self.audio_copy_switch.get_state():
+                audio_filters_prefix = "-y"
+            else:
+                if self.volume_scale.get_value() == 0:
+                    if self.loudnorm_toggle.get_active():
+                        audio_filters_prefix = "-af"
+                    else:
+                        audio_filters_prefix = "-y"
+                else:
+                    if self.loudnorm_toggle.get_active():
+                        audio_filters_prefix = "-af"
+                    else:
+                        audio_filters_prefix = "-af"
+
             cmd = [
                 "ffmpeg",
                 "-nostdin",
@@ -351,6 +384,8 @@ class MainWindow(Adw.Window):
                 "-map", "0:a?",
                 "-c:a", "copy" if self.audio_copy_switch.get_state() else "libopus",
                 "-b:a", self.bitrate_entry.get_text() + "K",
+                audio_filters_prefix,
+                audio_filters,
                 "-ac", "2" if self.downmix_switch.get_state() else "0",
                 "-map", "0:s?" if self.container == "mkv" else "-0:s",
                 "-c:s", "copy",
