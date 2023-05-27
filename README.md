@@ -79,8 +79,6 @@ These are considered bugs, and we are working on fixing them ASAP. In the meanti
 
 In the future, we would like to:
 - Add a queue, potentially
-- Add an option to copy your audio without reencoding (that disables WebM output)
-- Revamp outputting a file
 
 Let us know if you have any issues in our Issues section. Thank you for using Aviator!
 
