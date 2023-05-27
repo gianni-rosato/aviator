@@ -42,9 +42,9 @@ Third party packaging formats are not officially supported by Aviator, and if yo
 
 ## Why AV1?
 
-AV1 aims to be more efficient than HEVC & VP9 by around 30%, and more efficient than h.264 by 50%. Traditionally, a lot of AV1 encoder implementations have been pretty slow compared to competing codecs' encoders, but the [SVT-AV1](https://gitlab.com/AOMediaCodec/SVT-AV1/) production encoder is scalable, fast, and feature rich. We decided to use SVT-AV1 in order to give users a fast AV1 encoder implementation will scale well no matter what system you're using, and take advantage of your system resources to the fullest.
+AV1 aims to be more efficient than HEVC & VP9 by around 30%, and more efficient than H.264 by 50%. Traditionally, a lot of AV1 encoder implementations have been pretty slow compared to competing codecs' encoders, but the [SVT-AV1](https://gitlab.com/AOMediaCodec/SVT-AV1/) production encoder is scalable, fast, and feature rich. We decided to use SVT-AV1 in order to give users a fast AV1 encoder implementation that will scale well no matter what system you're using, & effectively take advantage of your system resources.
 
-Aviator comes bundled with its own version of ffmpeg that is capable decoding videos to detect source information, upscaling & downscaling videos with a sharp scaling algorithm called lanczos, & encoding audio using the Opus audio codec via libopus.
+Aviator comes bundled with its own version of ffmpeg that is capable decoding videos to detect source information, upscaling & downscaling videos with a sharp scaling algorithm called Catmull-Rom, & encoding audio using the Opus audio codec via libopus.
 
 ## Aviator's Defaults
 
@@ -54,28 +54,29 @@ Hovering over most user configurable options in Aviator will produce a helpful t
 
 <img src="assets/aviator_video.webp" alt="Aviator Video Settings" width=480/>
 
-By default, when you load a video file some parameters will be set to match the source as closely as possible. These parameters include the resolution and audio bitrate. Aviator's SVT-AV1 speed preset is set to 6 by default, with a CRF (Constant Rate Factor) level of 32. You can set a CRF from 0 to 63 using the slider, with larger numerical values indicating smaller filesize at the expense of visual quality. You can look at the detailed specifications behind each speed preset [here](https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/Docs/CommonQuestions.md#what-presets-do). Speed 6 offers a good balance between speed & compression efficiency at any CRF level.
+By default, resolution will match your source's resolution. Manually changing one resolution value will automatically calculate the other based on the video's aspect ratio. Aviator's SVT-AV1 speed preset is set to 6 by default, with a CRF (Constant Rate Factor) level of 32. You can set CRF from 0 to 63 using the slider, with larger numerical values indicating smaller filesize at the expense of visual quality. You can look at the detailed specifications behind each speed preset [here](https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/Docs/CommonQuestions.md#what-presets-do). Speed 6 offers a good balance between speed & compression efficiency at any CRF level.
 
-The Grain Synth slider allows you to add artificial grain to your video to mimic its natural grain, which applies the artificial grain at decode time as a filter which makes it easier to encode grainy videos at high fidelity.
+The Grain Synth slider allows you to add artificial grain to your video to mimic its natural grain, which applies the artificial grain at decode time as a filter which makes it easier to encode grainy videos at high fidelity. The Denoise switch removes noise from the video before applying artificial grain.
 
 ### Audio
 
 <img src="assets/aviator_audio.webp" alt="Aviator Audio Settings" width=480/>
 
-Audio is reencoded even if the bitrate is set to be the same as the source audio. Audio is encoded to Opus, which is a highly efficient free audio codec that is often more efficient than competitors like AAC & MP3 audio. Because of Opus's incredible efficiency, audio tracks will be encoded at 48kbps if no source bitrate is detected. Opus reaches audio transparency at around 128kbps.
+Audio is reencoded even if the bitrate is set to be the same as the source audio. Audio is encoded to Opus, which is a highly efficient free audio codec that is often more efficient than competitors like AAC & MP3 audio. Because of Opus's incredible efficiency, audio tracks will be encoded at 48kbps by default. Opus reaches audio transparency at around 128kbps.
+
+The Downmix to Stereo switch is for audio tracks with more than two channels, like 5.1 Surround or 7.1 Surround. These channels will be downmixed to a stereo output with two channels. If the input track is stereo, it isn't mixed any differently even if this option is enabled.
+
+The Copy Audio switch disables WebM output due to potential compatibility hiccups & overrides every option on the Audio page in order to keep the source audio untouched. This option, when enabled, ensures the source audio isn't reencoded.
+
+The Volume slider allows you to increase or decrease the output's volume. It is measured in decibles, and negative values decrease the volume. The Normalize switch allows you to normalize the audio's perceived loudness.
 
 ### Output
 
 <img src="assets/aviator_output.webp" alt="Aviator Output UI" width=480/>
 
-The container your video is stored in is associated with the file extension. Aviator offers two options for video output: the Matroska video container & the WebM container. The open-source Matroska container (.MKV) is Aviator's default container, a universal multimedia container with widespread video &amp; audio support. WebM is designed for web compatibility &amp; may break subtitles. Both work out of the box with Aviator's AV1 video & Opus audio formats.
+The container your video is stored in is associated with the file extension. Aviator offers two options for video output: the Matroska video container & the WebM container. The open-source Matroska container (.MKV) is Aviator's default container, a universal multimedia container with widespread video &amp; audio support. WebM is designed for web compatibility &amp; strips subtitles by default because of this. Both work out of the box with Aviator's AV1 video & Opus audio, but WebM output will be disabled if the Copy Audio switch is enabled because then we lose this format compliance assurance.
 
 ## Roadmap & Limitations
-
-Currently, Aviator cannot handle:
-- Video streams with subtitles encoding to .webm
-
-These are considered bugs, and we are working on fixing them ASAP. In the meantime, we'd prefer you choose the .mkv container if you are having trouble with subtitles.
 
 In the future, we would like to:
 - Add a queue, potentially
