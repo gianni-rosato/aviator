@@ -1,0 +1,7 @@
+data/net.natesales.Aviator.desktop
+src/aviator.py.in
+src/info.py.in
+src/__init__.py
+src/progress.py
+src/startup.ui
+src/window.ui
