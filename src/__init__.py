@@ -454,16 +454,16 @@ class App(Adw.Application):
                                 version=info.version,
                                 copyright="Copyright © 2023 Nate Sales &amp; Gianni Rosato",
                                 license_type=Gtk.License.GPL_3_0,
-                                website="https://github.com/natesales/aviator",
-                                issue_url="https://github.com/natesales/aviator/issues")
+                                website="https://github.com/gianni-rosato/aviator",
+                                issue_url="https://github.com/gianni-rosato/aviator/issues")
         # about.set_translator_credits(translators())
         about.set_developers(["Nate Sales <nate@natesales.net>","Gianni Rosato <grosatowork@proton.me>","Trix<>"])
         about.set_designers(["Gianni Rosato <grosatowork@proton.me>"])
         about.add_acknowledgement_section(
             ("Special thanks to the AV1 Community"),
             [
-                "AV1 Community https://discord.gg/SjumTJEsFD",
-            ]
+                "AV1 Community https://discord.gg/SjumTJEsFD", "BlueSwordM's SVT-AV1 Fork https://github.com/BlueSwordM/SVT-AV1",
+            ]    
         )
         about.add_legal_section(
             title='FFmpeg',

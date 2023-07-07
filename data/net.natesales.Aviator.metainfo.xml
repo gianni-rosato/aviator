@@ -56,6 +56,14 @@
 
   <releases>
 
+    <release version="0.4.1" date="2023-07-06">
+      <description>
+        <p>Updated SVT-AV1 fork promises up to a 40% speed improvement for higher quality presets (p5 &amp; lower)</p>
+        <p>New "Crop" option for switching between cropping &amp; scaling resolution</p>
+        <p>Updated SVT-AV1 parameters for an 0.3-0.8% perceptual quality improvement</p>
+      </description>
+    </release>
+
     <release version="0.4.0" date="2023-05-26">
       <description>
         <p>Custom, perceptually optimized fork of SVT-AV1 featuring a bleeding edge tune that outperforms the latest release in visual quality per bit.</p>
