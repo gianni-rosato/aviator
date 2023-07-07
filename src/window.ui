@@ -58,7 +58,7 @@
                                                 <property name="margin-top">32</property>
                                                 <property name="label" translatable="yes">Open</property>
                                                 <property name="halign">center</property>
-                                                <property name="tooltip-text">Open your source media.</property>
+                                                <property name="tooltip-text" translatable="yes">Open your source media.</property>
                                                 <!-- <property name="icon-name">document-open-symbolic</property> -->
                                                 <signal name="clicked" handler="open_source_file" swapped="no" />
                                                 <style>
@@ -96,8 +96,8 @@
                                                                 <property name="use-underline">true</property>
                                                                 <child>
                                                                     <object class="GtkLabel" id="source_file_label">
-                                                                        <property name="label" translatable="yes"></property>
-                                                                        <property name="tooltip-text">Displays the source filename.</property>
+                                                                        <property name="label"></property>
+                                                                        <property name="tooltip-text" translatable="yes">Displays the path to the source file.</property>
                                                                     </object>
                                                                 </child>
                                                             </object>
@@ -107,7 +107,7 @@
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Resolution</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Sets the output resolution. Width &amp; height will match the source media if left empty. Putting in one value will automatically calculate the other based on the source video's aspect ratio if "Crop" is unchecked; otherwise, the empty value will match the original.</property>
+                                                                <property name="tooltip-text" translatable="yes">Sets the output resolution. Width &amp; height will match the source media if left empty. Putting in one value will automatically calculate the other based on the source video's aspect ratio if "Crop" is unchecked; otherwise, the empty value will match the original.</property>
                                                                 <child>
                                                                     <object class="GtkCheckButton" id="crop_toggle">
                                                                         <property name="active">True</property>
@@ -150,7 +150,7 @@
                                                                                 </child>
                                                                                 <!-- <child>
                                                                                     <object class="GtkDropDown" id="scaling_method">
-                                                                                        <property name="tooltip-text">Change the downscaling method.
+                                                                                        <property name="tooltip-text" translatable="yes">Change the downscaling method.
 Catrom is sharp, but may introduce ringing.
 Lanczos is sharper than Catrom with more potential ringing.
 Mitchell is softer than both.
@@ -177,7 +177,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                         <child>
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">CRF</property>
-                                                                <property name="tooltip-text">The CRF value determines the size &amp; quality of your output. Higher values mean lower file size &amp; quality while lower values create larger, higher-quality videos.</property>
+                                                                <property name="tooltip-text" translatable="yes">The CRF value determines the size &amp; quality of your output. Higher values mean lower file size &amp; quality while lower values create larger, higher-quality videos.</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
                                                                     <object class="GtkScale" id="crf_scale">
@@ -203,7 +203,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                         <child>
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Speed</property>
-                                                                <property name="tooltip-text">This value determines how hard your system will work to encode your video. Lower values mean your system will take longer to encode the video, but the files will be higher quality. Higher values will encode less efficiently, but much more quickly.</property>
+                                                                <property name="tooltip-text" translatable="yes">This value determines how hard your system will work to encode your video. Lower values mean your system will take longer to encode the video, but the files will be higher quality. Higher values will encode less efficiently, but much more quickly.</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
                                                                     <object class="GtkScale" id="speed_scale">
@@ -230,7 +230,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                         <child>
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Grain Synth</property>
-                                                                <property name="tooltip-text">This value determines how much artificial grain will be applied to your video. Use when your source has grain.</property>
+                                                                <property name="tooltip-text" translatable="yes">This value determines how much artificial grain will be applied to your video. Use when your source has grain.</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
                                                                     <object class="GtkCheckButton" id="denoise_toggle">
@@ -238,7 +238,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                                         <property name="label">Denoise</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="hexpand">False</property>
-                                                                        <property name="tooltip-text">Denoises the input video before adding film grain. Determined based on the amount of added grain. Can reduce detail retention, so it is disabled by default.</property>
+                                                                        <property name="tooltip-text" translatable="yes">Denoises the input video before adding film grain. Determined based on the amount of added grain. Can reduce detail retention, so it is disabled by default.</property>
                                                                     </object>
                                                                 </child>
                                                                 <child>
@@ -311,7 +311,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Bitrate</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Sets the audio bitrate to a value in kbps. Higher values mean better quality at the expense of filesize. We recommend a value between 32 &amp; 128 for stereo audio, >224 for 5.1 Surround, &amp; >336 for 7.1 Surround. If a value from the source media isn't detected, this will default to 48 kbps. </property>
+                                                                <property name="tooltip-text" translatable="yes">Sets the audio bitrate to a value in kbps. Higher values mean better quality at the expense of filesize. We recommend a value between 32 &amp; 128 for stereo audio, >224 for 5.1 Surround, &amp; >336 for 7.1 Surround. If a value from the source media isn't detected, this will default to 48 kbps. </property>
                                                                 <child>
                                                                     <object class="GtkBox">
                                                                         <property name="margin-top">8</property>
@@ -334,7 +334,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Downmix to Stereo</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Mixes audio inputs with more than two channels (5.1 Surround, 7.1 Surround, etc) down to two audio channels.</property>
+                                                                <property name="tooltip-text" translatable="yes">Mixes audio inputs with more than two channels (5.1 Surround, 7.1 Surround, etc) down to two audio channels.</property>
                                                                 <child>
                                                                     <object class="GtkSwitch" id="downmix_switch">
                                                                         <property name="active">False</property>
@@ -349,7 +349,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Copy Audio</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Ignores all options on this page &amp; copies audio directly from the source untouched. Disables WebM output.</property>
+                                                                <property name="tooltip-text" translatable="yes">Ignores all options on this page &amp; copies audio directly from the source untouched. Disables WebM output.</property>
                                                                 <child>
                                                                     <object class="GtkSwitch" id="audio_copy_switch">
                                                                         <property name="active">False</property>
@@ -363,7 +363,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                         <child>
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Volume</property>
-                                                                <property name="tooltip-text">Increase or decrease audio volume. Measured in decibles. Positive numbers will increase volume while negative numbers will decrease it.</property>
+                                                                <property name="tooltip-text" translatable="yes">Increase or decrease audio volume. Measured in decibles. Positive numbers will increase volume while negative numbers will decrease it.</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
                                                                     <object class="GtkCheckButton" id="loudnorm_toggle">
@@ -371,7 +371,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                                         <property name="label">Normalize</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="hexpand">False</property>
-                                                                        <property name="tooltip-text">Normalize the audio's perceived loudness.</property>
+                                                                        <property name="tooltip-text" translatable="yes">Normalize the audio's perceived loudness.</property>
                                                                     </object>
                                                                 </child>
                                                                 <child>
@@ -428,7 +428,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Output File</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Select the output directory &amp; type in a filename.</property>
+                                                                <property name="tooltip-text" translatable="yes">Select the output directory &amp; type in a filename.</property>
                                                                 <child>
                                                                     <object class="GtkBox">
                                                                         <child>
@@ -462,7 +462,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Container</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">The container your video is stored in, which is associated with the file extension. MKV is a universal video container with widespread support, while WebM is designed for web compatibility &amp; may break subtitles.</property>
+                                                                <property name="tooltip-text" translatable="yes">The container your video is stored in, which is associated with the file extension. MKV is a universal video container with widespread support, while WebM is designed for web compatibility &amp; may break subtitles.</property>
                                                                 <child>
                                                                     <object class="GtkBox">
                                                                         <property name="margin-top">10</property>
@@ -504,7 +504,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                             <object class="GtkButton" id="encode_button">
                                                 <property name="label" translatable="yes">Encode</property>
                                                 <property name="halign">center</property>
-                                                <property name="tooltip-text">Begin encoding! Watch the progress bar to see how quickly your encode is progressing.</property>
+                                                <property name="tooltip-text" translatable="yes">Begin encoding! Watch the progress bar to see how quickly your encode is progressing.</property>
                                                 <signal name="clicked" handler="start_export" swapped="no" />
                                                 <style>
                                                     <class name="pill" />
