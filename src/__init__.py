@@ -164,6 +164,7 @@ class MainWindow(Adw.Window):
     source_file_label = Gtk.Template.Child()
     resolution_width_entry = Gtk.Template.Child()
     resolution_height_entry = Gtk.Template.Child()
+    crop_toggle = Gtk.Template.Child()
     # scaling_method = Gtk.Template.Child()
     crf_scale = Gtk.Template.Child()
     speed_scale = Gtk.Template.Child()
@@ -213,6 +214,7 @@ class MainWindow(Adw.Window):
 
         # Absolute source path file
         self.source_file_absolute = ""
+        self.output_file_absolute = ""
 
         # Set progress bar to 0
         self.progress_bar.set_fraction(0)
@@ -299,6 +301,10 @@ class MainWindow(Adw.Window):
             output += ".mkv"
         elif self.container == "webm" and not output.endswith(".webm"):
             output += ".webm"
+        # Trim file path
+        # if "/" in self.output_file_label.get_text():
+        #     self.output_file_absolute = self.output_file_label.get_text()
+        #     self.output_file_label.set_text(os.path.basename(self.output_file_absolute))
 
         def run_in_thread():
             
@@ -313,11 +319,17 @@ class MainWindow(Adw.Window):
                 height = int(self.resolution_height_entry.get_text())
             except ValueError:
                 pass
-
-            if width is not None and height is None:
-                height = -2
-            elif width is None and height is not None:
-                width = -2
+            
+            if self.crop_toggle.get_active():
+                if width is not None and height is None:
+                    height = "ih"
+                elif width is None and height is not None:
+                    width = "iw"
+            else:
+                if width is not None and height is None:
+                    height = -2
+                elif width is None and height is not None:
+                    width = -2
 
             method = "bicubic:param0=0:param1=1/2"
 
@@ -331,7 +343,7 @@ class MainWindow(Adw.Window):
             #     method = "bicubic:param0=0:param1=1/2"
 
             if width is not None and height is not None:
-                resolution = f"scale={width}:{height}:flags={method}"
+                resolution = "crop" + f"={width}:{height}" if self.crop_toggle.get_active() else "scale" + f"={width}:{height}:flags={method}"
             else:
                 resolution = "-y"
 
@@ -380,7 +392,7 @@ class MainWindow(Adw.Window):
                 "-crf", str(int(self.crf_scale.get_value())),
                 "-preset", str(int(self.speed_scale.get_value())),
                 "-pix_fmt", "yuv420p10le",
-                "-svtav1-params", f"film-grain={int(self.grain_scale.get_value())}:" + "input-depth=10:tune=2:keyint=10s:" + f"film-grain-denoise={denoise_val}",
+                "-svtav1-params", f"film-grain={int(self.grain_scale.get_value())}:" + "input-depth=10:tune=2:enable-qm=1:scd=1:enable-overlays=1:" + f"film-grain-denoise={denoise_val}",
                 "-map", "0:a?",
                 "-c:a", "copy" if self.audio_copy_switch.get_state() else "libopus",
                 "-b:a", self.bitrate_entry.get_text() + "K",

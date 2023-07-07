@@ -47,7 +47,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/BlueSwordM/SVT-AV1
-        commit: 8c7fdc6c0275eef2a35fc9a23ee1791afa632472
+        commit: b772cca52d655587688bf1a4d5e5568dec06dac5
 
   - name: ffmpeg
     config-opts:

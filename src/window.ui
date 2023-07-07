@@ -97,7 +97,7 @@
                                                                 <child>
                                                                     <object class="GtkLabel" id="source_file_label">
                                                                         <property name="label" translatable="yes"></property>
-                                                                        <property name="tooltip-text">Displays the path to the source file.</property>
+                                                                        <property name="tooltip-text">Displays the source filename.</property>
                                                                     </object>
                                                                 </child>
                                                             </object>
@@ -107,7 +107,16 @@
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Resolution</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text">Sets the output resolution. Width &amp; height will match the source media if left empty. Putting in one value will automatically calculate the other based on the source video's aspect ratio.</property>
+                                                                <property name="tooltip-text">Sets the output resolution. Width &amp; height will match the source media if left empty. Putting in one value will automatically calculate the other based on the source video's aspect ratio if "Crop" is unchecked; otherwise, the empty value will match the original.</property>
+                                                                <child>
+                                                                    <object class="GtkCheckButton" id="crop_toggle">
+                                                                        <property name="active">True</property>
+                                                                        <property name="label">Crop</property>
+                                                                        <property name="valign">center</property>
+                                                                        <property name="hexpand">False</property>
+                                                                        <property name="tooltip-text">Crops the video instead of scaling (stretching) it to the target resolution if it isn't the same as the source aspect ratio.</property>
+                                                                    </object>
+                                                                </child>
                                                                 <child>
                                                                     <object class="GtkBox">
                                                                         <!-- <child>
