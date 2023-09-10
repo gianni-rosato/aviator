@@ -54,7 +54,7 @@ Hovering over most user configurable options in Aviator will produce a helpful t
 
 <img src="assets/aviator_video.webp" alt="Aviator Video Settings" width=480/>
 
-By default, resolution will match your source's resolution. Manually changing one resolution value will automatically calculate the other based on the video's aspect ratio. Aviator's SVT-AV1 speed preset is set to 6 by default, with a CRF (Constant Rate Factor) level of 32. You can set CRF from 0 to 63 using the slider, with larger numerical values indicating smaller filesize at the expense of visual quality. You can look at the detailed specifications behind each speed preset [here](https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/Docs/CommonQuestions.md#what-presets-do). Speed 6 offers a good balance between speed & compression efficiency at any CRF level.
+By default, resolution will match your source's resolution. Manually changing one resolution value will automatically calculate the other based on the video's aspect ratio. Aviator's SVT-AV1 speed preset is set to 6 by default, with a CRF (Constant Rate Factor) level of 32. You can set CRF from 0 to 63 using the slider, with larger numerical values indicating smaller filesize at the expense of visual quality. You can look at the detailed specifications behind each speed preset [here](https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/Docs/CommonQuestions.md#what-presets-do). Speed 7 offers a good balance between speed & compression efficiency at any CRF level.
 
 The Grain Synth slider allows you to add artificial grain to your video to mimic its natural grain, which applies the artificial grain at decode time as a filter which makes it easier to encode grainy videos at high fidelity. The Denoise switch removes noise from the video before applying artificial grain.
 
@@ -62,7 +62,7 @@ The Grain Synth slider allows you to add artificial grain to your video to mimic
 
 <img src="assets/aviator_audio.webp" alt="Aviator Audio Settings" width=480/>
 
-Audio is reencoded even if the bitrate is set to be the same as the source audio. Audio is encoded to Opus, which is a highly efficient free audio codec that is often more efficient than competitors like AAC & MP3 audio. Because of Opus's incredible efficiency, audio tracks will be encoded at 48kbps by default. Opus reaches audio transparency at around 128kbps.
+Audio is reencoded even if the bitrate is set to be the same as the source audio. Audio is encoded to Opus, which is a highly efficient free audio codec that is often more efficient than competitors like AAC & MP3 audio. Because of Opus's incredible efficiency, audio tracks will be encoded at 80kb/s by default. Opus reaches audio transparency at around 128kb/s.
 
 The Downmix to Stereo switch is for audio tracks with more than two channels, like 5.1 Surround or 7.1 Surround. These channels will be downmixed to a stereo output with two channels. If the input track is stereo, it isn't mixed any differently even if this option is enabled.
 

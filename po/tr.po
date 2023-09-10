@@ -150,20 +150,20 @@ msgstr "_Bit Oranı"
 
 #: src/window.ui:305
 msgid ""
-"Sets the audio bitrate to a value in kbps. Higher values mean better quality "
+"Sets the audio bitrate to a value in kb/s. Higher values mean better quality "
 "at the expense of filesize. We recommend a value between 32 & 128 for stereo "
 "audio, >224 for 5.1 Surround, & >336 for 7.1 Surround. If a value from the "
-"source media isn't detected, this will default to 48 kbps. "
+"source media isn't detected, this will default to 80 kb/s. "
 msgstr ""
-"Ses bit hızını kbps cinsinden bir değere ayarlar. Daha yüksek değerler, "
+"Ses bit hızını kb/s cinsinden bir değere ayarlar. Daha yüksek değerler, "
 "dosya boyutu pahasına daha iyi kalite anlamına gelir. Stereo ses için 32 ve "
 "128, 5.1 Surround için >224 ve 7.1 Surround için >336 arasında bir değer "
 "önerilir. Kaynak ortamdan bir değer algılanmazsa, bu öntanımlı olarak 48 "
-"kbps olacaktır."
+"kb/s olacaktır."
 
 #: src/window.ui:315
-msgid "kbps"
-msgstr "kbps"
+msgid "kb/s"
+msgstr "kb/s"
 
 #: src/window.ui:326
 msgid "_Downmix to Stereo"

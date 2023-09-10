@@ -94,10 +94,10 @@
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Source File</property>
                                                                 <property name="use-underline">true</property>
+                                                                <property name="tooltip-text" translatable="yes">Displays the source filename.</property>
                                                                 <child>
                                                                     <object class="GtkLabel" id="source_file_label">
                                                                         <property name="label"></property>
-                                                                        <property name="tooltip-text" translatable="yes">Displays the source filename.</property>
                                                                     </object>
                                                                 </child>
                                                             </object>
@@ -139,13 +139,13 @@
                                                                                 <child>
                                                                                     <object class="GtkEntry" id="resolution_width_entry">
                                                                                         <property name="placeholder-text" translatable="yes">Width</property>
-                                                                                        <property name="max-width-chars">6</property>
+                                                                                        <property name="max-width-chars">7</property>
                                                                                     </object>
                                                                                 </child>
                                                                                 <child>
                                                                                     <object class="GtkEntry" id="resolution_height_entry">
                                                                                         <property name="placeholder-text" translatable="yes">Height</property>
-                                                                                        <property name="max-width-chars">6</property>
+                                                                                        <property name="max-width-chars">7</property>
                                                                                     </object>
                                                                                 </child>
                                                                                 <!-- <child>
@@ -205,6 +205,15 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                                 <property name="title" translatable="yes">_Speed</property>
                                                                 <property name="tooltip-text" translatable="yes">This value determines how hard your system will work to encode your video. Lower values mean your system will take longer to encode the video, but the files will be higher quality. Higher values will encode less efficiently, but much more quickly.</property>
                                                                 <property name="use-underline">true</property>
+                                                                <child>
+                                                                    <object class="GtkCheckButton" id="scm_toggle">
+                                                                        <property name="active">True</property>
+                                                                        <property name="label">Adaptive SCM</property>
+                                                                        <property name="valign">center</property>
+                                                                        <property name="hexpand">False</property>
+                                                                        <property name="tooltip-text" translatable="yes">Adaptively detects screen content, like screen recordings or animation. It is highly recommended to leave this alone; disabling content adaptive SCM force-enables screen content detection, decreasing encoding efficiency for sparse visual benefit.</property>
+                                                                    </object>
+                                                                </child>
                                                                 <child>
                                                                     <object class="GtkScale" id="speed_scale">
                                                                         <property name="halign">end</property>
@@ -311,7 +320,7 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Bitrate</property>
                                                                 <property name="use-underline">true</property>
-                                                                <property name="tooltip-text" translatable="yes">Sets the audio bitrate to a value in kbps. Higher values mean better quality at the expense of filesize. We recommend a value between 32 &amp; 128 for stereo audio, >224 for 5.1 Surround, &amp; >336 for 7.1 Surround. If a value from the source media isn't detected, this will default to 48 kbps. </property>
+                                                                <property name="tooltip-text" translatable="yes">Sets the audio bitrate to a value in kb/s. Higher values mean better quality at the expense of filesize. We recommend a value between 32 &amp; 128 for stereo audio, >224 for 5.1 Surround, &amp; >336 for 7.1 Surround. If a value from the source media isn't detected, this will default to 80 kb/s. </property>
                                                                 <child>
                                                                     <object class="GtkBox">
                                                                         <property name="margin-top">8</property>
@@ -321,8 +330,8 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                                         </style>
                                                                         <child>
                                                                             <object class="GtkEntry" id="bitrate_entry">
-                                                                                <property name="placeholder-text" translatable="yes">kbps</property>
-                                                                                <property name="max-width-chars">3</property>
+                                                                                <property name="placeholder-text" translatable="yes">kb/s</property>
+                                                                                <property name="max-width-chars">5</property>
                                                                             </object>
                                                                         </child>
                                                                     </object>
@@ -350,6 +359,14 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                                 <property name="title" translatable="yes">_Copy Audio</property>
                                                                 <property name="use-underline">true</property>
                                                                 <property name="tooltip-text" translatable="yes">Ignores all options on this page &amp; copies audio directly from the source untouched. Disables WebM output.</property>
+                                                                <child>
+                                                                            <object class="GtkImage" id="info_copy_audio">
+                                                                                <property name="icon-name">dialog-information</property>
+                                                                                <property name="visible">true</property>
+                                                                                <property name="margin-end">20</property>
+                                                                                <property name="tooltip-text" translatable="yes">Ignores all options on this page &amp; copies audio directly from the source untouched. Disables WebM output.</property>
+                                                                            </object>
+                                                                        </child>
                                                                 <child>
                                                                     <object class="GtkSwitch" id="audio_copy_switch">
                                                                         <property name="active">False</property>

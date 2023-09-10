@@ -56,6 +56,16 @@
 
   <releases>
 
+    <release version="0.4.2" date="2023-09-09">
+      <description>
+        <p>Updated SVT-AV1 to 1.7.0, which features rebalanced presets &amp; more massive speed improvements</p>
+        <p>In light of SVT-AV1's speedy development, Preset 7 is now high enough quality to be featured as Aviator's default speed preset</p>
+        <p>"Copy Audio" now disables other audio options in the GUI</p>
+        <p>New "Adaptive SCM" toggle (explained in tooltip)</p>
+        <p>Small fixes &amp; adjustments</p>
+      </description>
+    </release>
+
     <release version="0.4.1" date="2023-07-06">
       <description>
         <p>Updated SVT-AV1 fork promises up to a 40% speed improvement for higher quality presets (p5 &amp; lower)</p>

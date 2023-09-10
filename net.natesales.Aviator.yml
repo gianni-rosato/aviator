@@ -16,8 +16,8 @@ build-options:
   env: 
     CARGO_HOME: /run/build/done/cargo
     PROTOC: /app/bin/protoc
-  prepend-ld-library-path: /usr/lib/sdk/llvm14/lib
-  prepend-path: /usr/lib/sdk/llvm14/bin
+  prepend-ld-library-path: /usr/lib/sdk/llvm16/lib
+  prepend-path: /usr/lib/sdk/llvm16/bin
 
 cleanup:
   - /include
@@ -36,9 +36,11 @@ modules:
     builddir: true
     config-opts:
       - "-DCMAKE_BUILD_TYPE=Release"
+      - "-DCMAKE_CXX_FLAGS=-O3 -flto"
+      - "-DCMAKE_C_FLAGS=-O3 -flto"
       - "-DBUILD_SHARED_LIBS=ON"
       - "-DBUILD_APPS=OFF"
-      - "-DBUILD_DEC=ON"
+      - "-DBUILD_DEC=OFF"
       - "-DBUILD_ENC=ON"
       - "-DBUILD_TESTING=OFF"
     cleanup:
@@ -46,8 +48,8 @@ modules:
       - "/lib/pkgconfig"
     sources:
       - type: git
-        url: https://github.com/BlueSwordM/SVT-AV1
-        commit: b772cca52d655587688bf1a4d5e5568dec06dac5
+        url: https://gitlab.com/AOMediaCodec/SVT-AV1
+        commit: 6d5f2b4e1f04db677cdd4ab2b0d6831ab06a849c
 
   - name: ffmpeg
     config-opts:
