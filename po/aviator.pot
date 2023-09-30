@@ -1,0 +1,237 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-30 21:56+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/net.natesales.Aviator.desktop:4 src/startup.ui:6 src/window.ui:20
+msgid "Aviator"
+msgstr ""
+
+#: data/net.natesales.Aviator.desktop:5
+msgid "AV1/OPUS Video Encoder"
+msgstr ""
+
+#: src/startup.ui:33
+msgid "Welcome to Aviator"
+msgstr ""
+
+#: src/startup.ui:34
+msgid "Your video copilot is ready for takeoff!"
+msgstr ""
+
+#: src/startup.ui:42
+msgid "Go"
+msgstr ""
+
+#: src/window.ui:8
+msgid "_About"
+msgstr ""
+
+#: src/window.ui:12
+msgid "Quit"
+msgstr ""
+
+#: src/window.ui:49
+msgid "_Video"
+msgstr ""
+
+#: src/window.ui:59
+msgid "Open"
+msgstr ""
+
+#: src/window.ui:61
+msgid "Open your source media."
+msgstr ""
+
+#: src/window.ui:95
+msgid "_Source File"
+msgstr ""
+
+#: src/window.ui:97
+msgid "Displays the source filename."
+msgstr ""
+
+#: src/window.ui:108
+msgid "_Resolution"
+msgstr ""
+
+#: src/window.ui:110
+msgid ""
+"Sets the output resolution. Width & height will match the source media if "
+"left empty. Putting in one value will automatically calculate the other "
+"based on the source video's aspect ratio if \"Crop\" is unchecked; "
+"otherwise, the empty value will match the original."
+msgstr ""
+
+#: src/window.ui:141
+msgid "Width"
+msgstr ""
+
+#: src/window.ui:147
+msgid "Height"
+msgstr ""
+
+#: src/window.ui:179
+msgid "CRF"
+msgstr ""
+
+#: src/window.ui:180
+msgid ""
+"The CRF value determines the size & quality of your output. Higher values "
+"mean lower file size & quality while lower values create larger, higher-"
+"quality videos."
+msgstr ""
+
+#: src/window.ui:205
+msgid "_Speed"
+msgstr ""
+
+#: src/window.ui:206
+msgid ""
+"This value determines how hard your system will work to encode your video. "
+"Lower values mean your system will take longer to encode the video, but the "
+"files will be higher quality. Higher values will encode less efficiently, "
+"but much more quickly."
+msgstr ""
+
+#: src/window.ui:214
+msgid ""
+"Adaptively detects screen content, like screen recordings or animation. It "
+"is highly recommended to leave this alone; disabling content adaptive SCM "
+"force-enables screen content detection, decreasing encoding efficiency for "
+"sparse visual benefit."
+msgstr ""
+
+#: src/window.ui:241
+msgid "_Grain Synth"
+msgstr ""
+
+#: src/window.ui:242
+msgid ""
+"This value determines how much artificial grain will be applied to your "
+"video. Use when your source has grain."
+msgstr ""
+
+#: src/window.ui:250
+msgid ""
+"Denoises the input video before adding film grain. Determined based on the "
+"amount of added grain. Can reduce detail retention, so it is disabled by "
+"default."
+msgstr ""
+
+#: src/window.ui:287
+msgid "_Audio"
+msgstr ""
+
+#: src/window.ui:321
+msgid "_Bitrate"
+msgstr ""
+
+#: src/window.ui:323
+msgid ""
+"Sets the audio bitrate to a value in kb/s. Higher values mean better quality "
+"at the expense of filesize. We recommend a value between 32 & 128 for stereo "
+"audio, >224 for 5.1 Surround, & >336 for 7.1 Surround. If a value from the "
+"source media isn't detected, this will default to 80 kb/s. "
+msgstr ""
+
+#: src/window.ui:333
+msgid "kb/s"
+msgstr ""
+
+#: src/window.ui:344
+msgid "_Downmix to Stereo"
+msgstr ""
+
+#: src/window.ui:346
+msgid ""
+"Mixes audio inputs with more than two channels (5.1 Surround, 7.1 Surround, "
+"etc) down to two audio channels."
+msgstr ""
+
+#: src/window.ui:359
+msgid "_Copy Audio"
+msgstr ""
+
+#: src/window.ui:361 src/window.ui:367
+msgid ""
+"Ignores all options on this page & copies audio directly from the source "
+"untouched. Disables WebM output."
+msgstr ""
+
+#: src/window.ui:382
+msgid "_Volume"
+msgstr ""
+
+#: src/window.ui:383
+msgid ""
+"Increase or decrease audio volume. Measured in decibles. Positive numbers "
+"will increase volume while negative numbers will decrease it."
+msgstr ""
+
+#: src/window.ui:391
+msgid "Normalize the audio's perceived loudness."
+msgstr ""
+
+#: src/window.ui:429
+msgid "_Export"
+msgstr ""
+
+#: src/window.ui:446
+msgid "_Output File"
+msgstr ""
+
+#: src/window.ui:448
+msgid "Select the output directory & type in a filename."
+msgstr ""
+
+#: src/window.ui:480
+msgid "_Container"
+msgstr ""
+
+#: src/window.ui:482
+msgid ""
+"The container your video is stored in, which is associated with the file "
+"extension. MKV is a universal video container with widespread support, while "
+"WebM is designed for web compatibility & may break subtitles."
+msgstr ""
+
+#: src/window.ui:495
+msgid "Selecting WebM output will strip subtitles for compatibility reasons."
+msgstr ""
+
+#: src/window.ui:500
+msgid "MKV"
+msgstr ""
+
+#: src/window.ui:506
+msgid "WEBM"
+msgstr ""
+
+#: src/window.ui:522
+msgid "Encode"
+msgstr ""
+
+#: src/window.ui:524
+msgid ""
+"Begin encoding! Watch the progress bar to see how quickly your encode is "
+"progressing."
+msgstr ""
+
+#: src/window.ui:558
+msgid "Stop"
+msgstr ""
