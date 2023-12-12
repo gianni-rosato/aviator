@@ -53,29 +53,29 @@ def humanize(seconds):
 
 
 # metadata returns the file's resolution and audio bitrate
-def metadata(file) -> (float, float, float):
-    try:
-        cmd = [
-            "ffprobe",
-            "-v",
-            "quiet",
-            "-print_format",
-            "json",
-            "-show_format",
-            "-show_streams",
-            file,
-        ]
-        logging.debug("Running ffprobe: " + " ".join(cmd))
-        x = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout.read()
-        m = json.loads(x)
-        streams = m["streams"]
-        video = streams[0]
-        audio = streams[1]
+# def metadata(file) -> (float, float, float):
+#     try:
+#         cmd = [
+#             "ffprobe",
+#             "-v",
+#             "quiet",
+#             "-print_format",
+#             "json",
+#             "-show_format",
+#             "-show_streams",
+#             file,
+#         ]
+#         logging.debug("Running ffprobe: " + " ".join(cmd))
+#         x = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout.read()
+#         m = json.loads(x)
+#         streams = m["streams"]
+#         video = streams[0]
+#         audio = streams[1]
 
-        return video["width"], video["height"], float(audio["sample_rate"]) / 1000
-    except Exception as e:
-        logging.error("Get metadata:", e)
-        return 1536, 864, 48
+#         return video["width"], video["height"], float(audio["sample_rate"]) / 1000
+#     except Exception as e:
+#         logging.error("Get metadata:", e)
+#         return 1536, 864, 48
 
 
 def notify(text):
@@ -166,6 +166,7 @@ class MainWindow(Adw.Window):
     resolution_height_entry = Gtk.Template.Child()
     crop_toggle = Gtk.Template.Child()
     scm_toggle = Gtk.Template.Child()
+    # gop_toggle = Gtk.Template.Child()
     # scaling_method = Gtk.Template.Child()
     crf_scale = Gtk.Template.Child()
     speed_scale = Gtk.Template.Child()
@@ -368,6 +369,13 @@ class MainWindow(Adw.Window):
             else:
                 scm_val = 1
 
+            # if self.gop_toggle.get_active():
+            #     gop_val = 1
+            # else:
+            #     gop_val = 2
+
+            gop_val = 2
+
             if self.audio_copy_switch.get_state():
                 audio_filters = "-y"
             else:
@@ -410,7 +418,7 @@ class MainWindow(Adw.Window):
                 "-crf", str(int(self.crf_scale.get_value())),
                 "-preset", str(int(self.speed_scale.get_value())),
                 "-pix_fmt", "yuv420p10le",
-                "-svtav1-params", f"film-grain={int(self.grain_scale.get_value())}:" + "input-depth=10:tune=2:enable-qm=1:scd=1:enable-overlays=1:" + f"scm={scm_val}:" + f"film-grain-denoise={denoise_val}",
+                "-svtav1-params", f"film-grain={int(self.grain_scale.get_value())}:" + "input-depth=10:tune=2:enable-qm=1:keyint=300:scd=1:enable-overlays=1:aq-mode=2:" + f"scm={scm_val}:" + f"irefresh-type={gop_val}:" + f"film-grain-denoise={denoise_val}",
                 "-map", "0:a?",
                 "-c:a", "copy" if self.audio_copy_switch.get_state() else "libopus",
                 "-b:a", self.bitrate_entry.get_text() + "K",
@@ -478,9 +486,9 @@ class App(Adw.Application):
         about.set_developers(["Nate Sales <nate@natesales.net>","Gianni Rosato <grosatowork@proton.me>","Trix<>"])
         about.set_designers(["Gianni Rosato <grosatowork@proton.me>"])
         about.add_acknowledgement_section(
-            ("Special thanks to the AV1 Community"),
+            ("Special thanks to the encoding community!"),
             [
-                "AV1 Community https://discord.gg/SjumTJEsFD", "BlueSwordM's SVT-AV1 Fork https://github.com/BlueSwordM/SVT-AV1", "Codec Wiki https://wiki.x266.mov/"
+                "AV1 For Dummies https://discord.gg/bbQD5MjDr3", "BlueSwordM's SVT-AV1 Fork https://github.com/BlueSwordM/SVT-AV1", "Codec Wiki https://wiki.x266.mov/"
             ]    
         )
         about.add_legal_section(

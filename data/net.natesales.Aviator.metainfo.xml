@@ -56,6 +56,16 @@
 
   <releases>
 
+    <release version="0.4.3" date="2023-12-12">
+      <description translatable="no">
+        <p>TL;DR, Aviator is much faster! Specifically, around 17-53% faster for presets 0 through 6 and 1-4% better quality for presets 7+</p>
+        <p>Updated SVT-AV1 to a custom fork by BlueSwordM featuring changes from 1.8.0, including speed-ups for presets 1 through 6 that improve encoding speed by 17-53%. This fork features an adaptive quantization curve that boosts deltaq based on variance within superblocks. This is not available in mainline SVT-AV1</p>
+        <p>SVT-AV1 now features NEON optimization, making encoding up to a whopping 8 times faster than before on ARM-based platforms</p>
+        <p>Updated to GNOME 45 runtime</p>
+        <p>Minor changes in the codebase that should make it easier to add an Open GOP toggle in the future (currently breaks keyframe placement)</p>
+      </description>
+    </release>
+
     <release version="0.4.2" date="2023-09-09">
       <description translatable="no">
         <p>Updated SVT-AV1 to 1.7.0, which features rebalanced presets &amp; more massive speed improvements</p>

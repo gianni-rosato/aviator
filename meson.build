@@ -1,11 +1,11 @@
 project('aviator',
-  version: '0.4.2',
+  version: '0.4.3',
   meson_version: '>= 0.59',
 )
 
 dependency('glib-2.0')
 dependency('pygobject-3.0')
-dependency('libadwaita-1', version: '>= 1.2.alpha')
+dependency('libadwaita-1', version: '>= 1.4.0')
 
 i18n = import('i18n')
 gnome = import('gnome')

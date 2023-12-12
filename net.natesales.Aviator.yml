@@ -2,7 +2,7 @@ app-id: net.natesales.Aviator
 command: aviator
 sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
-runtime-version: "44"
+runtime-version: "45"
 
 finish-args:
   - --share=ipc
@@ -48,8 +48,8 @@ modules:
       - "/lib/pkgconfig"
     sources:
       - type: git
-        url: https://gitlab.com/AOMediaCodec/SVT-AV1
-        commit: 6d5f2b4e1f04db677cdd4ab2b0d6831ab06a849c
+        url: https://github.com/BlueSwordM/SVT-AV1
+        commit: 4aa749569e00369b48bfe992ef5f2949eb614031
 
   - name: ffmpeg
     config-opts:
@@ -60,9 +60,9 @@ modules:
       - --enable-libsvtav1
     buildsystem: autotools
     sources:
-      - type: archive
-        url: http://ffmpeg.org/releases/ffmpeg-6.0.tar.xz
-        sha256: 57be87c22d9b49c112b6d24bc67d42508660e6b718b3db89c44e47e289137082
+      - type: git
+        url: https://git.ffmpeg.org/ffmpeg.git
+        commit: 067ed535f47373927e8bc2ff8eec2c18014197e5
 
   - build-commands:
     - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"

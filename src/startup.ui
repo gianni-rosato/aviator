@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
     <requires lib="gtk" version="4.0"/>
-    <requires lib="libadwaita" version="1.0"/>
+    <requires lib="libadwaita" version="1.4.0"/>
     <template class="OnboardWindow" parent="AdwWindow">
         <property name="title" translatable="yes">Aviator</property>
         <property name="resizable">False</property>

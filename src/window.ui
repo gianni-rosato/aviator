@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
     <requires lib="gtk" version="4.0" />
-    <requires lib="libadwaita" version="1.0" />
+    <requires lib="libadwaita" version="1.4.0" />
     <menu id="primary_menu">
         <section>
             <item>
@@ -17,6 +17,7 @@
     <template class="AviatorWindow" parent="AdwWindow">
         <property name="modal">False</property>
         <property name="width-request">360</property>
+        <property name="height-request">294</property>
         <property name="title" translatable="yes">Aviator</property>
         <property name="content">
             <object class="GtkBox">
@@ -151,10 +152,10 @@
                                                                                 <!-- <child>
                                                                                     <object class="GtkDropDown" id="scaling_method">
                                                                                         <property name="tooltip-text" translatable="yes">Change the downscaling method.
-Catrom is sharp, but may introduce ringing.
-Lanczos is sharper than Catrom with more potential ringing.
-Mitchell is softer than both.
-BicubicDidee strikes a good balance between sharpness &amp; ringing.                    </property>
+                                                                                            Catrom is sharp, but may introduce ringing.
+                                                                                            Lanczos is sharper than Catrom with more potential ringing.
+                                                                                            Mitchell is softer than both.
+                                                                                            BicubicDidee strikes a good balance between sharpness &amp; ringing.                    </property>
                                                                                         <property name="model">
                                                                                             <object class="GtkStringList">
                                                                                                 <items>
@@ -179,6 +180,15 @@ BicubicDidee strikes a good balance between sharpness &amp; ringing.            
                                                                 <property name="title" translatable="yes">CRF</property>
                                                                 <property name="tooltip-text" translatable="yes">The CRF value determines the size &amp; quality of your output. Higher values mean lower file size &amp; quality while lower values create larger, higher-quality videos.</property>
                                                                 <property name="use-underline">true</property>
+                                                                <!-- <child>
+                                                                    <object class="GtkCheckButton" id="gop_toggle">
+                                                                        <property name="active">False</property>
+                                                                        <property name="label">Open GOP</property>
+                                                                        <property name="valign">center</property>
+                                                                        <property name="hexpand">False</property>
+                                                                        <property name="tooltip-text" translatable="yes">Lets the user decide between Closed GOP &amp; Open GOP. GOP stands for "Group of Pictures." Enabling allows GOPs to reference one another, but this may not always produce better fidelity per bit. If unsure, keep disabled.</property>
+                                                                    </object>
+                                                                </child> -->
                                                                 <child>
                                                                     <object class="GtkScale" id="crf_scale">
                                                                         <property name="halign">end</property>
