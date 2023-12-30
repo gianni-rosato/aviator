@@ -1,0 +1,278 @@
+# Ukrainian translation for Aviator.
+# Copyright (C) 2023 THE Aviator'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# volkov <volkovissocool@gmail.com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-30 19:17+0200\n"
+"PO-Revision-Date: 2023-12-30 21:06+0200\n"
+"Last-Translator: volkov <volkovissocool@gmail.com>\n"
+"Language-Team: \n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.4\n"
+
+#: data/net.natesales.Aviator.desktop:4 src/startup.ui:6 src/window.ui:20
+msgid "Aviator"
+msgstr "Авіатор"
+
+#: data/net.natesales.Aviator.desktop:5
+msgid "AV1/OPUS Video Encoder"
+msgstr "AV1/OPUS відео кодувальник"
+
+#: src/startup.ui:33
+msgid "Welcome to Aviator"
+msgstr "Вітаємо в Авіаторі"
+
+#: src/startup.ui:34
+msgid "Your video copilot is ready for takeoff!"
+msgstr "Ваш відео пілот готовий до зльоту!"
+
+#: src/startup.ui:42
+msgid "Go"
+msgstr "Розпочати"
+
+#: src/window.ui:8
+msgid "_About"
+msgstr "_Про додаток"
+
+#: src/window.ui:12
+msgid "Quit"
+msgstr "Вийти"
+
+#: src/window.ui:49
+msgid "_Video"
+msgstr "_Відео"
+
+#: src/window.ui:59
+msgid "Open"
+msgstr "Відкрити"
+
+#: src/window.ui:61
+msgid "Open your source media."
+msgstr "Відкрити вхідний медіа файл."
+
+#: src/window.ui:95
+msgid "_Source File"
+msgstr "_Вхідний файл"
+
+#: src/window.ui:97
+msgid "Displays the source filename."
+msgstr "Відображає назву вхідного файлу."
+
+#: src/window.ui:108
+msgid "_Resolution"
+msgstr "_Розмір"
+
+#: src/window.ui:110
+msgid ""
+"Sets the output resolution. Width & height will match the source media if "
+"left empty. Putting in one value will automatically calculate the other "
+"based on the source video's aspect ratio if \"Crop\" is unchecked; "
+"otherwise, the empty value will match the original."
+msgstr ""
+"Виставляє розмір вихідного файлу. Ширина і висота буде встановлена із "
+"вхідного файлу, якщо залишити порожнім (тобто, розмір відео не буде "
+"змінено). Якщо виставити одне значення, то інше буде автоматично розраховано "
+"базуючись на співвідношенні сторін вхідного відео, якщо ви ввімкнули "
+"\"Обрізати\"."
+
+#: src/window.ui:141
+msgid "Width"
+msgstr "Ширина"
+
+#: src/window.ui:147
+msgid "Height"
+msgstr "Висота"
+
+#: src/window.ui:179
+msgid "CRF"
+msgstr "CRF"
+
+#: src/window.ui:180
+msgid ""
+"The CRF value determines the size & quality of your output. Higher values "
+"mean lower file size & quality while lower values create larger, higher-"
+"quality videos."
+msgstr ""
+"CRF значення визначає розмір та якість вихідного відео. Чим більше значення "
+"- тим гірше якість і менший розмір файлу; чим менше значення - тим краще "
+"якість вихідного відео і більший розмір файлу."
+
+#: src/window.ui:205
+msgid "_Speed"
+msgstr "_Швидкість"
+
+#: src/window.ui:206
+msgid ""
+"This value determines how hard your system will work to encode your video. "
+"Lower values mean your system will take longer to encode the video, but the "
+"files will be higher quality. Higher values will encode less efficiently, "
+"but much more quickly."
+msgstr ""
+"Це значення визначає наскільки сильно ваша система буде кодувати відео. Чим "
+"менше це значення - тим більше часу вашій системі знадобиться для кодування "
+"відео, але файли будуть у вищій якості; чим більше значення - тим менш "
+"ефективним буде кодування, але системі знадобиться менше часу на кодування."
+
+#: src/window.ui:214
+msgid ""
+"Adaptively detects screen content, like screen recordings or animation. It "
+"is highly recommended to leave this alone; disabling content adaptive SCM "
+"force-enables screen content detection, decreasing encoding efficiency for "
+"sparse visual benefit."
+msgstr ""
+"Адаптивно виявляє вміст екрану, наприклад, запис екрану або анімація. "
+"Рекомендовано залишити цю опцію як є; вимкнення цієї може знизити якість "
+"кодування з мінімальними візуальними покращеннями."
+
+#: src/window.ui:241
+msgid "_Grain Synth"
+msgstr "_Зерновий синтезатор"
+
+#: src/window.ui:242
+msgid ""
+"This value determines how much artificial grain will be applied to your "
+"video. Use when your source has grain."
+msgstr ""
+"Це значення відповідає за те, як багато штучної зернистості буде додано до "
+"вашого відео. Використовуйте цю опцію коли ваше вхідне відео має зернистість."
+
+#: src/window.ui:250
+msgid ""
+"Denoises the input video before adding film grain. Determined based on the "
+"amount of added grain. Can reduce detail retention, so it is disabled by "
+"default."
+msgstr ""
+"Прибирає шуми вхідного відео перед тим як додати кінематографічну "
+"зернистість. Розраховується базуючись на кількості доданої зернистості. "
+"Можете втратити деталі відео, тому вимкнено за замовченням."
+
+#: src/window.ui:287
+msgid "_Audio"
+msgstr "_Аудіо"
+
+#: src/window.ui:321
+msgid "_Bitrate"
+msgstr "_Бітрейт"
+
+#: src/window.ui:323
+msgid ""
+"Sets the audio bitrate to a value in kb/s. Higher values mean better quality "
+"at the expense of filesize. We recommend a value between 32 & 128 for stereo "
+"audio, >224 for 5.1 Surround, & >336 for 7.1 Surround. If a value from the "
+"source media isn't detected, this will default to 80 kb/s. "
+msgstr ""
+"Встановити бітрейт аудіо в значення в кб/с. Чим більше значення - тим вище "
+"якість, але ціною збільшеного розміру вихідного файлу. Ми рекомендуємо "
+"значення між 32 та 128 для стерео аудіо, >224 для 5.1 об'ємного звучання і "
+">336 для 7.1 об'ємного звучання. Якщо значення не вдалося отримати із "
+"вхідного медіа файлу, тоді буде виставлене стандартне значення 80 кб/с. "
+
+#: src/window.ui:333
+msgid "kb/s"
+msgstr "кб/с"
+
+#: src/window.ui:344
+msgid "_Downmix to Stereo"
+msgstr "_Звести до стерео"
+
+#: src/window.ui:346
+msgid ""
+"Mixes audio inputs with more than two channels (5.1 Surround, 7.1 Surround, "
+"etc) down to two audio channels."
+msgstr ""
+"Звести аудіо які мають більше ніж два канали (5.1 або 7.1 об'ємний звук, "
+"тощо) в два аудіо канали."
+
+#: src/window.ui:359
+msgid "_Copy Audio"
+msgstr "_Копіювати аудіо"
+
+#: src/window.ui:361 src/window.ui:367
+msgid ""
+"Ignores all options on this page & copies audio directly from the source "
+"untouched. Disables WebM output."
+msgstr ""
+"Ігнорувати усі опції на цій сторінці і скопіювати аудіо напряму із вхідного "
+"файлу без жодних змін. Вимкне WebM вивід."
+
+#: src/window.ui:382
+msgid "_Volume"
+msgstr "_Гучність"
+
+#: src/window.ui:383
+msgid ""
+"Increase or decrease audio volume. Measured in decibles. Positive numbers "
+"will increase volume while negative numbers will decrease it."
+msgstr ""
+"Зменшити або збільшити гучність аудіо. Виміряється у децибелах. Додатні "
+"числа збільшать гучність, а від'ємні - зменшать."
+
+#: src/window.ui:391
+msgid "Normalize the audio's perceived loudness."
+msgstr "Нормалізувати гучність аудіо."
+
+#: src/window.ui:429
+msgid "_Export"
+msgstr "_Експорт"
+
+#: src/window.ui:446
+msgid "_Output File"
+msgstr "_Вихідний файл"
+
+#: src/window.ui:448
+msgid "Select the output directory & type in a filename."
+msgstr "Оберіть вихідну теку і тип у назві файлу."
+
+#: src/window.ui:480
+msgid "_Container"
+msgstr "Кон_тейнер"
+
+#: src/window.ui:482
+msgid ""
+"The container your video is stored in, which is associated with the file "
+"extension. MKV is a universal video container with widespread support, while "
+"WebM is designed for web compatibility & may break subtitles."
+msgstr ""
+"Контейнер, в якому зберігається ваше відео, який пов'язаний з розширенням "
+"файлу. MKV - універсальний контейнер для відео з розповсюдженою підтримкою, "
+"у той час як WebM створений для сумісності з інтернетом і може не працювати "
+"з субтитрами."
+
+#: src/window.ui:495
+msgid "Selecting WebM output will strip subtitles for compatibility reasons."
+msgstr ""
+"Якщо обрати WebM у якості вихідного формату, то субтитри будуть вирізані по "
+"причині сумісності."
+
+#: src/window.ui:500
+msgid "MKV"
+msgstr "MKV"
+
+#: src/window.ui:506
+msgid "WEBM"
+msgstr "WEBM"
+
+#: src/window.ui:522
+msgid "Encode"
+msgstr "Кодувати"
+
+#: src/window.ui:524
+msgid ""
+"Begin encoding! Watch the progress bar to see how quickly your encode is "
+"progressing."
+msgstr ""
+"Розпочати кодування! Спостерігайте за смугою прогресу, щоб побачити як "
+"швидко ваша система кодує медіа."
+
+#: src/window.ui:558
+msgid "Stop"
+msgstr "Зупинити"
