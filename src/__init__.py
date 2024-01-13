@@ -165,8 +165,7 @@ class MainWindow(Adw.Window):
     resolution_width_entry = Gtk.Template.Child()
     resolution_height_entry = Gtk.Template.Child()
     crop_toggle = Gtk.Template.Child()
-    scm_toggle = Gtk.Template.Child()
-    # gop_toggle = Gtk.Template.Child()
+    gop_toggle = Gtk.Template.Child()
     # scaling_method = Gtk.Template.Child()
     crf_scale = Gtk.Template.Child()
     speed_scale = Gtk.Template.Child()
@@ -202,7 +201,7 @@ class MainWindow(Adw.Window):
 
         # Reset value to remove extra decimal
         self.speed_scale.set_value(0)
-        self.speed_scale.set_value(7)
+        self.speed_scale.set_value(6)
         self.crf_scale.set_value(0)
         self.crf_scale.set_value(32)
         self.grain_scale.set_value(0)
@@ -364,17 +363,10 @@ class MainWindow(Adw.Window):
             else:
                 denoise_val = 0
 
-            if self.scm_toggle.get_active():
-                scm_val = 2
+            if self.gop_toggle.get_active():
+                gop_val = 1
             else:
-                scm_val = 1
-
-            # if self.gop_toggle.get_active():
-            #     gop_val = 1
-            # else:
-            #     gop_val = 2
-
-            gop_val = 2
+                gop_val = 2
 
             if self.audio_copy_switch.get_state():
                 audio_filters = "-y"
@@ -418,7 +410,7 @@ class MainWindow(Adw.Window):
                 "-crf", str(int(self.crf_scale.get_value())),
                 "-preset", str(int(self.speed_scale.get_value())),
                 "-pix_fmt", "yuv420p10le",
-                "-svtav1-params", f"film-grain={int(self.grain_scale.get_value())}:" + "input-depth=10:tune=2:enable-qm=1:keyint=300:scd=1:enable-overlays=1:aq-mode=2:" + f"scm={scm_val}:" + f"irefresh-type={gop_val}:" + f"film-grain-denoise={denoise_val}",
+                "-svtav1-params", f"film-grain={int(self.grain_scale.get_value())}:" + "input-depth=10:tune=2:enable-qm=1:qm-min=0:enable-tf=0:keyint=300:scd=1:aq-mode=2:" + f"irefresh-type={gop_val}:" + f"film-grain-denoise={denoise_val}",
                 "-map", "0:a?",
                 "-c:a", "copy" if self.audio_copy_switch.get_state() else "libopus",
                 "-b:a", self.bitrate_entry.get_text() + "K",
@@ -478,7 +470,7 @@ class App(Adw.Application):
                                 application_icon="net.natesales.Aviator",
                                 developer_name="Nate Sales & Gianni Rosato",
                                 version=info.version,
-                                copyright="Copyright © 2023 Nate Sales &amp; Gianni Rosato",
+                                copyright="Copyright © 2024 Nate Sales &amp; Gianni Rosato",
                                 license_type=Gtk.License.GPL_3_0,
                                 website="https://github.com/gianni-rosato/aviator",
                                 issue_url="https://github.com/gianni-rosato/aviator/issues")
@@ -488,17 +480,17 @@ class App(Adw.Application):
         about.add_acknowledgement_section(
             ("Special thanks to the encoding community!"),
             [
-                "AV1 For Dummies https://discord.gg/bbQD5MjDr3", "BlueSwordM's SVT-AV1 Fork https://github.com/BlueSwordM/SVT-AV1", "Codec Wiki https://wiki.x266.mov/"
+                "AV1 For Dummies https://discord.gg/bbQD5MjDr3", "SVT-AV1-PSY Fork https://github.com/gianni-rosato/svt-av1-psy", "Codec Wiki https://wiki.x266.mov/"
             ]    
         )
         about.add_legal_section(
             title='FFmpeg',
-            copyright='Copyright © 2023 FFmpeg',
+            copyright='Copyright © 2024 FFmpeg',
             license_type=Gtk.License.GPL_3_0,
         )
         about.add_legal_section(
             title='SVT-AV1',
-            copyright='Copyright © 2023 Alliance for Open Media',
+            copyright='Copyright © 2024 Alliance for Open Media',
             license_type=Gtk.License.BSD,
         )
         about.present()

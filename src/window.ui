@@ -180,15 +180,6 @@
                                                                 <property name="title" translatable="yes">CRF</property>
                                                                 <property name="tooltip-text" translatable="yes">The CRF value determines the size &amp; quality of your output. Higher values mean lower file size &amp; quality while lower values create larger, higher-quality videos.</property>
                                                                 <property name="use-underline">true</property>
-                                                                <!-- <child>
-                                                                    <object class="GtkCheckButton" id="gop_toggle">
-                                                                        <property name="active">False</property>
-                                                                        <property name="label">Open GOP</property>
-                                                                        <property name="valign">center</property>
-                                                                        <property name="hexpand">False</property>
-                                                                        <property name="tooltip-text" translatable="yes">Lets the user decide between Closed GOP &amp; Open GOP. GOP stands for "Group of Pictures." Enabling allows GOPs to reference one another, but this may not always produce better fidelity per bit. If unsure, keep disabled.</property>
-                                                                    </object>
-                                                                </child> -->
                                                                 <child>
                                                                     <object class="GtkScale" id="crf_scale">
                                                                         <property name="halign">end</property>
@@ -215,13 +206,22 @@
                                                                 <property name="title" translatable="yes">_Speed</property>
                                                                 <property name="tooltip-text" translatable="yes">This value determines how hard your system will work to encode your video. Lower values mean your system will take longer to encode the video, but the files will be higher quality. Higher values will encode less efficiently, but much more quickly.</property>
                                                                 <property name="use-underline">true</property>
-                                                                <child>
+                                                                <!-- <child>
                                                                     <object class="GtkCheckButton" id="scm_toggle">
                                                                         <property name="active">True</property>
                                                                         <property name="label">Adaptive SCM</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="hexpand">False</property>
                                                                         <property name="tooltip-text" translatable="yes">Adaptively detects screen content, like screen recordings or animation. It is highly recommended to leave this alone; disabling content adaptive SCM force-enables screen content detection, decreasing encoding efficiency for sparse visual benefit.</property>
+                                                                    </object>
+                                                                </child> -->
+                                                                <child>
+                                                                    <object class="GtkCheckButton" id="gop_toggle">
+                                                                        <property name="active">False</property>
+                                                                        <property name="label">Open GOP</property>
+                                                                        <property name="valign">center</property>
+                                                                        <property name="hexpand">False</property>
+                                                                        <property name="tooltip-text" translatable="yes">Allows the user to decide between Closed GOP &amp; Open GOP. GOP stands for "Group of Pictures." Enabling allows GOPs to reference one another, but this may not always produce better visual fidelity per bit. If unsure, keep this box unchecked.</property>
                                                                     </object>
                                                                 </child>
                                                                 <child>

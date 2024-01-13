@@ -31,7 +31,7 @@ cleanup:
   - '*.a'
 
 modules:
-  - name: svt-av1
+  - name: svt-av1-psy
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
@@ -48,8 +48,8 @@ modules:
       - "/lib/pkgconfig"
     sources:
       - type: git
-        url: https://github.com/BlueSwordM/SVT-AV1
-        commit: 4aa749569e00369b48bfe992ef5f2949eb614031
+        url: https://github.com/gianni-rosato/svt-av1-psy
+        commit: 5d60263a420305665c0d0a303c815cd5d3daf950
 
   - name: ffmpeg
     config-opts:
@@ -62,7 +62,7 @@ modules:
     sources:
       - type: git
         url: https://git.ffmpeg.org/ffmpeg.git
-        commit: 067ed535f47373927e8bc2ff8eec2c18014197e5
+        commit: e38092ef9395d7049f871ef4d5411eb410e283e0
 
   - build-commands:
     - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"

@@ -31,8 +31,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/c9/b5/2d262c84f18d1b230a7b916bb8e0158642b6b803d91f5f9717d8d32ec36b/ffmpeg_progress_yield-0.7.0-py2.py3-none-any.whl",
-                    "sha256": "f8fe0bc342cbe443e18b68ccb3e3067f5211ead0331cbfd7adbb50a7a9f00d57"
+                    "url": "https://files.pythonhosted.org/packages/ea/b6/ba9d4b4ca272222f2858c8d2fac6ca9d74fb6494ea0449a3a07dafc07c56/ffmpeg_progress_yield-0.7.8-py2.py3-none-any.whl",
+                    "sha256": "732ef90d78f8b5c0b78be289050589299d128d03063be55a9deab80d67319a21"
                 }
             ]
         }

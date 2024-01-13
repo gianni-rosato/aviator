@@ -56,6 +56,17 @@
 
   <releases>
 
+    <release version="0.5.0" date="2024-01-13">
+      <description translatable="no">
+        <p>Today, we have a very exciting development - Aviator has switched to an in-house custom fork of SVT-AV1 dubbed SVT-AV1-PSY!</p>
+        <p>Featuring development efforts from BlueSwordM (author of the previous custom fork), myself (Gianni), and others, this change will enable us to have much more control over the encoder's development so that it aligns most effectively with Aviator's number one priority: visual quality.</p>
+        <p>So far, SVT-AV1-PSY's most noteworthy feature is a variance boost patch that appreciably improves intra- and inter-frame fidelity consistency across wide range of content. Visual fidelity per bit is estimated to have increased by up to 5% with this patch, which currently isn't present in mainline SVT-AV1.</p>
+        <p>Even though this patch should inevitably make it to mainline, the gains from having more direct control are already being realized as we can implement features like this flexibly at a pace we decide.</p>
+        <p>Aside from that, FFmpeg has been updated to version 6.1, the SCM toggle has been replaced with a more useful Open GOP toggle, and the README has been modified to reflect some of these more recent changes with regard to SVT-AV1-PSY.</p>
+        <p>Thank you for using Aviator, and happy encoding!</p>
+      </description>
+    </release>
+
     <release version="0.4.3" date="2023-12-12">
       <description translatable="no">
         <p>TL;DR, Aviator is much faster! Specifically, around 17-53% faster for presets 0 through 6 and 1-4% better quality for presets 7+</p>
