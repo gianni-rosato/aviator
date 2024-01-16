@@ -6,6 +6,7 @@
 
   <id>net.natesales.Aviator</id>
   <launchable type="desktop-id">net.natesales.Aviator.desktop</launchable>
+  <translation type="gettext">avivator</translation>
 
   <name>Aviator</name>
   <summary>Your Video Copilot: AV1/OPUS Video Encoder</summary>
@@ -20,12 +21,6 @@
     <value key="GnomeSoftware::key-colors">[(237, 51, 59), (220, 138, 221)]</value>
   </custom>
 
-  <categories>
-    <category>GNOME</category>
-    <category>GTK</category>
-    <category>System</category>
-  </categories>
-
   <supports>
     <control>pointing</control>
     <control>keyboard</control>
@@ -36,7 +31,7 @@
     <binary>aviator</binary>
   </provides>
 
-  <developer_name>Gianni Rosato</developer_name>
+  <developer_name translatable="no">Gianni Rosato</developer_name>
   <update_contact>grosatowork@proton.me</update_contact>
 
   <screenshots>
@@ -179,5 +174,7 @@
 
   <url type="homepage">https://github.com/natesales/aviator</url>
   <url type="bugtracker">https://github.com/natesales/aviator/issues</url>
+  <url type="vcs-browser">https://github.com/natesales/aviator</url>
+  <url type="translate">https://github.com/gianni-rosato/aviator/tree/main/po</url>
   <url type="donation">https://github.com/natesales</url>
 </component>
