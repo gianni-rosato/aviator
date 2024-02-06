@@ -165,8 +165,10 @@ class MainWindow(Adw.Window):
     resolution_width_entry = Gtk.Template.Child()
     resolution_height_entry = Gtk.Template.Child()
     crop_toggle = Gtk.Template.Child()
+    warning_image_speed = Gtk.Template.Child()
     gop_toggle = Gtk.Template.Child()
     # scaling_method = Gtk.Template.Child()
+    psy_toggle = Gtk.Template.Child()
     crf_scale = Gtk.Template.Child()
     speed_scale = Gtk.Template.Child()
     grain_scale = Gtk.Template.Child()
@@ -265,6 +267,15 @@ class MainWindow(Adw.Window):
             callback=self.handle_file_select
         )
 
+    @Gtk.Template.Callback()
+    def speed_changed(self, button):
+        if self.speed_scale.get_value() < 3:
+            self.warning_image_speed.set_visible(True)
+        elif self.speed_scale.get_value() > 2:
+            self.warning_image_speed.set_visible(False)
+        else:
+            self.warning_image_speed.set_visible(True)
+
     # Export
 
     @Gtk.Template.Callback()
@@ -312,10 +323,6 @@ class MainWindow(Adw.Window):
             output += ".mkv"
         elif self.container == "webm" and not output.endswith(".webm"):
             output += ".webm"
-        # Trim file path
-        # if "/" in self.output_file_label.get_text():
-        #     self.output_file_absolute = self.output_file_label.get_text()
-        #     self.output_file_label.set_text(os.path.basename(self.output_file_absolute))
 
         def run_in_thread():
             
@@ -357,6 +364,13 @@ class MainWindow(Adw.Window):
                 resolution = "crop" + f"={width}:{height}" if self.crop_toggle.get_active() else "scale" + f"={width}:{height}:flags={method}"
             else:
                 resolution = "-y"
+
+            if self.psy_toggle.get_active():
+                tune = 3
+                sharpness = 1
+            else:
+                tune = 2
+                sharpness = 0
 
             if self.denoise_toggle.get_active():
                 denoise_val = 1
@@ -410,9 +424,10 @@ class MainWindow(Adw.Window):
                 "-crf", str(int(self.crf_scale.get_value())),
                 "-preset", str(int(self.speed_scale.get_value())),
                 "-pix_fmt", "yuv420p10le",
-                "-svtav1-params", f"film-grain={int(self.grain_scale.get_value())}:" + "input-depth=10:tune=2:enable-qm=1:qm-min=0:enable-tf=0:keyint=300:scd=1:aq-mode=2:" + f"irefresh-type={gop_val}:" + f"film-grain-denoise={denoise_val}",
+                "-svtav1-params", f"film-grain={int(self.grain_scale.get_value())}:" + f"tune={tune}:" + f"sharpness={sharpness}:" + "input-depth=10:enable-qm=1:qm-min=0:keyint=300:aq-mode=2:sharpness=1:" + f"irefresh-type={gop_val}:" + f"film-grain-denoise={denoise_val}",
                 "-map", "0:a?",
                 "-c:a", "copy" if self.audio_copy_switch.get_state() else "libopus",
+                "-mapping_family", "1",
                 "-b:a", self.bitrate_entry.get_text() + "K",
                 audio_filters_prefix,
                 audio_filters,

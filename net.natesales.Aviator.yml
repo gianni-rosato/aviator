@@ -12,12 +12,8 @@ finish-args:
   - --filesystem=host
 
 build-options: 
-  append-path: /usr/lib/sdk/rust-stable/bin
-  env: 
-    CARGO_HOME: /run/build/done/cargo
-    PROTOC: /app/bin/protoc
-  prepend-ld-library-path: /usr/lib/sdk/llvm16/lib
-  prepend-path: /usr/lib/sdk/llvm16/bin
+  prepend-ld-library-path: /usr/lib/sdk/llvm17/lib
+  prepend-path: /usr/lib/sdk/llvm17/bin
 
 cleanup:
   - /include
@@ -35,6 +31,10 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
+      - "-DCMAKE_C_COMPILER=clang"
+      - "-DCMAKE_CXX_COMPILER=clang++"
+      - "-DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=lld"
+      - "-DCMAKE_SHARED_LINKER_FLAGS=-fuse-ld=lld"
       - "-DCMAKE_BUILD_TYPE=Release"
       - "-DCMAKE_CXX_FLAGS=-O3 -flto"
       - "-DCMAKE_C_FLAGS=-O3 -flto"
@@ -49,7 +49,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/gianni-rosato/svt-av1-psy
-        commit: 5d60263a420305665c0d0a303c815cd5d3daf950
+        commit: 7ae86e207b753a21d155ada248b83a697eb45133
 
   - name: ffmpeg
     config-opts:

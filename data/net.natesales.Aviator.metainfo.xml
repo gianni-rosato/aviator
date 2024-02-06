@@ -51,6 +51,17 @@
 
   <releases>
 
+    <release version="0.5.1" date="2024-02-05">
+      <description translatable="no">
+        <p>TL;DR, mostly SVT-AV1-PSY improvements. But still exciting, nonetheless!</p>
+        <p>Open GOP toggle has been renamed to oGOP</p>
+        <p>Speed -1 and -2 are now supported with a warning when you go below Speed 3. Speed -2 can take over 8 hours for a minute of video on a Ryzen 9</p>
+        <p>New "Perceptual Tuning" enables some new SVT-AV1-PSY features by default to improve visual fidelity at the cost of metric scores</p>
+        <p>"-mapping_family 1" is now enabled in libopus, so surround encodes will benefit from Opus's multichannel optimizations</p>
+        <p>Modified SVT-AV1 defaults, notably re-enabling temporal filtering by default</p>
+      </description>
+    </release>
+
     <release version="0.5.0" date="2024-01-13">
       <description translatable="no">
         <p>Today, we have a very exciting development - Aviator has switched to an in-house custom fork of SVT-AV1 dubbed SVT-AV1-PSY!</p>

@@ -181,6 +181,15 @@
                                                                 <property name="tooltip-text" translatable="yes">The CRF value determines the size &amp; quality of your output. Higher values mean lower file size &amp; quality while lower values create larger, higher-quality videos.</property>
                                                                 <property name="use-underline">true</property>
                                                                 <child>
+                                                                    <object class="GtkCheckButton" id="psy_toggle">
+                                                                        <property name="active">True</property>
+                                                                        <property name="label">Perceptual Tuning</property>
+                                                                        <property name="valign">center</property>
+                                                                        <property name="hexpand">False</property>
+                                                                        <property name="tooltip-text" translatable="yes">Tunes the encoder for perceptual quality (Tune 3: Subjective SSIM in SVT-AV1-PSY). Disable for better metric performance in exchange for generally degraded visual fidelity. For the best-looking video, leave enabled.</property>
+                                                                    </object>
+                                                                </child>
+                                                                <child>
                                                                     <object class="GtkScale" id="crf_scale">
                                                                         <property name="halign">end</property>
                                                                         <property name="valign">center</property>
@@ -216,12 +225,20 @@
                                                                     </object>
                                                                 </child> -->
                                                                 <child>
+                                                                    <object class="GtkImage" id="warning_image_speed">
+                                                                        <property name="icon-name">dialog-warning</property>
+                                                                        <property name="visible">false</property>
+                                                                        <property name="margin-end">0</property>
+                                                                        <property name="tooltip-text" translatable="yes">Speeds below 3 are extremely slow and not recommended.</property>
+                                                                    </object>
+                                                                </child>
+                                                                <child>
                                                                     <object class="GtkCheckButton" id="gop_toggle">
                                                                         <property name="active">False</property>
-                                                                        <property name="label">Open GOP</property>
+                                                                        <property name="label">oGOP</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="hexpand">False</property>
-                                                                        <property name="tooltip-text" translatable="yes">Allows the user to decide between Closed GOP &amp; Open GOP. GOP stands for "Group of Pictures." Enabling allows GOPs to reference one another, but this may not always produce better visual fidelity per bit. If unsure, keep this box unchecked.</property>
+                                                                        <property name="tooltip-text" translatable="yes">Enables Open GOPs. GOPs are "Group(s) of Pictures." Enabling allows GOPs to reference one another, but this usually does not improve visual fidelity per bit. If unsure, keep this box unchecked.</property>
                                                                     </object>
                                                                 </child>
                                                                 <child>
@@ -236,9 +253,10 @@
                                                                             <object class="GtkAdjustment">
                                                                                 <property name="upper">12</property>
                                                                                 <property name="value">6</property>
-                                                                                <property name="lower">0</property>
+                                                                                <property name="lower">-2</property>
                                                                                 <property name="step-increment">1</property>
                                                                                 <property name="page-increment">1</property>
+                                                                                <signal name="value-changed" handler="speed_changed" swapped="no" />
                                                                             </object>
                                                                         </property>
                                                                     </object>
