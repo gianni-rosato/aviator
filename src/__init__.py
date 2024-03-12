@@ -51,33 +51,6 @@ def humanize(seconds):
         else:
             return ", ".join(duration[:-1]) + " and " + duration[-1]
 
-
-# metadata returns the file's resolution and audio bitrate
-# def metadata(file) -> (float, float, float):
-#     try:
-#         cmd = [
-#             "ffprobe",
-#             "-v",
-#             "quiet",
-#             "-print_format",
-#             "json",
-#             "-show_format",
-#             "-show_streams",
-#             file,
-#         ]
-#         logging.debug("Running ffprobe: " + " ".join(cmd))
-#         x = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout.read()
-#         m = json.loads(x)
-#         streams = m["streams"]
-#         video = streams[0]
-#         audio = streams[1]
-
-#         return video["width"], video["height"], float(audio["sample_rate"]) / 1000
-#     except Exception as e:
-#         logging.error("Get metadata:", e)
-#         return 1536, 864, 48
-
-
 def notify(text):
     application = Gtk.Application.get_default()
     notification = Gio.Notification.new(title="Aviator")
@@ -387,28 +360,19 @@ class MainWindow(Adw.Window):
             else:
                 if self.volume_scale.get_value() == 0:
                     if self.loudnorm_toggle.get_active():
-                        audio_filters = "loudnorm"
+                        audio_filters = "loudnorm,aformat=channel_layouts=7.1|6.1|5.1|stereo"
                     else:
-                        audio_filters = "-y"
+                        audio_filters = "aformat=channel_layouts=7.1|6.1|5.1|stereo"
                 else:
                     if self.loudnorm_toggle.get_active():
-                        audio_filters = f"loudnorm,volume={int(self.volume_scale.get_value())}dB"
+                        audio_filters = f"loudnorm,volume={int(self.volume_scale.get_value())}dB,aformat=channel_layouts=7.1|6.1|5.1|stereo"
                     else:
-                        audio_filters = f"volume={int(self.volume_scale.get_value())}dB"
+                        audio_filters = f"volume={int(self.volume_scale.get_value())}dB,aformat=channel_layouts=7.1|6.1|5.1|stereo"
 
             if self.audio_copy_switch.get_state():
                 audio_filters_prefix = "-y"
             else:
-                if self.volume_scale.get_value() == 0:
-                    if self.loudnorm_toggle.get_active():
-                        audio_filters_prefix = "-af"
-                    else:
-                        audio_filters_prefix = "-y"
-                else:
-                    if self.loudnorm_toggle.get_active():
-                        audio_filters_prefix = "-af"
-                    else:
-                        audio_filters_prefix = "-af"
+                audio_filters_prefix = "-af"
 
             cmd = [
                 "ffmpeg",
@@ -489,9 +453,9 @@ class App(Adw.Application):
                                 license_type=Gtk.License.GPL_3_0,
                                 website="https://github.com/gianni-rosato/aviator",
                                 issue_url="https://github.com/gianni-rosato/aviator/issues")
-        # about.set_translator_credits(translators())
-        about.set_developers(["Nate Sales <nate@natesales.net>","Gianni Rosato <grosatowork@proton.me>","Trix<>"])
-        about.set_designers(["Gianni Rosato <grosatowork@proton.me>"])
+        about.set_translator_credits("Thank you Vovkiv, k1llo, & Sabri Ünal!")
+        about.set_developers(["Nate Sales https://natesales.net","Gianni Rosato https://giannirosato.com","Trix<>"])
+        about.set_designers(["Gianni Rosato https://giannirosato.com"])
         about.add_acknowledgement_section(
             ("Special thanks to the encoding community!"),
             [

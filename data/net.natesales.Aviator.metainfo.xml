@@ -51,6 +51,23 @@
 
   <releases>
 
+    <release version="0.6.0" date="2024-03-12">
+      <description translatable="no">
+        <p>Exciting SVT-AV1-PSY improvements and an awesome audio fix that's been a long time coming!</p>
+        <p>First, Aviator changes:</p>
+        <p>- Migrated to libadwaita 1.4+ widgets</p>
+        <p>- Fixed the notorious 5.1(side) audio encoding error</p>
+        <p>- Minor code clean-up</p>
+        <p>SVT-AV1-PSY (v2.0.0rc2) updates relevant to Aviator:</p>
+        <p>- Updated variance boost to improve encoding efficiency and eliminate rare flickering artifacts</p>
+        <p>- Variance boost refactored to work with native q-step ratios</p>
+        <p>- Preset -1 is twice as fast, &amp; presets 0 through 8 are up to 28% faster</p>
+        <p>- Presets 9 through 12 are 1-4% more efficient</p>
+        <p>- Additional ARM optimizations</p>
+        <p>- Bug fixes</p>
+      </description>
+    </release>
+
     <release version="0.5.1" date="2024-02-05">
       <description translatable="no">
         <p>TL;DR, mostly SVT-AV1-PSY improvements. But still exciting, nonetheless!</p>

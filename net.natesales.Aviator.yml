@@ -49,7 +49,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/gianni-rosato/svt-av1-psy
-        commit: 7ae86e207b753a21d155ada248b83a697eb45133
+        commit: 5cac47c1eaee9c5229cdf693bf26e90ff6c54b40
 
   - name: ffmpeg
     config-opts:
