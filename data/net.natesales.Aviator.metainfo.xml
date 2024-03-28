@@ -31,7 +31,7 @@
     <binary>aviator</binary>
   </provides>
 
-  <developer_name translatable="no">Gianni Rosato</developer_name>
+  <developer_name translate="no">Gianni Rosato</developer_name>
   <update_contact>grosatowork@proton.me</update_contact>
 
   <screenshots>
@@ -52,7 +52,7 @@
   <releases>
 
     <release version="0.6.0" date="2024-03-12">
-      <description translatable="no">
+      <description translate="no">
         <p>Exciting SVT-AV1-PSY improvements and an awesome audio fix that's been a long time coming!</p>
         <p>First, Aviator changes:</p>
         <p>- Migrated to libadwaita 1.4+ widgets</p>
@@ -69,7 +69,7 @@
     </release>
 
     <release version="0.5.1" date="2024-02-05">
-      <description translatable="no">
+      <description translate="no">
         <p>TL;DR, mostly SVT-AV1-PSY improvements. But still exciting, nonetheless!</p>
         <p>Open GOP toggle has been renamed to oGOP</p>
         <p>Speed -1 and -2 are now supported with a warning when you go below Speed 3. Speed -2 can take over 8 hours for a minute of video on a Ryzen 9</p>
@@ -80,7 +80,7 @@
     </release>
 
     <release version="0.5.0" date="2024-01-13">
-      <description translatable="no">
+      <description translate="no">
         <p>Today, we have a very exciting development - Aviator has switched to an in-house custom fork of SVT-AV1 dubbed SVT-AV1-PSY!</p>
         <p>Featuring development efforts from BlueSwordM (author of the previous custom fork), myself (Gianni), and others, this change will enable us to have much more control over the encoder's development so that it aligns most effectively with Aviator's number one priority: visual quality.</p>
         <p>So far, SVT-AV1-PSY's most noteworthy feature is a variance boost patch that appreciably improves intra- and inter-frame fidelity consistency across wide range of content. Visual fidelity per bit is estimated to have increased by up to 5% with this patch, which currently isn't present in mainline SVT-AV1.</p>
@@ -91,7 +91,7 @@
     </release>
 
     <release version="0.4.3" date="2023-12-12">
-      <description translatable="no">
+      <description translate="no">
         <p>TL;DR, Aviator is much faster! Specifically, around 17-53% faster for presets 0 through 6 and 1-4% better quality for presets 7+</p>
         <p>Updated SVT-AV1 to a custom fork by BlueSwordM featuring changes from 1.8.0, including speed-ups for presets 1 through 6 that improve encoding speed by 17-53%. This fork features an adaptive quantization curve that boosts deltaq based on variance within superblocks. This is not available in mainline SVT-AV1</p>
         <p>SVT-AV1 now features NEON optimization, making encoding up to a whopping 8 times faster than before on ARM-based platforms</p>
@@ -101,7 +101,7 @@
     </release>
 
     <release version="0.4.2" date="2023-09-09">
-      <description translatable="no">
+      <description translate="no">
         <p>Updated SVT-AV1 to 1.7.0, which features rebalanced presets &amp; more massive speed improvements</p>
         <p>In light of SVT-AV1's speedy development, Preset 7 is now high enough quality to be featured as Aviator's default speed preset</p>
         <p>"Copy Audio" now disables other audio options in the GUI</p>
@@ -111,7 +111,7 @@
     </release>
 
     <release version="0.4.1" date="2023-07-06">
-      <description translatable="no">
+      <description translate="no">
         <p>Updated SVT-AV1 fork promises up to a 40% speed improvement for higher quality presets (p5 &amp; lower)</p>
         <p>New "Crop" option for switching between cropping &amp; scaling resolution</p>
         <p>Updated SVT-AV1 parameters for an 0.3-0.8% perceptual quality improvement</p>
@@ -119,7 +119,7 @@
     </release>
 
     <release version="0.4.0" date="2023-05-26">
-      <description translatable="no">
+      <description translate="no">
         <p>Custom, perceptually optimized fork of SVT-AV1 featuring a bleeding edge tune that outperforms the latest release in visual quality per bit.</p>
         <p>New audio filters, Volume &amp; Normalization, available through a slider &amp; a toggle respectively on the Audio page.</p>
         <p>Prettier SVT-AV1 parameter handling in the codebase.</p>
@@ -127,7 +127,7 @@
     </release>
 
     <release version="0.3.0" date="2023-05-10">
-      <description translatable="no">
+      <description translate="no">
         <p>New "Copy Audio" switch that allows passing the audio through without reencoding (disables WebM output).</p>
         <p>Improved resolution scaling with automatic width/height adjustment based on one resolution input value &amp; a less aggressive default scaling algorithm (Catmull-Rom).</p>
         <p>Removed "Match Source" buttons - resolution will match source if left empty, &amp; audio won't be reencoded at an identical bitrate (this is not smart to do).</p>
@@ -138,20 +138,20 @@
     </release>
 
     <release version="0.2.2" date="2023-05-02">
-      <description translatable="no">
+      <description translate="no">
         <p>Updated to FFmpeg 6.0</p>
         <p>Updated to SVT-AV1 1.5.0</p>
       </description>
     </release>
 
     <release version="0.2.1a" date="2023-02-14">
-      <description translatable="no">
+      <description translate="no">
         <p>Fix: subtitle &amp; audio mapping. If your encodes were not moving past 0%, this should fix it.</p>
       </description>
     </release>
 
     <release version="0.2.1" date="2023-02-14">
-      <description translatable="no">
+      <description translate="no">
         <p>Fix: audio mapping, so all streams are reencoded</p>
         <p>Fix: typos</p>
         <p>Fix: more concise version number in about window</p>
@@ -160,7 +160,7 @@
     </release>
     
     <release version="0.2.0" date="2023-02-11">
-      <description translatable="no">
+      <description translate="no">
         <p>I know it has been a long time coming, but this time, we have a plethora of changes to report!
           - Updated SVT-AV1 &amp; tuned for better visual quality
           - More buttons than just the close button in the header bar
@@ -179,13 +179,13 @@
     </release>
     
     <release version="0.1.2" date="2022-10-23">
-      <description translatable="no">
+      <description translate="no">
         <p>Fix: typos</p>
       </description>
     </release>
 
     <release version="0.1.1" date="2022-10-20">
-      <description translatable="no">
+      <description translate="no">
         <p>Fix: support multiple streams</p>
         <p>Fix: add encode time to end notification</p>
         <p>Fix: enable VBR by default</p>
@@ -194,7 +194,7 @@
     </release>
 
     <release version="0.1.0" date="2022-09-08">
-      <description translatable="no">
+      <description translate="no">
         <p>Initial release</p>
       </description>
     </release>
