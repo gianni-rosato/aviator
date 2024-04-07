@@ -437,10 +437,10 @@ class AviatorApplication(Adw.Application):
         self.add_action(quit_action)
 
     def on_activate(self, app):
-        if first_open():
-            startup_window = OnboardWindow(application=self)
-            startup_window.present()
-        else:
+        # if first_open():
+        #     startup_window = OnboardWindow(application=self)
+        #     startup_window.present()
+        # else:
             self.win = MainWindow(application=app)
             self.win.present()
 
