@@ -1,6 +1,0 @@
-from gettext import gettext as _
-
-version = '@version@'
-
-AppDir = __file__.split('@prefix@')[0]  # Directory which contains this app (detected during runtime)
-data_dir = AppDir + '@data_dir@'        # Application-specific data directory
