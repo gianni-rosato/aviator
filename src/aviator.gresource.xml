@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/net/natesales/Aviator">
+    <file preprocess="xml-stripblanks" alias="window.ui">../data/ui/window.ui</file>
+    <file preprocess="xml-stripblanks" alias="startup.ui">../data/ui/startup.ui</file>
+  </gresource>
+  <gresource prefix="/net/natesales/Aviator/images">
+    <file alias="net.natesales.Aviator-splash.png">../data/net.natesales.Aviator-splash.png</file>
+  </gresource>
+</gresources>
