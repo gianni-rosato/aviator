@@ -6,7 +6,7 @@
 
   <id>net.natesales.Aviator</id>
   <launchable type="desktop-id">net.natesales.Aviator.desktop</launchable>
-  <translation type="gettext">avivator</translation>
+  <translation type="gettext">aviator</translation>
 
   <name>Aviator</name>
   <summary>Your Video Copilot: AV1/OPUS Video Encoder</summary>
