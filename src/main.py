@@ -489,9 +489,6 @@ class AviatorApplication(Adw.Application):
     def quit(self, action=None, user_data=None):
         exit()
 
-# app = App(application_id="net.natesales.Aviator")
-# app.run(sys.argv)
-
 def main(version):
     """The application's entry point."""
     app = AviatorApplication(version)
