@@ -464,7 +464,8 @@ class AviatorApplication(Adw.Application):
                                 license_type=Gtk.License.GPL_3_0,
                                 website="https://github.com/gianni-rosato/aviator",
                                 issue_url="https://github.com/gianni-rosato/aviator/issues")
-        about.set_translator_credits("Thank you Vovkiv, k1llo, & Sabri Ünal!")
+        # TRANSLATORS: eg. 'Translator Name <your.email@domain.com>' or 'Translator Name https://website.example'
+        about.set_translator_credits(_("translator-credits"))
         about.set_developers(["Nate Sales https://natesales.net","Gianni Rosato https://giannirosato.com","Trix<>"])
         about.set_designers(["Gianni Rosato https://giannirosato.com"])
         about.add_acknowledgement_section(
