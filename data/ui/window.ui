@@ -118,10 +118,10 @@
                                                                 <child>
                                                                     <object class="GtkCheckButton" id="crop_toggle">
                                                                         <property name="active">True</property>
-                                                                        <property name="label">Crop</property>
+                                                                        <property name="label" translatable="yes">Crop</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="hexpand">False</property>
-                                                                        <property name="tooltip-text">When enabled, crops instead of scaling to the target resolution.</property>
+                                                                        <property name="tooltip-text" translatable="yes">When enabled, crops instead of scaling to the target resolution.</property>
                                                                     </object>
                                                                 </child>
                                                                 <child>
@@ -189,7 +189,7 @@
                                                                 <child>
                                                                     <object class="GtkCheckButton" id="psy_toggle">
                                                                         <property name="active">True</property>
-                                                                        <property name="label">Perceptual Tuning</property>
+                                                                        <property name="label" translatable="yes">Perceptual Tuning</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="hexpand">False</property>
                                                                         <property name="tooltip-text" translatable="yes">Tunes the encoder for perceptual quality (Tune 3: Subjective SSIM in SVT-AV1-PSY). Disable for better metric performance in exchange for generally degraded visual fidelity. For the best-looking video, leave enabled.</property>
@@ -224,7 +224,7 @@
                                                                 <!-- <child>
                                                                     <object class="GtkCheckButton" id="scm_toggle">
                                                                         <property name="active">True</property>
-                                                                        <property name="label">Adaptive SCM</property>
+                                                                        <property name="label" translatable="yes">Adaptive SCM</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="hexpand">False</property>
                                                                         <property name="tooltip-text" translatable="yes">Adaptively detects screen content, like screen recordings or animation. It is highly recommended to leave this alone; disabling content adaptive SCM force-enables screen content detection, decreasing encoding efficiency for sparse visual benefit.</property>
@@ -241,7 +241,7 @@
                                                                 <child>
                                                                     <object class="GtkCheckButton" id="gop_toggle">
                                                                         <property name="active">False</property>
-                                                                        <property name="label">oGOP</property>
+                                                                        <property name="label" translatable="yes">oGOP</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="hexpand">False</property>
                                                                         <property name="tooltip-text" translatable="yes">Enables Open GOPs. GOPs are "Group(s) of Pictures." Enabling allows GOPs to reference one another, but this usually does not improve visual fidelity per bit. If unsure, keep this box unchecked.</property>
@@ -278,7 +278,7 @@
                                                                 <child>
                                                                     <object class="GtkCheckButton" id="denoise_toggle">
                                                                         <property name="active">False</property>
-                                                                        <property name="label">Denoise</property>
+                                                                        <property name="label" translatable="yes">Denoise</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="hexpand">False</property>
                                                                         <property name="tooltip-text" translatable="yes">Denoises the input video before adding film grain. Determined based on the amount of added grain. Can reduce detail retention, so it is disabled by default.</property>
@@ -419,7 +419,7 @@
                                                                 <child>
                                                                     <object class="GtkCheckButton" id="loudnorm_toggle">
                                                                         <property name="active">False</property>
-                                                                        <property name="label">Normalize</property>
+                                                                        <property name="label" translatable="yes">Normalize</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="hexpand">False</property>
                                                                         <property name="tooltip-text" translatable="yes">Normalize the audio's perceived loudness.</property>
