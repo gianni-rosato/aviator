@@ -81,8 +81,8 @@ class FileSelectDialog(Gtk.FileChooserDialog):
         self.set_current_folder(Gio.File.new_for_path(path=str(self.home)))
 
         self.add_buttons(
-            "_Cancel", Gtk.ResponseType.CANCEL,
-            "_Select", Gtk.ResponseType.OK
+            _("_Cancel"), Gtk.ResponseType.CANCEL,
+            _("_Select"), Gtk.ResponseType.OK
         )
         btn_select = self.get_widget_for_response(response_id=Gtk.ResponseType.OK)
         btn_select.get_style_context().add_class(class_name="suggested-action")
