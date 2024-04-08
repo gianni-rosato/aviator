@@ -68,13 +68,23 @@ def first_open():
 class FileSelectDialog(Gtk.FileChooserDialog):
     home = Path.home()
 
-    def __init__(self, parent, select_multiple, label, selection_text, open_only, callback=None):
+    def __init__(self, parent, select_multiple, label, selection_type, open_only, callback=None):
         super().__init__(transient_for=parent, use_header_bar=True)
         self.select_multiple = select_multiple
         self.label = label
         self.callback = callback
         self.set_action(action=Gtk.FileChooserAction.OPEN if open_only else Gtk.FileChooserAction.SAVE)
-        self.set_title(title="Select " + selection_text + " files" if self.select_multiple else "Select " + selection_text + " file")
+
+        if selection_type == "source":
+            title = _("Select Source Files")
+            if not self.select_multiple:
+                title = _("Select Source File")
+
+        if selection_type == "output":
+            title = _("Select Output Files")
+            if not self.select_multiple:
+                title = _("Select Output File")
+
         self.set_modal(modal=True)
         self.set_select_multiple(select_multiple=self.select_multiple)
         self.connect("response", self.dialog_response)
@@ -232,7 +242,7 @@ class MainWindow(Adw.Window):
             parent=self,
             select_multiple=False,
             label=self.source_file_label,
-            selection_text="source",
+            selection_type="source",
             open_only=True,
             callback=self.handle_file_select
         )
@@ -254,7 +264,7 @@ class MainWindow(Adw.Window):
             parent=self,
             select_multiple=False,
             label=self.output_file_label,
-            selection_text="output",
+            selection_type="output",
             open_only=False,
         )
 
