@@ -466,12 +466,20 @@ class AviatorApplication(Adw.Application):
                                 issue_url="https://github.com/gianni-rosato/aviator/issues")
         # TRANSLATORS: eg. 'Translator Name <your.email@domain.com>' or 'Translator Name https://website.example'
         about.set_translator_credits(_("translator-credits"))
-        about.set_developers(["Nate Sales https://natesales.net","Gianni Rosato https://giannirosato.com","Trix<>"])
+        about.set_developers(
+            [
+                "Nate Sales https://natesales.net",
+                "Gianni Rosato https://giannirosato.com",
+                "Trix<>"
+            ]
+        )
         about.set_designers(["Gianni Rosato https://giannirosato.com"])
         about.add_acknowledgement_section(
             _("Special thanks to the encoding community!"),
             [
-                "AV1 For Dummies https://discord.gg/bbQD5MjDr3", "SVT-AV1-PSY Fork https://github.com/gianni-rosato/svt-av1-psy", "Codec Wiki https://wiki.x266.mov/"
+                "AV1 For Dummies https://discord.gg/bbQD5MjDr3",
+                "SVT-AV1-PSY Fork https://github.com/gianni-rosato/svt-av1-psy",
+                "Codec Wiki https://wiki.x266.mov/"
             ]    
         )
         about.add_legal_section(
