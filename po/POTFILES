@@ -1,5 +1,5 @@
-data/net.natesales.Aviator.desktop
-data/net.natesales.Aviator.metainfo.xml
+data/net.natesales.Aviator.desktop.in
+data/net.natesales.Aviator.metainfo.xml.in
 
 data/ui/startup.ui
 data/ui/window.ui
