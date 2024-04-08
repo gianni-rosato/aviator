@@ -12,9 +12,14 @@
   <summary>Your Video Copilot: AV1/OPUS Video Encoder</summary>
 
   <description>
-    <p>
-      Aviator enables simple, easy-to-use video encoding for the world's most advanced open video codec, AV1. Encode your favorite media into super efficient files with incredible quality per bit, powered by the SVT-AV1 production encoder with Opus for audio encoding. The sky's the limit for your old home video collection &amp; large 4k smartphone videos, and you can fly in style with a beautiful libadwaita interface. Take off with Aviator!
-    </p>
+    <p>Aviator enables simple, easy-to-use video encoding for the world's most
+      advanced open video codec, AV1.</p>
+    <p>Encode your favorite media into super efficient files with incredible
+      quality per bit, powered by the SVT-AV1 production encoder with Opus for
+      audio encoding. The sky's the limit for your old home video collection &amp;
+      large 4k smartphone videos, and you can fly in style with a beautiful
+      libadwaita interface.</p>
+    <p>Take off with Aviator!</p>
   </description>
 
   <custom>
@@ -55,16 +60,20 @@
       <description translate="no">
         <p>Exciting SVT-AV1-PSY improvements and an awesome audio fix that's been a long time coming!</p>
         <p>First, Aviator changes:</p>
-        <p>- Migrated to libadwaita 1.4+ widgets</p>
-        <p>- Fixed the notorious 5.1(side) audio encoding error</p>
-        <p>- Minor code clean-up</p>
+        <ul>
+          <li>Migrated to libadwaita 1.4+ widgets</li>
+          <li>Fixed the notorious 5.1(side) audio encoding error</li>
+          <li>Minor code clean-up</li>
+        </ul>
         <p>SVT-AV1-PSY (v2.0.0rc2) updates relevant to Aviator:</p>
-        <p>- Updated variance boost to improve encoding efficiency and eliminate rare flickering artifacts</p>
-        <p>- Variance boost refactored to work with native q-step ratios</p>
-        <p>- Preset -1 is twice as fast, &amp; presets 0 through 8 are up to 28% faster</p>
-        <p>- Presets 9 through 12 are 1-4% more efficient</p>
-        <p>- Additional ARM optimizations</p>
-        <p>- Bug fixes</p>
+        <ul>
+          <li>Updated variance boost to improve encoding efficiency and eliminate rare flickering artifacts</li>
+          <li>Variance boost refactored to work with native q-step ratios</li>
+          <li>Preset -1 is twice as fast, &amp; presets 0 through 8 are up to 28% faster</li>
+          <li>Presets 9 through 12 are 1-4% more efficient</li>
+          <li>Additional ARM optimizations</li>
+          <li>Bug fixes</li>
+        </ul>
       </description>
     </release>
 
@@ -161,20 +170,21 @@
     
     <release version="0.2.0" date="2023-02-11">
       <description translate="no">
-        <p>I know it has been a long time coming, but this time, we have a plethora of changes to report!
-          - Updated SVT-AV1 &amp; tuned for better visual quality
-          - More buttons than just the close button in the header bar
-          - Grain synthesis parameter configurable with a slider
-          - New tooltips, alongside some corrections to the old ones
-          - Fully functional progress bar
-          - A "Stop Encode" button
-          - Optionally downmix audio channels to stereo (for Surround sources)
-          - New About window using AdwAboutWindow
-          - Better defaults
-          - Better Welcome window
-          - Better notifications
-          And probably more minor tweaks that I'm forgetting. Enjoy!
-        </p>
+        <p>I know it has been a long time coming, but this time, we have a plethora of changes to report!</p>
+        <ul>
+          <li>Updated SVT-AV1 &amp; tuned for better visual quality</li>
+          <li>More buttons than just the close button in the header bar</li>
+          <li>Grain synthesis parameter configurable with a slider</li>
+          <li>New tooltips, alongside some corrections to the old ones</li>
+          <li>Fully functional progress bar</li>
+          <li>A "Stop Encode" button</li>
+          <li>Optionally downmix audio channels to stereo (for Surround sources)</li>
+          <li>New About window using AdwAboutWindow</li>
+          <li>Better defaults</li>
+          <li>Better Welcome window</li>
+          <li>Better notifications</li>
+        </ul>
+        <p>And probably more minor tweaks that I'm forgetting. Enjoy!</p>
       </description>
     </release>
     
