@@ -37,6 +37,9 @@
   </provides>
 
   <developer_name translate="no">Gianni Rosato</developer_name>
+  <developer id="io.github.natesales">
+    <name translate="no">Gianni Rosato</name>
+  </developer>
   <update_contact>grosatowork@proton.me</update_contact>
 
   <screenshots>
