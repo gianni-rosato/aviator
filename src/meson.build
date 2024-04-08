@@ -1,34 +1,34 @@
-configure_file(
-          input: 'aviator.py.in',
-         output: meson.project_name(),
-        install: true,
-    install_dir: get_option('bindir'),
-  configuration: configuration_data({
-            'prefix': get_option('prefix'),
-        'locale_dir': get_option('prefix') / get_option('localedir'),
-    'py_install_dir': python.get_install_dir(),
-  }),
+pkgdatadir = get_option('prefix') / get_option('datadir') / meson.project_name()
+moduledir = pkgdatadir / 'aviator'
+gnome = import('gnome')
+
+gnome.compile_resources('aviator',
+  'aviator.gresource.xml',
+  gresource_bundle: true,
+  install: true,
+  install_dir: pkgdatadir,
 )
 
+python = import('python')
+
+conf = configuration_data()
+conf.set('PYTHON', python.find_installation('python3').full_path())
+conf.set('VERSION', meson.project_version())
+conf.set('localedir', get_option('prefix') / get_option('localedir'))
+conf.set('pkgdatadir', pkgdatadir)
+
 configure_file(
-          input: 'info.py.in',
-         output: '@BASENAME@',
-        install: true,
-    install_dir: python.get_install_dir() / 'aviator',
-  configuration: configuration_data({
-            'prefix': get_option('prefix'),
-           'version': meson.project_version(),
-          'data_dir': get_option('prefix') / get_option('datadir') / meson.project_name(),
-  }),
+  input: 'aviator.in',
+  output: 'aviator',
+  configuration: conf,
+  install: true,
+  install_dir: get_option('bindir'),
+  install_mode: 'r-xr-xr-x'
 )
 
-source_files = files(
+aviator_sources = [
   '__init__.py',
-  'window.ui',
-  'startup.ui',
-  'net.natesales.Aviator-splash.png'
-)
+  'main.py'
+]
 
-install_data(source_files,
-  install_dir: python.get_install_dir() / 'aviator'
-)
+install_data(aviator_sources, install_dir: moduledir)

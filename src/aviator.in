@@ -1,0 +1,50 @@
+#!@PYTHON@
+
+# aviator.in
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+import os
+import sys
+import signal
+import locale
+import gettext
+import logging
+
+from gettext import gettext as _
+
+VERSION = '@VERSION@'
+pkgdatadir = '@pkgdatadir@'
+localedir = '@localedir@'
+
+sys.path.insert(1, pkgdatadir)
+signal.signal(signal.SIGINT, signal.SIG_DFL)
+
+gettext.install('aviator', localedir)
+
+try:
+  locale.bindtextdomain('aviator', localedir)
+  locale.textdomain('aviator')
+except:
+  print('Cannot set locale.')
+try:
+  gettext.bindtextdomain('aviator', localedir)
+  gettext.textdomain('aviator')
+except:
+  print('Cannot load translations.')
+
+# Terminal Text Styles
+style_normal = '\033[0m'
+style_bold   = '\033[1m'
+
+logging.basicConfig(format=f'{style_bold}%(levelname)s:{style_normal} %(message)s')
+
+if __name__ == '__main__':
+    import gi
+
+    from gi.repository import Gio
+    resource = Gio.Resource.load(os.path.join(pkgdatadir, 'aviator.gresource'))
+    resource._register()
+
+    from aviator import main
+    sys.exit(main.main(VERSION))

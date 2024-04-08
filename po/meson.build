@@ -1,1 +1,1 @@
-i18n.gettext('avivator', preset: 'glib')
+i18n.gettext('aviator', preset: 'glib')

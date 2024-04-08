@@ -3,6 +3,9 @@ command: aviator
 sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
 runtime-version: "45"
+sdk-extensions:
+ - org.freedesktop.Sdk.Extension.llvm17
+
 
 finish-args:
   - --share=ipc
