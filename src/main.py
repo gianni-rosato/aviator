@@ -202,7 +202,7 @@ class MainWindow(Adw.Window):
 
         # Set progress bar to 0
         self.progress_bar.set_fraction(0)
-        self.progress_bar.set_text("0%")
+        self.progress_bar.set_text(_("0%"))
         self.process = None
         self.encode_start = None
 
@@ -284,9 +284,9 @@ class MainWindow(Adw.Window):
 
     def report_encode_finish(self,encode_start):
         encode_end = time.time() - encode_start
-        notify(f"Encode finished in {humanize(encode_end)}! ✈️")
+        notify(_("Encode finished in {0}! ✈️").format(humanize(encode_end)))
         self.progress_bar.set_fraction(0)
-        self.progress_bar.set_text("Encode Finished ~ 0%")
+        self.progress_bar.set_text(_("Encode Finished ~ 0%"))
         self.stop_button.set_visible(False)
 
         self.encode_button.set_visible(True)
@@ -415,7 +415,7 @@ class MainWindow(Adw.Window):
             for progress in self.process.run_command_with_progress():
                 print(f"{progress}/100")
                 self.progress_bar.set_fraction(progress/100)
-                self.progress_bar.set_text(f"Encoding ~ {int(progress)}%")
+                self.progress_bar.set_text(_("Encoding ~ {0}%").format(int(progress)))
             self.report_encode_finish(self.encode_start)
 
         thread = threading.Thread(target=run_in_thread)
@@ -469,7 +469,7 @@ class AviatorApplication(Adw.Application):
         about.set_developers(["Nate Sales https://natesales.net","Gianni Rosato https://giannirosato.com","Trix<>"])
         about.set_designers(["Gianni Rosato https://giannirosato.com"])
         about.add_acknowledgement_section(
-            ("Special thanks to the encoding community!"),
+            _("Special thanks to the encoding community!"),
             [
                 "AV1 For Dummies https://discord.gg/bbQD5MjDr3", "SVT-AV1-PSY Fork https://github.com/gianni-rosato/svt-av1-psy", "Codec Wiki https://wiki.x266.mov/"
             ]    
