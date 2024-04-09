@@ -68,21 +68,31 @@ def first_open():
 class FileSelectDialog(Gtk.FileChooserDialog):
     home = Path.home()
 
-    def __init__(self, parent, select_multiple, label, selection_text, open_only, callback=None):
+    def __init__(self, parent, select_multiple, label, selection_type, open_only, callback=None):
         super().__init__(transient_for=parent, use_header_bar=True)
         self.select_multiple = select_multiple
         self.label = label
         self.callback = callback
         self.set_action(action=Gtk.FileChooserAction.OPEN if open_only else Gtk.FileChooserAction.SAVE)
-        self.set_title(title="Select " + selection_text + " files" if self.select_multiple else "Select " + selection_text + " file")
+
+        if selection_type == "source":
+            title = _("Select Source Files")
+            if not self.select_multiple:
+                title = _("Select Source File")
+
+        if selection_type == "output":
+            title = _("Select Output Files")
+            if not self.select_multiple:
+                title = _("Select Output File")
+
         self.set_modal(modal=True)
         self.set_select_multiple(select_multiple=self.select_multiple)
         self.connect("response", self.dialog_response)
         self.set_current_folder(Gio.File.new_for_path(path=str(self.home)))
 
         self.add_buttons(
-            "_Cancel", Gtk.ResponseType.CANCEL,
-            "_Select", Gtk.ResponseType.OK
+            _("_Cancel"), Gtk.ResponseType.CANCEL,
+            _("_Select"), Gtk.ResponseType.OK
         )
         btn_select = self.get_widget_for_response(response_id=Gtk.ResponseType.OK)
         btn_select.get_style_context().add_class(class_name="suggested-action")
@@ -192,7 +202,7 @@ class MainWindow(Adw.Window):
 
         # Set progress bar to 0
         self.progress_bar.set_fraction(0)
-        self.progress_bar.set_text("0%")
+        self.progress_bar.set_text(_("0%"))
         self.process = None
         self.encode_start = None
 
@@ -232,7 +242,7 @@ class MainWindow(Adw.Window):
             parent=self,
             select_multiple=False,
             label=self.source_file_label,
-            selection_text="source",
+            selection_type="source",
             open_only=True,
             callback=self.handle_file_select
         )
@@ -254,7 +264,7 @@ class MainWindow(Adw.Window):
             parent=self,
             select_multiple=False,
             label=self.output_file_label,
-            selection_text="output",
+            selection_type="output",
             open_only=False,
         )
 
@@ -274,9 +284,9 @@ class MainWindow(Adw.Window):
 
     def report_encode_finish(self,encode_start):
         encode_end = time.time() - encode_start
-        notify(f"Encode finished in {humanize(encode_end)}! ✈️")
+        notify(_("Encode finished in {0}! ✈️").format(humanize(encode_end)))
         self.progress_bar.set_fraction(0)
-        self.progress_bar.set_text("Encode Finished ~ 0%")
+        self.progress_bar.set_text(_("Encode Finished ~ 0%"))
         self.stop_button.set_visible(False)
 
         self.encode_button.set_visible(True)
@@ -405,7 +415,7 @@ class MainWindow(Adw.Window):
             for progress in self.process.run_command_with_progress():
                 print(f"{progress}/100")
                 self.progress_bar.set_fraction(progress/100)
-                self.progress_bar.set_text(f"Encoding ~ {int(progress)}%")
+                self.progress_bar.set_text(_("Encoding ~ {0}%").format(int(progress)))
             self.report_encode_finish(self.encode_start)
 
         thread = threading.Thread(target=run_in_thread)
@@ -454,13 +464,22 @@ class AviatorApplication(Adw.Application):
                                 license_type=Gtk.License.GPL_3_0,
                                 website="https://github.com/gianni-rosato/aviator",
                                 issue_url="https://github.com/gianni-rosato/aviator/issues")
-        about.set_translator_credits("Thank you Vovkiv, k1llo, & Sabri Ünal!")
-        about.set_developers(["Nate Sales https://natesales.net","Gianni Rosato https://giannirosato.com","Trix<>"])
+        # TRANSLATORS: eg. 'Translator Name <your.email@domain.com>' or 'Translator Name https://website.example'
+        about.set_translator_credits(_("translator-credits"))
+        about.set_developers(
+            [
+                "Nate Sales https://natesales.net",
+                "Gianni Rosato https://giannirosato.com",
+                "Trix<>"
+            ]
+        )
         about.set_designers(["Gianni Rosato https://giannirosato.com"])
         about.add_acknowledgement_section(
-            ("Special thanks to the encoding community!"),
+            _("Special thanks to the encoding community!"),
             [
-                "AV1 For Dummies https://discord.gg/bbQD5MjDr3", "SVT-AV1-PSY Fork https://github.com/gianni-rosato/svt-av1-psy", "Codec Wiki https://wiki.x266.mov/"
+                "AV1 For Dummies https://discord.gg/bbQD5MjDr3",
+                "SVT-AV1-PSY Fork https://github.com/gianni-rosato/svt-av1-psy",
+                "Codec Wiki https://wiki.x266.mov/"
             ]    
         )
         about.add_legal_section(
@@ -477,9 +496,6 @@ class AviatorApplication(Adw.Application):
 
     def quit(self, action=None, user_data=None):
         exit()
-
-# app = App(application_id="net.natesales.Aviator")
-# app.run(sys.argv)
 
 def main(version):
     """The application's entry point."""

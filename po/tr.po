@@ -8,70 +8,102 @@ msgid ""
 msgstr ""
 "Project-Id-Version: net.natesales.Aviator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-30 21:56+0300\n"
-"PO-Revision-Date: 2023-09-30 22:00+0300\n"
-"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
+"POT-Creation-Date: 2024-04-08 16:11+0300\n"
+"PO-Revision-Date: 2024-04-08 16:31+0300\n"
+"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
-#: data/net.natesales.Aviator.desktop:4 src/startup.ui:6 src/window.ui:20
+#: data/net.natesales.Aviator.desktop.in:4
+#: data/net.natesales.Aviator.metainfo.xml.in:11 data/ui/startup.ui:6
+#: data/ui/window.ui:35
 msgid "Aviator"
 msgstr "Aviator"
 
-#: data/net.natesales.Aviator.desktop:5
+#: data/net.natesales.Aviator.desktop.in:5
 msgid "AV1/OPUS Video Encoder"
 msgstr "AV1/OPUS Video Kodlayıcı"
 
-#: src/startup.ui:33
+#: data/net.natesales.Aviator.metainfo.xml.in:12
+msgid "Your Video Copilot: AV1/OPUS Video Encoder"
+msgstr "Video Copilot'unuz: AV1/OPUS Video Kodlayıcı"
+
+#: data/net.natesales.Aviator.metainfo.xml.in:15
+msgid ""
+"Aviator enables simple, easy-to-use video encoding for the world's most "
+"advanced open video codec, AV1."
+msgstr ""
+"Aviator, dünyanın en gelişmiş açık video kodlaması olan AV1 için basit, "
+"kullanımı kolay video kodlama sağlar."
+
+#: data/net.natesales.Aviator.metainfo.xml.in:17
+msgid ""
+"Encode your favorite media into super efficient files with incredible "
+"quality per bit, powered by the SVT-AV1 production encoder with Opus for "
+"audio encoding. The sky's the limit for your old home video collection &amp; "
+"large 4k smartphone videos, and you can fly in style with a beautiful "
+"libadwaita interface."
+msgstr ""
+"En sevdiğiniz ortamı, ses kodlaması için Opus ile SVT-AV1 prodüksiyon "
+"kodlayıcı tarafından desteklenen, bit başına inanılmaz kalitede süper "
+"verimli dosyalara kodlayın. Eski ev video koleksiyonunuz ve büyük 4K akıllı "
+"telefon videolarınız için gökyüzü sınırsızdır ve güzel libadwaita arayüzü "
+"ile şık bir şekilde uçabilirsiniz."
+
+#: data/net.natesales.Aviator.metainfo.xml.in:22
+msgid "Take off with Aviator!"
+msgstr "Aviator ile havalanın!"
+
+#: data/ui/startup.ui:33
 msgid "Welcome to Aviator"
 msgstr "Avivatorʼa Hoş Geldiniz"
 
-#: src/startup.ui:34
+#: data/ui/startup.ui:34
 msgid "Your video copilot is ready for takeoff!"
 msgstr "Video yardımcı pilotunuz kalkışa hazır!"
 
-#: src/startup.ui:42
+#: data/ui/startup.ui:42
 msgid "Go"
 msgstr "Git"
 
-#: src/window.ui:8
-msgid "_About"
-msgstr "_Hakkında"
+#: data/ui/window.ui:8
+msgid "_About Aviator"
+msgstr "Aviator _Hakkında"
 
-#: src/window.ui:12
+#: data/ui/window.ui:12
 msgid "Quit"
 msgstr "Çık"
 
-#: src/window.ui:49
+#: data/ui/window.ui:47
 msgid "_Video"
 msgstr "_Video"
 
-#: src/window.ui:59
+#: data/ui/window.ui:57
 msgid "Open"
 msgstr "Aç"
 
-#: src/window.ui:61
+#: data/ui/window.ui:59
 msgid "Open your source media."
 msgstr "Kaynak ortamınızı açın."
 
-#: src/window.ui:95
+#: data/ui/window.ui:93
 msgid "_Source File"
 msgstr "_Kaynak Dosya"
 
-#: src/window.ui:97
+#: data/ui/window.ui:95
 msgid "Displays the source filename."
 msgstr "Kaynak dosya adını görüntüler."
 
-#: src/window.ui:108
+#: data/ui/window.ui:106
 msgid "_Resolution"
 msgstr "_Çözünürlük:"
 
-#: src/window.ui:110
+#: data/ui/window.ui:108
 msgid ""
 "Sets the output resolution. Width & height will match the source media if "
 "left empty. Putting in one value will automatically calculate the other "
@@ -83,19 +115,27 @@ msgstr ""
 "değer kaynak videonun en boy oranına göre kendiliğinden hesaplanır; aksi "
 "takdirde boş değer orijinalle eşleşir."
 
-#: src/window.ui:141
+#: data/ui/window.ui:121
+msgid "Crop"
+msgstr "Kırp"
+
+#: data/ui/window.ui:124
+msgid "When enabled, crops instead of scaling to the target resolution."
+msgstr "Etkinleştirildiğinde, hedef çözünürlüğe ölçeklemek yerine kırpar."
+
+#: data/ui/window.ui:148
 msgid "Width"
 msgstr "Genişlik"
 
-#: src/window.ui:147
+#: data/ui/window.ui:154
 msgid "Height"
 msgstr "Yükseklik"
 
-#: src/window.ui:179
+#: data/ui/window.ui:186
 msgid "CRF"
 msgstr "CRF"
 
-#: src/window.ui:180
+#: data/ui/window.ui:187
 msgid ""
 "The CRF value determines the size & quality of your output. Higher values "
 "mean lower file size & quality while lower values create larger, higher-"
@@ -105,65 +145,90 @@ msgstr ""
 "daha düşük dosya boyutu ve kalitesi anlamına gelirken daha düşük değerler "
 "daha büyük, daha yüksek kaliteli videolar oluşturur."
 
-#: src/window.ui:205
+#: data/ui/window.ui:192
+msgid "Perceptual Tuning"
+msgstr "Algısal İnce Ayarlama"
+
+#: data/ui/window.ui:195
+msgid ""
+"Tunes the encoder for perceptual quality (Tune 3: Subjective SSIM in SVT-AV1-"
+"PSY). Disable for better metric performance in exchange for generally "
+"degraded visual fidelity. For the best-looking video, leave enabled."
+msgstr ""
+"Algısal kalite için kodlayıcıyı ayarlar (Ayar 3: SVT-AV1-PSY'de Öznel SSIM). "
+"Genel olarak bozulmuş görsel doğruluk karşılığında daha iyi metrik başarımı "
+"için devre dışı bırakın. En iyi görünen video için etkin bırakın."
+
+#: data/ui/window.ui:221
 msgid "_Speed"
 msgstr "_Hız"
 
-#: src/window.ui:206
+#: data/ui/window.ui:222
 msgid ""
 "This value determines how hard your system will work to encode your video. "
 "Lower values mean your system will take longer to encode the video, but the "
 "files will be higher quality. Higher values will encode less efficiently, "
 "but much more quickly."
 msgstr ""
-"Bu değer, sisteminizin videonuzu kodlamak için ne kadar sıkı çalışacağını "
-"belirler. Daha düşük değerler, sisteminizin videoyu kodlamasının daha uzun "
-"süreceği, ancak dosyaların daha kaliteli olacağı anlamına gelir. Daha yüksek "
-"değerler daha az verimli ancak çok daha hızlı kodlayacaktır."
+"Bu değer, sisteminizin videoyu kodlamak için ne kadar sıkı çalışacağını "
+"belirler. Daha düşük değerler, videoyu kodlamanın daha uzun sürmesini, ancak "
+"sonucun daha kaliteli olmasını sağlar. Daha yüksek değerler daha verimsiz "
+"ancak çok daha hızlı kodlar."
 
-#: src/window.ui:214
+#: data/ui/window.ui:238
+msgid "Speeds below 3 are extremely slow and not recommended."
+msgstr "3'ün altındaki hızlar son derece yavaştır ve tavsiye edilmez."
+
+#: data/ui/window.ui:244
+msgid "oGOP"
+msgstr "oGOP"
+
+#: data/ui/window.ui:247
 msgid ""
-"Adaptively detects screen content, like screen recordings or animation. It "
-"is highly recommended to leave this alone; disabling content adaptive SCM "
-"force-enables screen content detection, decreasing encoding efficiency for "
-"sparse visual benefit."
+"Enables Open GOPs. GOPs are \"Group(s) of Pictures.\" Enabling allows GOPs "
+"to reference one another, but this usually does not improve visual fidelity "
+"per bit. If unsure, keep this box unchecked."
 msgstr ""
-"Ekran kayıtları veya animasyon gibi ekran içeriğini uyarlamalı olarak "
-"algılar. Bunun yapılmaması şiddetle tavsiye edilir; içerik uyarlamalı "
-"SCM'nin devre dışı bırakılması ekran içeriği algılamayı zorlayarak seyrek "
-"görsel fayda için kodlama verimliliğini azaltır."
+"Açık GOP'ları etkinleştirir. GOP'lar \"Resim Grupları\"dır Etkinleştirmek "
+"GOP'ların birbirlerine referans vermesini sağlar, ancak bu genellikle bit "
+"başına görsel doğruluğu artırmaz. Emin değilseniz, bu kutunun işaretini "
+"kaldırın."
 
-#: src/window.ui:241
+#: data/ui/window.ui:275
 msgid "_Grain Synth"
 msgstr "_Tane Sentezi"
 
-#: src/window.ui:242
+#: data/ui/window.ui:276
 msgid ""
 "This value determines how much artificial grain will be applied to your "
 "video. Use when your source has grain."
 msgstr ""
-"Bu değer, videonuza ne kadar yapay tane uygulanacağını belirler. "
-"Kaynağınızda tane olduğunda kullanın."
+"Bu değer, videoya ne kadar yapay tane uygulanacağını belirler. Kaynağınızda "
+"tane olduğunda kullanın."
 
-#: src/window.ui:250
+#: data/ui/window.ui:281
+msgid "Denoise"
+msgstr "Gürültü Gider"
+
+#: data/ui/window.ui:284
 msgid ""
 "Denoises the input video before adding film grain. Determined based on the "
 "amount of added grain. Can reduce detail retention, so it is disabled by "
 "default."
 msgstr ""
 "Film tanesi eklemeden önce girdi videosunu gürültüden arındırır. Eklenen "
-"tane miktarına göre belirlenir. Ayrıntıların saklanmasını azaltabilir, "
-"dolayısıyla öntanımlı olarak devre dışıdır."
+"tane miktarına göre belirlenir. Ayrıntıların saklanmasını azaltabileceği "
+"için öntanımlı olarak devre dışıdır."
 
-#: src/window.ui:287
+#: data/ui/window.ui:321
 msgid "_Audio"
 msgstr "_Ses"
 
-#: src/window.ui:321
+#: data/ui/window.ui:355
 msgid "_Bitrate"
 msgstr "_Bit Oranı"
 
-#: src/window.ui:323
+#: data/ui/window.ui:357
 msgid ""
 "Sets the audio bitrate to a value in kb/s. Higher values mean better quality "
 "at the expense of filesize. We recommend a value between 32 & 128 for stereo "
@@ -176,15 +241,15 @@ msgstr ""
 "önerilir. Kaynak ortamdan bir değer algılanmazsa, bu öntanımlı olarak 48 kb/"
 "s olacaktır."
 
-#: src/window.ui:333
+#: data/ui/window.ui:367
 msgid "kb/s"
 msgstr "kb/s"
 
-#: src/window.ui:344
+#: data/ui/window.ui:378
 msgid "_Downmix to Stereo"
 msgstr "_İki Ses Kanalına Dönüştür"
 
-#: src/window.ui:346
+#: data/ui/window.ui:380
 msgid ""
 "Mixes audio inputs with more than two channels (5.1 Surround, 7.1 Surround, "
 "etc) down to two audio channels."
@@ -192,11 +257,11 @@ msgstr ""
 "İkiden fazla kanallı (5.1 Surround, 7.1 Surround, vb.) ses girişlerini iki "
 "ses kanalına dönüştürür."
 
-#: src/window.ui:359
+#: data/ui/window.ui:393
 msgid "_Copy Audio"
 msgstr "Sesi _Kopyala"
 
-#: src/window.ui:361 src/window.ui:367
+#: data/ui/window.ui:395 data/ui/window.ui:401
 msgid ""
 "Ignores all options on this page & copies audio directly from the source "
 "untouched. Disables WebM output."
@@ -204,11 +269,11 @@ msgstr ""
 "Bu sayfadaki tüm seçenekleri yok sayar ve sesi doğrudan kaynaktan el "
 "değmeden kopyalar. WebM çıkışını devre dışı bırakır."
 
-#: src/window.ui:382
+#: data/ui/window.ui:416
 msgid "_Volume"
 msgstr "_Ses"
 
-#: src/window.ui:383
+#: data/ui/window.ui:417
 msgid ""
 "Increase or decrease audio volume. Measured in decibles. Positive numbers "
 "will increase volume while negative numbers will decrease it."
@@ -216,27 +281,31 @@ msgstr ""
 "Ses seviyesini artır veya azalt. Desibel cinsinden ölçülür. Pozitif sayılar "
 "sesi artırır, negatif sayılar ise azaltır."
 
-#: src/window.ui:391
+#: data/ui/window.ui:422
+msgid "Normalize"
+msgstr "Normalleştir"
+
+#: data/ui/window.ui:425
 msgid "Normalize the audio's perceived loudness."
 msgstr "Sesin algılanan yüksekliğini normalleştir."
 
-#: src/window.ui:429
+#: data/ui/window.ui:463
 msgid "_Export"
 msgstr "_Dışa Aktar"
 
-#: src/window.ui:446
+#: data/ui/window.ui:480
 msgid "_Output File"
 msgstr "_Çıktı Dosyası"
 
-#: src/window.ui:448
+#: data/ui/window.ui:482
 msgid "Select the output directory & type in a filename."
 msgstr "Çıkış dizinini seçin ve bir dosya adı yazın."
 
-#: src/window.ui:480
+#: data/ui/window.ui:514
 msgid "_Container"
 msgstr "Kapsayıcı"
 
-#: src/window.ui:482
+#: data/ui/window.ui:516
 msgid ""
 "The container your video is stored in, which is associated with the file "
 "extension. MKV is a universal video container with widespread support, while "
@@ -246,24 +315,24 @@ msgstr ""
 "yaygın desteği olan evrensel bir video kapsayıcıdır, WebM ise web uyumluluğu "
 "için tasarlanmıştır ve altyazıları bozabilir."
 
-#: src/window.ui:495
+#: data/ui/window.ui:529
 msgid "Selecting WebM output will strip subtitles for compatibility reasons."
 msgstr ""
 "WebM çıkışının seçilmesi, uyumluluk nedenleriyle altyazıları gözardı eder."
 
-#: src/window.ui:500
+#: data/ui/window.ui:534
 msgid "MKV"
 msgstr "MKV"
 
-#: src/window.ui:506
+#: data/ui/window.ui:540
 msgid "WEBM"
 msgstr "WEBM"
 
-#: src/window.ui:522
+#: data/ui/window.ui:556
 msgid "Encode"
 msgstr "Kodla"
 
-#: src/window.ui:524
+#: data/ui/window.ui:558
 msgid ""
 "Begin encoding! Watch the progress bar to see how quickly your encode is "
 "progressing."
@@ -271,6 +340,71 @@ msgstr ""
 "Kodlamaya başlayın! Kodlamanızın ne kadar hızlı ilerlediğini görmek için "
 "ilerleme çubuğunu izleyebilirsiniz."
 
-#: src/window.ui:558
+#: data/ui/window.ui:592
 msgid "Stop"
 msgstr "Durdur"
+
+#: src/main.py:79
+msgid "Select Source Files"
+msgstr "Kaynak Dosyaları Seç"
+
+#: src/main.py:81
+msgid "Select Source File"
+msgstr "Kaynak Dosyayı Seç"
+
+#: src/main.py:84
+msgid "Select Output Files"
+msgstr "Çıktı Dosyalarını Seç"
+
+#: src/main.py:86
+msgid "Select Output File"
+msgstr "Çıktı Dosyasını Seç"
+
+#: src/main.py:94
+msgid "_Cancel"
+msgstr "İ_ptal"
+
+#: src/main.py:95
+msgid "_Select"
+msgstr "_Seç"
+
+#: src/main.py:205
+msgid "0%"
+msgstr "%0"
+
+#: src/main.py:287
+#, python-brace-format
+msgid "Encode finished in {0}! ✈️"
+msgstr "Kodlama {0} içinde bitti! ✈️"
+
+#: src/main.py:289
+msgid "Encode Finished ~ 0%"
+msgstr "Kodlama Bitti ~ %0"
+
+#: src/main.py:418
+#, python-brace-format
+msgid "Encoding ~ {0}%"
+msgstr "Kodlanıyor ~ %{0}"
+
+#. TRANSLATORS: eg. 'Translator Name <your.email@domain.com>' or 'Translator Name https://website.example'
+#: src/main.py:468
+msgid "translator-credits"
+msgstr "Sabri Ünal <yakushabb@gmail.com>"
+
+#: src/main.py:478
+msgid "Special thanks to the encoding community!"
+msgstr "Kodlama topluluğuna özel teşekkürler!"
+
+#~ msgid "_About"
+#~ msgstr "_Hakkında"
+
+#~ msgid ""
+#~ "Adaptively detects screen content, like screen recordings or animation. "
+#~ "It is highly recommended to leave this alone; disabling content adaptive "
+#~ "SCM force-enables screen content detection, decreasing encoding "
+#~ "efficiency for sparse visual benefit."
+#~ msgstr ""
+#~ "Ekran kayıtları veya animasyon gibi ekran içeriğini uyarlamalı olarak "
+#~ "algılar. Bunun yapılmaması şiddetle tavsiye edilir; içerik uyarlamalı "
+#~ "SCM'nin devre dışı bırakılması ekran içeriği algılamayı zorlayarak seyrek "
+#~ "görsel fayda için kodlama verimliliğini azaltır."
