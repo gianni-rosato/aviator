@@ -59,6 +59,27 @@
 
   <releases>
 
+    <release version="0.6.1" date="2024-05-22">
+      <description translate="no">
+        <p>A new SVT-AV1-PSY release, plus new filtering options for telecined &amp; interlaced videos!</p>
+        <p>First, Aviator changes:</p>
+        <ul>
+          <li>Updated to GNOME SDK 46</li>
+          <li>Added a deinterlace toggle for converting interlaced source media to progressive scan</li>
+          <li>Updated to FFmpeg 7.0 &amp; SVT-AV1-PSY v2.1.0</li>
+          <li>Progress bar indicator now features fractional increments to better indicate progress for slow AV1 encodes</li>
+        </ul>
+        <p>SVT-AV1-PSY (v2.1.0) updates relevant to Aviator:</p>
+        <ul>
+          <li>Preset 6 is now redundant with Preset 7. We won't skip it in the slider, but just be aware they're the same now</li>
+          <li>Presets 0, 3, 5, &amp; 6 have been sped up by 12-40% with little to no quality penalty</li>
+          <li>Presets 11 &amp; 12 feature up to 2% more compression efficiency</li>
+          <li>Additional ARM optimizations</li>
+          <li>Lowered the minimum preset for 8K encoding from 8 to 2</li>
+        </ul>
+      </description>
+    </release>
+
     <release version="0.6.0" date="2024-03-12">
       <description translate="no">
         <p>Exciting SVT-AV1-PSY improvements and an awesome audio fix that's been a long time coming!</p>

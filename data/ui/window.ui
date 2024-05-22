@@ -115,6 +115,24 @@
                                                                         <property name="tooltip-text" translatable="yes">Writes HDR10 bitstream metadata. Enable if encoding an HDR10 video.</property>
                                                                     </object>
                                                                 </child> -->
+                                                                <!-- <child>
+                                                                    <object class="GtkCheckButton" id="detelecine_toggle">
+                                                                        <property name="active">False</property>
+                                                                        <property name="label" translatable="yes">IVTC</property>
+                                                                        <property name="valign">center</property>
+                                                                        <property name="hexpand">False</property>
+                                                                        <property name="tooltip-text" translatable="yes">Enables inverse telecining of the input video in order to reverse artifacts created by the telecine process, which is commonly applied to convert film content to another framerate. These artifacts usually consist of specific patterns of repeated &amp; interlaced frames. Leave this disabled unless you are sure this is necessary for your input video.</property>
+                                                                    </object>
+                                                                </child> -->
+                                                                <child>
+                                                                    <object class="GtkCheckButton" id="deinterlace_toggle">
+                                                                        <property name="active">False</property>
+                                                                        <property name="label" translatable="yes">Deinterlace</property>
+                                                                        <property name="valign">center</property>
+                                                                        <property name="hexpand">False</property>
+                                                                        <property name="tooltip-text" translatable="yes">Enable deinterlacing of interlaced inputs using neural network edge directed interpolation alongside detelecining to produce progressive video. If your source is in an interlaced format (1080i, 720i, 480i, etc), it will be convert to a progressive format (1080p, 720p, 480p, etc) which is optimal for AV1 encoding. Unless you know your source is interlaced &amp; you would like it not to be, leave this disabled.</property>
+                                                                    </object>
+                                                                </child>
                                                                 <child>
                                                                     <object class="GtkCheckButton" id="crop_toggle">
                                                                         <property name="active">True</property>

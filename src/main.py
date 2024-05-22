@@ -144,6 +144,7 @@ class MainWindow(Adw.Window):
     source_file_label = Gtk.Template.Child()
     resolution_width_entry = Gtk.Template.Child()
     resolution_height_entry = Gtk.Template.Child()
+    deinterlace_toggle = Gtk.Template.Child()
     crop_toggle = Gtk.Template.Child()
     warning_image_speed = Gtk.Template.Child()
     gop_toggle = Gtk.Template.Child()
@@ -340,10 +341,20 @@ class MainWindow(Adw.Window):
             # else:
             #     method = "bicubic:param0=0:param1=1/2"
 
-            if width is not None and height is not None:
-                resolution = "crop" + f"={width}:{height}" if self.crop_toggle.get_active() else "scale" + f"={width}:{height}:flags={method}"
+            if self.deinterlace_toggle.get_active():
+                vfilters_prefix = "-vf"
+                vfilters = "fieldmatch,nnedi=weights=/app/bin/nnedi3_weights.bin,format=yuv420p10le,decimate"
             else:
-                resolution = "-y"
+                vfilters_prefix = "-y"
+                vfilters = "-y"
+
+            if width is not None and height is not None:
+                if vfilters_prefix == "-vf":
+                    vfilters += ","
+                    vfilters += "crop" + f"={width}:{height}" if self.crop_toggle.get_active() else "scale" + f"={width}:{height}:flags={method}"
+                else:
+                    vfilters_prefix = "-vf"
+                    vfilters = "crop" + f"={width}:{height}" if self.crop_toggle.get_active() else "scale" + f"={width}:{height}:flags={method}"
 
             if self.psy_toggle.get_active():
                 tune = 3
@@ -363,23 +374,23 @@ class MainWindow(Adw.Window):
                 gop_val = 2
 
             if self.audio_copy_switch.get_state():
-                audio_filters = "-y"
+                afilters = "-y"
             else:
                 if self.volume_scale.get_value() == 0:
                     if self.loudnorm_toggle.get_active():
-                        audio_filters = "loudnorm,aformat=channel_layouts=7.1|6.1|5.1|stereo"
+                        afilters = "loudnorm,aformat=channel_layouts=7.1|6.1|5.1|stereo"
                     else:
-                        audio_filters = "aformat=channel_layouts=7.1|6.1|5.1|stereo"
+                        afilters = "aformat=channel_layouts=7.1|6.1|5.1|stereo"
                 else:
                     if self.loudnorm_toggle.get_active():
-                        audio_filters = f"loudnorm,volume={int(self.volume_scale.get_value())}dB,aformat=channel_layouts=7.1|6.1|5.1|stereo"
+                        afilters = f"loudnorm,volume={int(self.volume_scale.get_value())}dB,aformat=channel_layouts=7.1|6.1|5.1|stereo"
                     else:
-                        audio_filters = f"volume={int(self.volume_scale.get_value())}dB,aformat=channel_layouts=7.1|6.1|5.1|stereo"
+                        afilters = f"volume={int(self.volume_scale.get_value())}dB,aformat=channel_layouts=7.1|6.1|5.1|stereo"
 
             if self.audio_copy_switch.get_state():
-                audio_filters_prefix = "-y"
+                afilters_prefix = "-y"
             else:
-                audio_filters_prefix = "-af"
+                afilters_prefix = "-af"
 
             cmd = [
                 "ffmpeg",
@@ -388,8 +399,8 @@ class MainWindow(Adw.Window):
                 "-loglevel", "info",
                 "-y",
                 "-i", self.source_file_absolute,
-                "-vf" if width is not None and height is not None else "-y",
-                resolution,
+                vfilters_prefix,
+                vfilters,
                 "-map", "0:v",
                 "-c:v", "libsvtav1",
                 "-crf", str(int(self.crf_scale.get_value())),
@@ -400,8 +411,8 @@ class MainWindow(Adw.Window):
                 "-c:a", "copy" if self.audio_copy_switch.get_state() else "libopus",
                 "-mapping_family", "1",
                 "-b:a", self.bitrate_entry.get_text() + "K",
-                audio_filters_prefix,
-                audio_filters,
+                afilters_prefix,
+                afilters,
                 "-ac", "2" if self.downmix_switch.get_state() else "0",
                 "-map", "0:s?" if self.container == "mkv" else "-0:s",
                 "-c:s", "copy",
@@ -415,7 +426,7 @@ class MainWindow(Adw.Window):
             for progress in self.process.run_command_with_progress():
                 print(f"{progress}/100")
                 self.progress_bar.set_fraction(progress/100)
-                self.progress_bar.set_text(_("Encoding ~ {0}%").format(int(progress)))
+                self.progress_bar.set_text(_("Encoding ~ {0:0.1f}%").format(float(progress)))
             self.report_encode_finish(self.encode_start)
 
         thread = threading.Thread(target=run_in_thread)

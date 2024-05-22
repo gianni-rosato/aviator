@@ -2,7 +2,7 @@ app-id: net.natesales.Aviator
 command: aviator
 sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
-runtime-version: "45"
+runtime-version: "46"
 sdk-extensions:
  - org.freedesktop.Sdk.Extension.llvm17
 
@@ -52,7 +52,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/gianni-rosato/svt-av1-psy
-        commit: 5cac47c1eaee9c5229cdf693bf26e90ff6c54b40
+        commit: 5471bd78311d70ab4691af1ae54fd80e25f214f5
 
   - name: ffmpeg
     config-opts:
@@ -65,7 +65,16 @@ modules:
     sources:
       - type: git
         url: https://git.ffmpeg.org/ffmpeg.git
-        commit: e38092ef9395d7049f871ef4d5411eb410e283e0
+        commit: 083443d67cb159ce469e5d902346b8d0c2cd1c93
+
+  - name: nnedi3_weights.bin
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://github.com/dubhater/vapoursynth-nnedi3
+        commit: 8c35822ae358e46c99aae52e5a93010f1a5a6be6
+    build-commands:
+      - install src/nnedi3_weights.bin /app/bin/nnedi3_weights.bin
 
   - build-commands:
     - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
