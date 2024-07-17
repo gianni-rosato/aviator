@@ -1,0 +1,425 @@
+# German translation for net.natesales.Aviator
+# Copyright (C) 2015-2024 The Aviator Contributors
+# This file is distributed under the same license as the Aviator package.
+# Sebin Nyshkim <sebin.nyshkim@icloud.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version:  \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-08 16:16+0300\n"
+"PO-Revision-Date: 2024-07-15 18:06+0200\n"
+"Last-Translator: Sebin Nyshkim <sebin.nyshkim@icloud.com>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Gtranslator 46.1\n"
+
+#: data/net.natesales.Aviator.desktop.in:4
+#: data/net.natesales.Aviator.metainfo.xml.in:11 data/ui/startup.ui:6
+#: data/ui/window.ui:35
+msgid "Aviator"
+msgstr "Aviator"
+
+#: data/net.natesales.Aviator.desktop.in:5
+msgid "AV1/OPUS Video Encoder"
+msgstr "AV1/OPUS Video-Umwandler"
+
+#: data/net.natesales.Aviator.metainfo.xml.in:12
+msgid "Your Video Copilot: AV1/OPUS Video Encoder"
+msgstr "Ihr Video-Copilot: AV1/OPUS Video-Umwandler"
+
+#: data/net.natesales.Aviator.metainfo.xml.in:15
+msgid ""
+"Aviator enables simple, easy-to-use video encoding for the world's most "
+"advanced open video codec, AV1."
+msgstr ""
+"Aviator ermöglicht eine einfache, benutzerfreundliche Videocodierung für den "
+"weltweit fortschrittlichsten offenen Videocodec AV1."
+
+#: data/net.natesales.Aviator.metainfo.xml.in:17
+msgid ""
+"Encode your favorite media into super efficient files with incredible "
+"quality per bit, powered by the SVT-AV1 production encoder with Opus for "
+"audio encoding. The sky's the limit for your old home video collection &amp; "
+"large 4k smartphone videos, and you can fly in style with a beautiful "
+"libadwaita interface."
+msgstr ""
+"Wandeln Sie Ihre Lieblingsmedien in supereffiziente Dateien mit "
+"unglaublicher Qualität pro Bit um, angetrieben durch den SVT-AV1-"
+"Produktionskodierer mit Opus für die Audiokodierung. Grenzenlose "
+"Umwandlungsmöglichkeiten für Ihre alte Heimvideosammlung &amp; große 4k-"
+"Smartphone-Videos, alles in einer anschaulichen libadwaita Oberfläche."
+
+#: data/net.natesales.Aviator.metainfo.xml.in:22
+msgid "Take off with Aviator!"
+msgstr "Abheben mit Aviator!"
+
+#: data/ui/startup.ui:33
+msgid "Welcome to Aviator"
+msgstr "Willkommen bei Aviator"
+
+#: data/ui/startup.ui:34
+msgid "Your video copilot is ready for takeoff!"
+msgstr "Ihr Video-Copilot ist bereit zum Abflug!"
+
+#: data/ui/startup.ui:42
+msgid "Go"
+msgstr "Los"
+
+#: data/ui/window.ui:8
+msgid "_About Aviator"
+msgstr "_Info zu Aviator"
+
+#: data/ui/window.ui:12
+msgid "Quit"
+msgstr "Beenden"
+
+#: data/ui/window.ui:47
+msgid "_Video"
+msgstr "_Video"
+
+#: data/ui/window.ui:57
+msgid "Open"
+msgstr "Öffnen"
+
+#: data/ui/window.ui:59
+msgid "Open your source media."
+msgstr "Quelldatei öffnen"
+
+#: data/ui/window.ui:93
+msgid "_Source File"
+msgstr "_Quelldatei"
+
+#: data/ui/window.ui:95
+msgid "Displays the source filename."
+msgstr "Zeigt den Quelldateinamen."
+
+#: data/ui/window.ui:106
+msgid "_Resolution"
+msgstr "_Auflösung"
+
+#: data/ui/window.ui:108
+msgid ""
+"Sets the output resolution. Width & height will match the source media if "
+"left empty. Putting in one value will automatically calculate the other "
+"based on the source video's aspect ratio if \"Crop\" is unchecked; "
+"otherwise, the empty value will match the original."
+msgstr ""
+"Legt die Ausgabeauflösung fest. Leer lassen, um Auflösung beizubehalten. Der "
+"Wert des anderen Feldes wird automatisch auf Grundlage des "
+"Seitenverhältnisses berechnet, sofern \"Zuschneiden\" deaktiviert ist; "
+"andernfalls wird der leere Wert dem Original entsprechen."
+
+#: data/ui/window.ui:112
+msgid "Deinterlace"
+msgstr "Entflechten"
+
+#: data/ui/window.ui:115
+msgid ""
+"Enable deinterlacing of interlaced inputs using neural network edge directed "
+"interpolation alongside detelecining to produce progressive video. If your "
+"source is in an interlaced format (1080i, 720i, 480i, etc), it will be "
+"convert to a progressive format (1080p, 720p, 480p, etc) which is optimal "
+"for AV1 encoding. Unless you know your source is interlaced &amp; you would "
+"like it not to be, leave this disabled."
+msgstr ""
+"Aktiviert das Entflechten (Deinterlacing) von Quellmedien mit "
+"Zeilensprungverfahren (Interlacing), indem es neben der Entflechtung auch "
+"die kantengesteuerte Interpolation eines neuronalen Netzwerks verwendet, um "
+"ein Video im Vollbildformat zu erzeugen. Wenn Ihre Quelle ein "
+"Zeilensprungformat (1080i, 720i, 480i usw.) hat, wird sie in ein "
+"Vollbildformat (1080p, 720p, 480p usw.) umgewandelt, das für die AV1-"
+"Kodierung optimal ist. Nur aktivieren wenn Sie wissen, dass Ihre Quelle im "
+"Zeilensprungverfahren vorliegt und dies nicht wünschen."
+
+#: data/ui/window.ui:121
+msgid "Crop"
+msgstr "Zuschneiden"
+
+#: data/ui/window.ui:124
+msgid "When enabled, crops instead of scaling to the target resolution."
+msgstr ""
+"Wenn aktiviert, wird das Video zugeschnitten statt auf die Zielauflösung "
+"skaliert."
+
+#: data/ui/window.ui:148
+msgid "Width"
+msgstr "Breite"
+
+#: data/ui/window.ui:154
+msgid "Height"
+msgstr "Höhe"
+
+#: data/ui/window.ui:186
+msgid "CRF"
+msgstr "CRF"
+
+#: data/ui/window.ui:187
+msgid ""
+"The CRF value determines the size & quality of your output. Higher values "
+"mean lower file size & quality while lower values create larger, higher-"
+"quality videos."
+msgstr ""
+"Der CRF-Wert bestimmt die Größe und Qualität der Ausgabe. Höhere Werte "
+"bedeuten eine geringere Dateigröße und Qualität, niedrigere Werte größere "
+"Videos mit höherer Qualität."
+
+#: data/ui/window.ui:192
+msgid "Perceptual Tuning"
+msgstr "Bildoptimierung"
+
+#: data/ui/window.ui:195
+msgid ""
+"Tunes the encoder for perceptual quality (Tune 3: Subjective SSIM in SVT-AV1-"
+"PSY). Disable for better metric performance in exchange for generally "
+"degraded visual fidelity. For the best-looking video, leave enabled."
+msgstr ""
+"Stimmt den Encoder auf die Wahrnehmungsqualität ab (Tune 3: Subjektiver SSIM "
+"in SVT-AV1-PSY). Deaktivieren Sie diese Option, um eine bessere metrische "
+"Leistung zu erzielen. Geht jedoch mit einer allgemein schlechteren visuellen "
+"Qualität einher. Für die beste Bildqualität sollte diese Option aktiviert "
+"sein."
+
+#: data/ui/window.ui:221
+msgid "_Speed"
+msgstr "_Geschwindigkeit"
+
+#: data/ui/window.ui:222
+msgid ""
+"This value determines how hard your system will work to encode your video. "
+"Lower values mean your system will take longer to encode the video, but the "
+"files will be higher quality. Higher values will encode less efficiently, "
+"but much more quickly."
+msgstr ""
+"Dieser Wert bestimmt, wie intensiv Ihr System für die Umwandlung des Videos "
+"arbeiten wird. Niedrigere Werte resultieren in höherer Qualität, benötigen "
+"aber mehr Zeit zum Umwandeln. Höhere Werte resultieren in niedrigerer "
+"Qualität, die Umwandlung dauert dafür jedoch nicht so lang."
+
+#: data/ui/window.ui:238
+msgid "Speeds below 3 are extremely slow and not recommended."
+msgstr ""
+"Geschwindigkeiten unter 3 sind extrem langsam und werden nicht empfohlen."
+
+#: data/ui/window.ui:244
+msgid "oGOP"
+msgstr "oGOP"
+
+#: data/ui/window.ui:247
+msgid ""
+"Enables Open GOPs. GOPs are \"Group(s) of Pictures.\" Enabling allows GOPs "
+"to reference one another, but this usually does not improve visual fidelity "
+"per bit. If unsure, keep this box unchecked."
+msgstr ""
+"Aktiviert offene GOPs. GOPs sind \"Gruppe(n) von Bildern\". Wenn Sie diese "
+"Option aktivieren, können GOPs aufeinander verweisen, was jedoch in der "
+"Regel die visuelle Wiedergabetreue pro Bit nicht verbessert. Wenn Sie sich "
+"nicht sicher sind, lassen Sie diese Option deaktiviert."
+
+#: data/ui/window.ui:275
+msgid "_Grain Synth"
+msgstr "_Körnung"
+
+#: data/ui/window.ui:276
+msgid ""
+"This value determines how much artificial grain will be applied to your "
+"video. Use when your source has grain."
+msgstr ""
+"Dieser Wert bestimmt, wie viel künstliche Filmkörnung auf Ihr Video "
+"angewendet wird. Verwenden Sie diesen Wert, wenn Ihre Quelle Filmkörnung "
+"aufweist."
+
+#: data/ui/window.ui:281
+msgid "Denoise"
+msgstr "Entrauschen"
+
+#: data/ui/window.ui:284
+msgid ""
+"Denoises the input video before adding film grain. Determined based on the "
+"amount of added grain. Can reduce detail retention, so it is disabled by "
+"default."
+msgstr ""
+"Entrauscht das Eingangsvideo vor dem Hinzufügen von Filmkörnung. Die "
+"Intensität des Entrauschens wird anhand der Menge angewandter Filmkörnung "
+"bestimmt. Entrauschen kann den Erhalt von Details beeinträchtigen, daher ist "
+"diese Option standardmäßig nicht aktiv."
+
+#: data/ui/window.ui:321
+msgid "_Audio"
+msgstr "_Ton"
+
+#: data/ui/window.ui:355
+msgid "_Bitrate"
+msgstr "_Bitrate"
+
+#: data/ui/window.ui:357
+msgid ""
+"Sets the audio bitrate to a value in kb/s. Higher values mean better quality "
+"at the expense of filesize. We recommend a value between 32 & 128 for stereo "
+"audio, >224 for 5.1 Surround, & >336 for 7.1 Surround. If a value from the "
+"source media isn't detected, this will default to 80 kb/s. "
+msgstr ""
+"Setzt die Audio-Bitrate auf einen Wert in kb/s. Höhere Werte bedeuten "
+"bessere Qualität auf Kosten der Dateigröße. Wir empfehlen einen Wert "
+"zwischen 32 und 128 für Stereo-Audio, >224 für 5.1 Surround und >336 für 7.1 "
+"Surround. Wenn auf dem Quellmedium kein Wert erkannt wird, wird dieser Wert "
+"auf 80 kb/s gesetzt."
+
+#: data/ui/window.ui:367
+msgid "kb/s"
+msgstr "kb/s"
+
+#: data/ui/window.ui:378
+msgid "_Downmix to Stereo"
+msgstr "_Stereo-Downmix"
+
+#: data/ui/window.ui:380
+msgid ""
+"Mixes audio inputs with more than two channels (5.1 Surround, 7.1 Surround, "
+"etc) down to two audio channels."
+msgstr ""
+"Mischt Audiospuren mit mehr als zwei Kanälen (5.1 Surround, 7.1 Surround, "
+"usw.) auf zwei Audiokanäle herunter."
+
+#: data/ui/window.ui:393
+msgid "_Copy Audio"
+msgstr "_Ton kopieren"
+
+#: data/ui/window.ui:395 data/ui/window.ui:401
+msgid ""
+"Ignores all options on this page & copies audio directly from the source "
+"untouched. Disables WebM output."
+msgstr ""
+"Ignoriert alle Optionen auf dieser Seite und übernimmt den Ton unverändert "
+"aus der Quelle. Deaktiviert die WebM-Ausgabe."
+
+#: data/ui/window.ui:416
+msgid "_Volume"
+msgstr "_Lautstärke"
+
+#: data/ui/window.ui:417
+msgid ""
+"Increase or decrease audio volume. Measured in decibles. Positive numbers "
+"will increase volume while negative numbers will decrease it."
+msgstr ""
+"Erhöht oder verringert die Audiolautstärke. Gemessen in Dezibel. Positive "
+"Zahlen erhöhen die Lautstärke, negative Zahlen verringern sie."
+
+#: data/ui/window.ui:422
+msgid "Normalize"
+msgstr "Normalisieren"
+
+#: data/ui/window.ui:425
+msgid "Normalize the audio's perceived loudness."
+msgstr "Normalisiert die wahrgenommene Lautstärke des Tons."
+
+#: data/ui/window.ui:463
+msgid "_Export"
+msgstr "_Export"
+
+#: data/ui/window.ui:480
+msgid "_Output File"
+msgstr "_Ausgabedatei"
+
+#: data/ui/window.ui:482
+msgid "Select the output directory & type in a filename."
+msgstr "Wählen Sie das Ausgabeverzeichnis und geben Sie einen Dateinamen ein."
+
+#: data/ui/window.ui:514
+msgid "_Container"
+msgstr "_Container"
+
+#: data/ui/window.ui:516
+msgid ""
+"The container your video is stored in, which is associated with the file "
+"extension. MKV is a universal video container with widespread support, while "
+"WebM is designed for web compatibility & may break subtitles."
+msgstr ""
+"Containerformat und Dateiendung, mit dem das Video gespeichert wird. MKV ist "
+"ein universeller Videocontainer mit weit verbreiteter Unterstützung, während "
+"WebM für die Webkompatibilität entwickelt wurde und möglicherweise keine "
+"Untertitel unterstützt."
+
+#: data/ui/window.ui:529
+msgid "Selecting WebM output will strip subtitles for compatibility reasons."
+msgstr ""
+"Wenn Sie die WebM-Ausgabe wählen, werden die Untertitel aus "
+"Kompatibilitätsgründen entfernt."
+
+#: data/ui/window.ui:534
+msgid "MKV"
+msgstr "MKV"
+
+#: data/ui/window.ui:540
+msgid "WEBM"
+msgstr "WebM"
+
+#: data/ui/window.ui:556
+msgid "Encode"
+msgstr "Umwandeln"
+
+#: data/ui/window.ui:558
+msgid ""
+"Begin encoding! Watch the progress bar to see how quickly your encode is "
+"progressing."
+msgstr ""
+"Umwandlung starten! Der Fortschrittsbalken zeigt, wie schnell die Umwandlung "
+"voranschreitet."
+
+#: data/ui/window.ui:592
+msgid "Stop"
+msgstr "Anhalten"
+
+#: src/main.py:79
+msgid "Select Source Files"
+msgstr "Quelldateien wählen"
+
+#: src/main.py:81
+msgid "Select Source File"
+msgstr "Quelldatei wählen"
+
+#: src/main.py:84
+msgid "Select Output Files"
+msgstr "Ausgabedateien wählen"
+
+#: src/main.py:86
+msgid "Select Output File"
+msgstr "Ausgabedatei wählen"
+
+#: src/main.py:94
+msgid "_Cancel"
+msgstr "_Abbrechen"
+
+#: src/main.py:95
+msgid "_Select"
+msgstr "_Auswählen"
+
+#: src/main.py:205
+msgid "0%"
+msgstr "0%"
+
+#: src/main.py:287
+#, python-brace-format
+msgid "Encode finished in {0}! ✈️"
+msgstr "Umwandlung abgeschlossen in {0}! ✈️"
+
+#: src/main.py:289
+msgid "Encode Finished ~ 0%"
+msgstr "Umwandlung abgeschlossen ~ 0%"
+
+#: src/main.py:418
+#, python-brace-format
+msgid "Encoding ~ {0}%"
+msgstr "Umwandeln ~ {0}%"
+
+#. TRANSLATORS: eg. 'Translator Name <your.email@domain.com>' or 'Translator Name https://website.example'
+#: src/main.py:468
+msgid "translator-credits"
+msgstr "Sebin Nyshkim https://sebin-nyshkim.net"
+
+#: src/main.py:478
+msgid "Special thanks to the encoding community!"
+msgstr "Besonderen Dank an die Kodiergemeinschaft!"
