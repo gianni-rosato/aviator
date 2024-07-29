@@ -45,15 +45,19 @@
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/gianni-rosato/aviator/main/assets/aviator_welcome.png</image>
+      <caption>Welcome screen</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/gianni-rosato/aviator/main/assets/aviator_video.png</image>
+      <caption>Video screen with tweak options</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/gianni-rosato/aviator/main/assets/aviator_audio.png</image>
+      <caption>Audio screen with tweak options</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/gianni-rosato/aviator/main/assets/aviator_output.png</image>
+      <caption>Export screen</caption>
     </screenshot>
   </screenshots>
 
