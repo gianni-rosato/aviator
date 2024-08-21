@@ -14,7 +14,7 @@ finish-args:
   - --socket=fallback-x11
   - --filesystem=host
 
-build-options: 
+build-options:
   prepend-ld-library-path: /usr/lib/sdk/llvm17/lib
   prepend-path: /usr/lib/sdk/llvm17/bin
 
@@ -43,8 +43,6 @@ modules:
       - "-DCMAKE_C_FLAGS=-O3 -flto"
       - "-DBUILD_SHARED_LIBS=ON"
       - "-DBUILD_APPS=OFF"
-      - "-DBUILD_DEC=OFF"
-      - "-DBUILD_ENC=ON"
       - "-DBUILD_TESTING=OFF"
     cleanup:
       - "/include"
@@ -52,7 +50,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/gianni-rosato/svt-av1-psy
-        commit: 5471bd78311d70ab4691af1ae54fd80e25f214f5
+        commit: f9dc2b747f31ea36053ed6d7f47b86bb3ca461f7
 
   - name: ffmpeg
     config-opts:
@@ -65,7 +63,7 @@ modules:
     sources:
       - type: git
         url: https://git.ffmpeg.org/ffmpeg.git
-        commit: 083443d67cb159ce469e5d902346b8d0c2cd1c93
+        commit: e3a61e91030696348b56361bdf80ea358aef4a19
 
   - name: nnedi3_weights.bin
     buildsystem: simple

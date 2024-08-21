@@ -477,6 +477,7 @@ class AviatorApplication(Adw.Application):
                                 issue_url="https://github.com/gianni-rosato/aviator/issues")
         # TRANSLATORS: eg. 'Translator Name <your.email@domain.com>' or 'Translator Name https://website.example'
         about.set_translator_credits(_("translator-credits"))
+        about.add_link(_("Donate"), 'https://github.com/sponsors/gianni-rosato')
         about.set_developers(
             [
                 "Nate Sales https://natesales.net",
@@ -491,7 +492,7 @@ class AviatorApplication(Adw.Application):
                 "AV1 For Dummies https://discord.gg/bbQD5MjDr3",
                 "SVT-AV1-PSY Fork https://github.com/gianni-rosato/svt-av1-psy",
                 "Codec Wiki https://wiki.x266.mov/"
-            ]    
+            ]
         )
         about.add_legal_section(
             title='FFmpeg',

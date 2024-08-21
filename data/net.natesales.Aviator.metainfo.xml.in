@@ -63,6 +63,26 @@
 
   <releases>
 
+    <release version="0.6.2" date="2024-08-21">
+        <description translate="no">
+        <p>A new SVT-AV1-PSY release, and some new translations thanks to the community!</p>
+        <p>First, Aviator changes:</p>
+        <ul>
+            <li>Added French translation</li>
+            <li>Added German translation</li>
+            <li>Updated to FFmpeg 7.0.2 &amp; SVT-AV1-PSY v2.2.0</li>
+            <li>Added a donation link to the About dialogue under Details</li>
+        </ul>
+        <p>SVT-AV1-PSY (v2.2.0) updates relevant to Aviator:</p>
+        <ul>
+            <li>Better 10-bit processing on Preset 3 &amp; below</li>
+            <li>Presets 0 through 8 have been sped up by roughly 15%</li>
+            <li>More ARM optimizations that translate to an additional ~15% speedup with 10-bit 4k output</li>
+            <li>General visual fidelity improvements</li>
+        </ul>
+        </description>
+    </release>
+
     <release version="0.6.1" date="2024-05-22">
       <description translate="no">
         <p>A new SVT-AV1-PSY release, plus new filtering options for telecined &amp; interlaced videos!</p>
@@ -195,7 +215,7 @@
         <p>Fix: proper subtitle handling for WebM</p>
       </description>
     </release>
-    
+
     <release version="0.2.0" date="2023-02-11">
       <description translate="no">
         <p>I know it has been a long time coming, but this time, we have a plethora of changes to report!</p>
@@ -215,7 +235,7 @@
         <p>And probably more minor tweaks that I'm forgetting. Enjoy!</p>
       </description>
     </release>
-    
+
     <release version="0.1.2" date="2022-10-23">
       <description translate="no">
         <p>Fix: typos</p>
