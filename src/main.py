@@ -196,6 +196,7 @@ class MainWindow(Adw.Window):
 
         # resolution and audio bitrate
         self.metadata: (float, float, float) = ()
+        self.bitrate_entry.set_text(str(80))
 
         # Absolute source path file
         self.source_file_absolute = ""
@@ -238,7 +239,6 @@ class MainWindow(Adw.Window):
 
     @Gtk.Template.Callback()
     def open_source_file(self, button):
-        self.bitrate_entry.set_text(str(80))
         FileSelectDialog(
             parent=self,
             select_multiple=False,
