@@ -2,9 +2,9 @@ app-id: net.natesales.Aviator
 command: aviator
 sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
-runtime-version: "46"
+runtime-version: "47"
 sdk-extensions:
- - org.freedesktop.Sdk.Extension.llvm17
+  - org.freedesktop.Sdk.Extension.llvm19
 
 
 finish-args:
@@ -15,8 +15,8 @@ finish-args:
   - --filesystem=host
 
 build-options:
-  prepend-ld-library-path: /usr/lib/sdk/llvm17/lib
-  prepend-path: /usr/lib/sdk/llvm17/bin
+  prepend-ld-library-path: /usr/lib/sdk/llvm19/lib
+  prepend-path: /usr/lib/sdk/llvm19/bin
 
 cleanup:
   - /include
@@ -50,9 +50,15 @@ modules:
     sources:
       - type: git
         url: https://github.com/gianni-rosato/svt-av1-psy
-        commit: f9dc2b747f31ea36053ed6d7f47b86bb3ca461f7
+        commit: 0fb626ba370f006564396c49f2a97330ab330e1a
 
   - name: ffmpeg
+    build-options:
+      env:
+        CC: clang
+        CXX: clang++
+        LD: lld
+        LDFLAGS: "-fuse-ld=lld"
     config-opts:
       - --enable-static
       - --enable-gpl
@@ -63,7 +69,7 @@ modules:
     sources:
       - type: git
         url: https://git.ffmpeg.org/ffmpeg.git
-        commit: e3a61e91030696348b56361bdf80ea358aef4a19
+        commit: b08d7969c550a804a59511c7b83f2dd8cc0499b8
 
   - name: nnedi3_weights.bin
     buildsystem: simple

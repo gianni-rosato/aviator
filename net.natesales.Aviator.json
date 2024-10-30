@@ -5,7 +5,7 @@
     "runtime": "org.gnome.Platform",
     "runtime-version": "master",
     "sdk-extensions": [
-        "org.freedesktop.Sdk.Extension.llvm17"
+        "org.freedesktop.Sdk.Extension.llvm19"
     ],
     "finish-args": [
         "--share=ipc",
@@ -15,8 +15,8 @@
         "--filesystem=host"
     ],
     "build-options": {
-        "prepend-ld-library-path": "/usr/lib/sdk/llvm17/lib",
-        "prepend-path": "/usr/lib/sdk/llvm17/bin"
+        "prepend-ld-library-path": "/usr/lib/sdk/llvm19/lib",
+        "prepend-path": "/usr/lib/sdk/llvm19/bin"
     },
     "cleanup": [
         "/include",
@@ -56,7 +56,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/gianni-rosato/svt-av1-psy",
-                    "commit": "5cac47c1eaee9c5229cdf693bf26e90ff6c54b40"
+                    "commit": "0fb626ba370f006564396c49f2a97330ab330e1a"
                 }
             ]
         },
@@ -74,7 +74,7 @@
                 {
                     "type": "git",
                     "url": "https://git.ffmpeg.org/ffmpeg.git",
-                    "commit": "e38092ef9395d7049f871ef4d5411eb410e283e0"
+                    "commit": "b08d7969c550a804a59511c7b83f2dd8cc0499b8"
                 }
             ]
         },

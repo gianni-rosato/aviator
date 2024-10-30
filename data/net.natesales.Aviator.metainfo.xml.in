@@ -63,6 +63,33 @@
 
   <releases>
 
+    <release version="0.6.3" date="2024-10-30">
+        <description translate="no">
+        <p>We're back with another Aviator release, featuring small bug fixes and an SVT-AV1-PSY update!</p>
+       	<p>Bug fixes:</p>
+        <ul>
+           	<li>Fixed the hicolor icon mislabeled as scalable</li>
+           	<li>Fixed audio bitrate resetting when opening a new file</li>
+        </ul>
+       	<p>SVT-AV1-PSY v2.3.0 improvements relevant to Aviator:</p>
+        <ul>
+           	<li>Encoding with odd (non-mod2) dimensions is now possible</li>
+           	<li>Encoding at resolutions lower than 64x64 is now possible, down to as small as 4x4</li>
+           	<li>Improved color reproduction &amp; overall picture quality when "Perceptual Tuning" is disabled</li>
+           	<li>General perceptual fidelity improvements with "Perceptual Tuning" enabled</li>
+           	<li>General performance improvements, especially on ARM platforms</li>
+            <li>Various bug fixes</li>
+        </ul>
+       	<p>Other changes:</p>
+        <ul>
+            <li>Removed sharpness usage when "Perceptual Tuning" is enabled</li>
+            <li>Updated FFmpeg to version 7.1</li>
+            <li>Updated llvm to version 19 for project compilation</li>
+            <li>Updated to GNOME SDK 47</li>
+        </ul>
+        </description>
+    </release>
+
     <release version="0.6.2" date="2024-08-21">
         <description translate="no">
         <p>A new SVT-AV1-PSY release, and some new translations thanks to the community!</p>

@@ -1,5 +1,5 @@
 project('aviator',
-  version: '0.6.2',
+  version: '0.6.3',
   meson_version: '>= 0.59',
 )
 

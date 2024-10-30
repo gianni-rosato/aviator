@@ -18,7 +18,7 @@ A Flatpak-first easy-to-use GUI for encoding with SVT-AV1-PSY & libopus.
 
 Aviator enables simple & easy video encoding for the world's most advanced open video codec, AV1. Encode your favorite media into super efficient files with incredible quality per bit, powered by our custom SVT-AV1-PSY encoder with libopus for audio encoding. The sky's the limit for your old home video collection, large 4k smartphone videos, screen recordings, Blu-ray rips, you name it - take off with Aviator!
 
-Aviator is designed to be a no frills, easy to use AV1 encoding GUI that any beginner can pick up and immediately understand how to use. 
+Aviator is designed to be a no frills, easy to use AV1 encoding GUI that any beginner can pick up and immediately understand how to use.
 
 ## Installation
 
@@ -44,7 +44,7 @@ Third party packaging formats are not officially supported by Aviator, and if yo
 
 [AV1](https://wiki.x266.mov/docs/video/AV1) aims to be royalty-free efficient alternative to older codecs like [H.265](https://wiki.x266.mov/docs/video/HEVC) and [H.264](https://wiki.x266.mov/docs/video/AVC).
 
-To encode AV1 video, we've traditionally used the mainline [SVT-AV1](https://wiki.x266.mov/docs/encoders/SVT-AV1) production encoder to power scalable, fast, and feature-rich encoding in Aviator. As of early 2024, we've opted to switch to [SVT-AV1-PSY](https://github.com/gianni-rosato/svt-av1-psy) in order to maintain more control over the encoder's development and optimize for visual fidelity as much as possible. SVT-AV1-PSY promises users a fast, perceptually optimized AV1 encoder implementation that is designed to effectively take advantage of system resources.
+To encode AV1 video, we're using [SVT-AV1-PSY](https://svt-av1-psy.com/) to optimize our encoding pipeline for maximum visual fidelity per bit. SVT-AV1-PSY promises users a fast, perceptually optimized AV1 encoder implementation that is designed to effectively take advantage of system resources.
 
 Aviator comes bundled with its own version of FFmpeg that is capable decoding videos, upscaling & downscaling videos with the sharp Catmull-Rom scaling algorithm, & encoding audio using the Opus audio codec via libopus.
 
