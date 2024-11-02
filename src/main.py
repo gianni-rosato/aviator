@@ -466,8 +466,7 @@ class AviatorApplication(Adw.Application):
             self.win.present()
 
     def about_dialog(self, *args):
-        about = Adw.AboutWindow(transient_for=self.win,
-                                application_name="Aviator",
+        about = Adw.AboutDialog(application_name="Aviator",
                                 application_icon="net.natesales.Aviator",
                                 developer_name="Nate Sales & Gianni Rosato",
                                 version=self.version,
@@ -504,7 +503,7 @@ class AviatorApplication(Adw.Application):
             copyright='Copyright © 2024 Alliance for Open Media',
             license_type=Gtk.License.BSD,
         )
-        about.present()
+        about.present(self.props.active_window)
 
     def quit(self, action=None, user_data=None):
         exit()
