@@ -6,3 +6,5 @@ __pycache__/
 build/
 dist/
 .flatpak-builder/
+
+/subprojects/blueprint-compiler
