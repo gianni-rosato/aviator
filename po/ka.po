@@ -1,0 +1,390 @@
+# Georgian translation for Aviator.
+# Copyright (C) 2025 Aviator's authors
+# This file is distributed under the same license as the Aviator package.
+# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Aviator\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-08 16:16+0300\n"
+"PO-Revision-Date: 2025-01-08 05:12+0100\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <(nothing)>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#: data/net.natesales.Aviator.desktop.in:4
+#: data/net.natesales.Aviator.metainfo.xml.in:11 data/ui/startup.ui:6
+#: data/ui/window.ui:35
+msgid "Aviator"
+msgstr "Aviator"
+
+#: data/net.natesales.Aviator.desktop.in:5
+msgid "AV1/OPUS Video Encoder"
+msgstr "AV1/OPUS-ის ვიდეოენკოდერი"
+
+#: data/net.natesales.Aviator.metainfo.xml.in:12
+msgid "Your Video Copilot: AV1/OPUS Video Encoder"
+msgstr "თქვენი ვიდეო კოპილოტი: AV1/OPUS-ის ვიდეოენკოდერი"
+
+#: data/net.natesales.Aviator.metainfo.xml.in:15
+msgid ""
+"Aviator enables simple, easy-to-use video encoding for the world's most "
+"advanced open video codec, AV1."
+msgstr ""
+"Aviator გაწვდით იოლ, მარტივ გზას დააკოდიროთ ფაილები მსოფლიოში ყველაზე "
+"მოწინავე ღია ვიდეოკოდეკით - AV1."
+
+#: data/net.natesales.Aviator.metainfo.xml.in:17
+msgid ""
+"Encode your favorite media into super efficient files with incredible "
+"quality per bit, powered by the SVT-AV1 production encoder with Opus for "
+"audio encoding. The sky's the limit for your old home video collection &amp; "
+"large 4k smartphone videos, and you can fly in style with a beautiful "
+"libadwaita interface."
+msgstr ""
+"დააკოდირეთ რჩეული მეტია სუპერ-ეფექტურ ფაილებში შესანიშნავი ხარისხით, SVT-AV1 "
+"ენკოდერით, რომელიც აუდიოსთვის Opus-ს იყენებს. თქვენი ძველი "
+"ვიდეოკოლექციიებისთვის და დიდი 4k ტელეფონის ვიდეოებისთვის. ახლა ზღვარი, "
+"მხოლოდ, ცაა და ფრენა კი ლამაზი libadwaita-ის ინტერფეისით შეიძლიათ."
+
+#: data/net.natesales.Aviator.metainfo.xml.in:22
+msgid "Take off with Aviator!"
+msgstr "მოგესალმებათ Aviator!"
+
+#: data/ui/startup.ui:33
+msgid "Welcome to Aviator"
+msgstr "კეთილი იყოს თქვენი მობრძანება Aviator-ში"
+
+#: data/ui/startup.ui:34
+msgid "Your video copilot is ready for takeoff!"
+msgstr "თქვენი ვიდეო კოპილოტი ასაფრენად მზადაა!"
+
+#: data/ui/startup.ui:42
+msgid "Go"
+msgstr "წინ"
+
+#: data/ui/window.ui:8
+msgid "_About Aviator"
+msgstr "Aviator-ის შეს_ახებ"
+
+#: data/ui/window.ui:12
+msgid "Quit"
+msgstr "გასვლა"
+
+#: data/ui/window.ui:47
+msgid "_Video"
+msgstr "_ვიდეო"
+
+#: data/ui/window.ui:57
+msgid "Open"
+msgstr "გახსნა"
+
+#: data/ui/window.ui:59
+msgid "Open your source media."
+msgstr "თქვენი წყარო მედიის გახსნა."
+
+#: data/ui/window.ui:93
+msgid "_Source File"
+msgstr "_წყარო ფაილი"
+
+#: data/ui/window.ui:95
+msgid "Displays the source filename."
+msgstr "აჩვენებს წყარო ფაილის სახელს."
+
+#: data/ui/window.ui:106
+msgid "_Resolution"
+msgstr "გა_რჩევადობა"
+
+#: data/ui/window.ui:108
+msgid ""
+"Sets the output resolution. Width & height will match the source media if "
+"left empty. Putting in one value will automatically calculate the other "
+"based on the source video's aspect ratio if \"Crop\" is unchecked; "
+"otherwise, the empty value will match the original."
+msgstr ""
+"დააყენებს გამოსატან გაფართოებას. სიგანე და სიმაღლე წყარო მედიის ტოლი იქნება, "
+"თუ ცარიელს დატოვებთ. ერთი მნიშვნელობის ჩაწერა ავტომატურად გამოითვლის მეორედ "
+"წყარო ვიდეოს ზომების ფარდობის მიხედვით, თუ \"ამოჭრა\" გამორთულია. წინააღმდეგ "
+"შემთხვევაში ცარიელი მნიშვნელობა ორიგინალს დაემთხვევა."
+
+#: data/ui/window.ui:121
+msgid "Crop"
+msgstr "ამოჭრა"
+
+#: data/ui/window.ui:124
+msgid "When enabled, crops instead of scaling to the target resolution."
+msgstr "როცა ჩართულია, ის ამოჭრის, სამიზნე გაფართოებამდე დამასშტაბების მაგიერ."
+
+#: data/ui/window.ui:148
+msgid "Width"
+msgstr "სიგანე"
+
+#: data/ui/window.ui:154
+msgid "Height"
+msgstr "სიმაღლე"
+
+#: data/ui/window.ui:186
+msgid "CRF"
+msgstr "CRF"
+
+#: data/ui/window.ui:187
+msgid ""
+"The CRF value determines the size & quality of your output. Higher values "
+"mean lower file size & quality while lower values create larger, higher-"
+"quality videos."
+msgstr ""
+"CRF-ის მნიშვნელობა გამოტანილი ვიდეოს ზომასა და ხარისხს განსაზღვრავს. რაც "
+"მაღალია მნიშვნელობა, მით მცირეა ფაილის ზომა და ხარისხი მაშინ, როცა დაბალი "
+"მნიშვნელობით უფრო დიდ, უკეთესი ხარისხის ვიდეოებს მიიღებთ."
+
+#: data/ui/window.ui:192
+msgid "Perceptual Tuning"
+msgstr ""
+
+#: data/ui/window.ui:195
+msgid ""
+"Tunes the encoder for perceptual quality (Tune 3: Subjective SSIM in SVT-AV1-"
+"PSY). Disable for better metric performance in exchange for generally "
+"degraded visual fidelity. For the best-looking video, leave enabled."
+msgstr ""
+
+#: data/ui/window.ui:221
+msgid "_Speed"
+msgstr "_სიჩქარე"
+
+#: data/ui/window.ui:222
+msgid ""
+"This value determines how hard your system will work to encode your video. "
+"Lower values mean your system will take longer to encode the video, but the "
+"files will be higher quality. Higher values will encode less efficiently, "
+"but much more quickly."
+msgstr ""
+"ეს მნიშვნელობა განსაზღვრავს, რა დონეზე ძალიან შეეცდება თქვენი სისტემა, "
+"თქვენი ვიდეო კარგად დააკოდიროს. რაც დაბალია მნიშვნელობა, მით მეტხანს "
+"მოუნდება სისტემა ვიდეოს კოდირებას, მაგრამ მიღებულ ფაილს უკეთესი ხარისხი "
+"ექნება. რაც მაღალია მნიშვნელობა, კოდირება ნაკლებად ეფექტური იქნება, მაგრამ "
+"გაცილებით სწრაფი."
+
+#: data/ui/window.ui:238
+msgid "Speeds below 3 are extremely slow and not recommended."
+msgstr "სიჩქარეები 3-ზე ქვემოთ საშინლად ნელია და რეკომენდებული არაა."
+
+#: data/ui/window.ui:244
+msgid "oGOP"
+msgstr "oGOP"
+
+#: data/ui/window.ui:247
+msgid ""
+"Enables Open GOPs. GOPs are \"Group(s) of Pictures.\" Enabling allows GOPs "
+"to reference one another, but this usually does not improve visual fidelity "
+"per bit. If unsure, keep this box unchecked."
+msgstr ""
+"GOP-ების გახსნის დაშვება. GOP არის \"სურათების ჯგუფი\" (Group Of Pictures). "
+"ჩართვა საშუალებას აძლევს GOP-ებს, ერთმანეთს მიმართონ, მაგრამ ეს, ჩვეულებრივ, "
+"ვიზუალს არ აუმჯობესებს. თუ დარწმუნებული არ ბრძანდებით, ეს რა არის, დატოვეთ "
+"ეს გამორთული."
+
+#: data/ui/window.ui:275
+msgid "_Grain Synth"
+msgstr "_მარცვლის სინთეზატორი"
+
+#: data/ui/window.ui:276
+msgid ""
+"This value determines how much artificial grain will be applied to your "
+"video. Use when your source has grain."
+msgstr ""
+"ეს მნიშვნელობა განსაზღვრავს, რამდენად ბევრი მარცვალი გადატარდება თქვენს "
+"ვიდეოზე. გამოიყენეთ, მხოლოდ, მაშინ, როცა თქვენს წყაროს აქვს მარცვლები."
+
+#: data/ui/window.ui:281
+msgid "Denoise"
+msgstr "ხმაურის მოცილება"
+
+#: data/ui/window.ui:284
+msgid ""
+"Denoises the input video before adding film grain. Determined based on the "
+"amount of added grain. Can reduce detail retention, so it is disabled by "
+"default."
+msgstr ""
+"მოაცილებს შეყვანილ ვიდეოს ხმაურს მარცვლების დამატებამდე. განისაზღვრება "
+"დამატებული მარცვლების რაოდენობით. შეუძლია, შეამციროს დეტალების ხილვადობა, "
+"ამიტომ ნაგულისხმევად გათიშულია."
+
+#: data/ui/window.ui:321
+msgid "_Audio"
+msgstr "_აუდიო"
+
+#: data/ui/window.ui:355
+msgid "_Bitrate"
+msgstr "_სიჩქარე"
+
+#: data/ui/window.ui:357
+msgid ""
+"Sets the audio bitrate to a value in kb/s. Higher values mean better quality "
+"at the expense of filesize. We recommend a value between 32 & 128 for stereo "
+"audio, >224 for 5.1 Surround, & >336 for 7.1 Surround. If a value from the "
+"source media isn't detected, this will default to 80 kb/s. "
+msgstr ""
+"დააყენებს აუდიოს ბიტურ სიხშირეს კბ/წმ-ში. რაც მაღალია მნიშვნელობა, მით "
+"მაღალია ხარისხიც, ფაილის ზომის ზრდის ხარჯზე. ჩვენს მიერ რეკომენდებულია "
+"მნიშვნელობა შუალედიდან 32 და 128 სტერეო აუდიოსთვის, >224 5.1-სთვის და >336 "
+"7.1-სთვის. თუ მნიშვნელობა წყარო მედიიდან დადგენილი არაა, ამის ნაგულისხმევი "
+"მნიშვნელობა 80 კბ/წმ იქნება. "
+
+#: data/ui/window.ui:367
+msgid "kb/s"
+msgstr "კბ/წმ"
+
+#: data/ui/window.ui:378
+msgid "_Downmix to Stereo"
+msgstr "სტერეოზე გა_დაყვანა"
+
+#: data/ui/window.ui:380
+msgid ""
+"Mixes audio inputs with more than two channels (5.1 Surround, 7.1 Surround, "
+"etc) down to two audio channels."
+msgstr ""
+"შეურევს 2-ზე მეტი არხის (5.1, 7.1 და ა.შ.) მქონე შეყვანების არხებს სტერეომდე."
+
+#: data/ui/window.ui:393
+msgid "_Copy Audio"
+msgstr "აუდიოს _კოპირება"
+
+#: data/ui/window.ui:395 data/ui/window.ui:401
+msgid ""
+"Ignores all options on this page & copies audio directly from the source "
+"untouched. Disables WebM output."
+msgstr ""
+"გამოტოვებს ყველა პარამეტრს ამ გვერდზე და დააკოპირებს აუდიოს პირდაპირ "
+"წყაროდან შეხების გარეშე. გათიშავს WebM-ში გატანას."
+
+#: data/ui/window.ui:416
+msgid "_Volume"
+msgstr "_ხმა"
+
+#: data/ui/window.ui:417
+msgid ""
+"Increase or decrease audio volume. Measured in decibles. Positive numbers "
+"will increase volume while negative numbers will decrease it."
+msgstr ""
+"აუწევს ან ჩაუწევს ხმას. განისაზღვრება დეციბელებში. დადებითი რიცხვი აუწევს "
+"ხმას, უარყოფითი კი - ჩაუწევს."
+
+#: data/ui/window.ui:422
+msgid "Normalize"
+msgstr "ნორმალიზაცია"
+
+#: data/ui/window.ui:425
+msgid "Normalize the audio's perceived loudness."
+msgstr "აუდიოს ხმის სიძლიერის ნორმალიზაცია."
+
+#: data/ui/window.ui:463
+msgid "_Export"
+msgstr "გატანა"
+
+#: data/ui/window.ui:480
+msgid "_Output File"
+msgstr "გამ_ოტანის ფაილი"
+
+#: data/ui/window.ui:482
+msgid "Select the output directory & type in a filename."
+msgstr "აირჩიეთ გამოტანის საქაღალდე და ჩაწერეთ ფაილის სახელი."
+
+#: data/ui/window.ui:514
+msgid "_Container"
+msgstr "_კონტეინერი"
+
+#: data/ui/window.ui:516
+msgid ""
+"The container your video is stored in, which is associated with the file "
+"extension. MKV is a universal video container with widespread support, while "
+"WebM is designed for web compatibility & may break subtitles."
+msgstr ""
+"კონტეინერი, რომელშიც შენახულია თქვენი ვიდეო, რომელიც ასოცირებულია ფაილის "
+"გაფართოებასთან. MKV გავრცელებული, უნივერსალური ვიდეოკონტეინერია კარგი "
+"მხარდაჭერით, WebM კი განკუთვნილია ვებთან თავსებადობისთვის და, შეიძლება, "
+"სუბტიტრები გააფუჭოს."
+
+#: data/ui/window.ui:529
+msgid "Selecting WebM output will strip subtitles for compatibility reasons."
+msgstr "WebM-ის წაშლა მოაცილებს სუბტიტრებს თავსებადობისთვის."
+
+#: data/ui/window.ui:534
+msgid "MKV"
+msgstr "MKV"
+
+#: data/ui/window.ui:540
+msgid "WEBM"
+msgstr "WEBM"
+
+#: data/ui/window.ui:556
+msgid "Encode"
+msgstr "კოდირება"
+
+#: data/ui/window.ui:558
+msgid ""
+"Begin encoding! Watch the progress bar to see how quickly your encode is "
+"progressing."
+msgstr ""
+"დაიწყეთ კოდირება! უყურეთ მიმდინარეობის ზოლს, რომ დაინახოთ, რა სწრაფად "
+"მიმდინარეობს თქვენი კოდირება."
+
+#: data/ui/window.ui:592
+msgid "Stop"
+msgstr "შეჩერება"
+
+#: src/main.py:79
+msgid "Select Source Files"
+msgstr "აირჩიეთ წყარო ფაილები"
+
+#: src/main.py:81
+msgid "Select Source File"
+msgstr "აირჩიეთ საწყისი ფაილი"
+
+#: src/main.py:84
+msgid "Select Output Files"
+msgstr "აირჩიეთ გამოტანის ფაილები"
+
+#: src/main.py:86
+msgid "Select Output File"
+msgstr "აირჩიეთ გამოტანის ფაილი"
+
+#: src/main.py:94
+msgid "_Cancel"
+msgstr "_შეწყვეტა"
+
+#: src/main.py:95
+msgid "_Select"
+msgstr "_მონიშვნა"
+
+#: src/main.py:205
+msgid "0%"
+msgstr "0%"
+
+#: src/main.py:287
+#, python-brace-format
+msgid "Encode finished in {0}! ✈️"
+msgstr "კოდირების დასრულების დროა {0}! ✈️"
+
+#: src/main.py:289
+msgid "Encode Finished ~ 0%"
+msgstr "კოდირება დასრულდა ~ 0%"
+
+#: src/main.py:418
+#, python-brace-format
+msgid "Encoding ~ {0}%"
+msgstr "კოდირება ~ {0}%"
+
+#. TRANSLATORS: eg. 'Translator Name <your.email@domain.com>' or 'Translator Name https://website.example'
+#: src/main.py:468
+msgid "translator-credits"
+msgstr "თემური დოღონაძე"
+
+#: src/main.py:478
+msgid "Special thanks to the encoding community!"
+msgstr "დიდი მადლობა კოდირების ხალხს!"
