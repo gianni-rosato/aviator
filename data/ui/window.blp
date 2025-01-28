@@ -1,0 +1,447 @@
+using Gtk 4.0;
+using Adw 1;
+
+menu primary_menu {
+  section {
+    item {
+      label: _("_About Aviator");
+      action: "app.about";
+    }
+
+    item {
+      label: _("Quit");
+      action: "app.quit";
+    }
+  }
+}
+
+template $AviatorWindow: Adw.Window {
+  modal: false;
+  width-request: 380;
+  height-request: 294;
+
+  content: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      centering-policy: strict;
+
+      [end]
+      MenuButton {
+        menu-model: primary_menu;
+        icon-name: "open-menu-symbolic";
+      }
+
+      title-widget: Adw.ViewSwitcherTitle switcher_title {
+        stack: stack;
+        title: _("Aviator");
+      };
+    }
+
+    content: Adw.ViewStack stack {
+      Adw.ViewStackPage {
+        name: "page1";
+        title: _("_Video");
+        icon-name: "video-display-symbolic";
+        use-underline: true;
+
+        child: Box {
+          orientation: vertical;
+          homogeneous: false;
+
+          Button {
+            margin-top: 32;
+            label: _("Open");
+            halign: center;
+            tooltip-text: _("Open your source media.");
+            clicked => $open_source_file();
+
+            styles [
+              "pill",
+            ]
+          }
+
+          Adw.PreferencesPage {
+            Adw.PreferencesGroup {
+              Adw.ActionRow {
+                title: _("_Source File");
+                use-underline: true;
+                tooltip-text: _("Displays the source filename.");
+
+                Label source_file_label {
+                  label: "";
+                }
+              }
+
+              Adw.ActionRow {
+                title: _("_Resolution");
+                use-underline: true;
+                tooltip-text: _("Sets the output resolution. Width & height will match the source media if left empty. Putting in one value will automatically calculate the other based on the source video's aspect ratio if \"Crop\" is unchecked; otherwise, the empty value will match the original.");
+
+                CheckButton deinterlace_toggle {
+                  active: false;
+                  label: _("Deinterlace");
+                  valign: center;
+                  hexpand: false;
+                  tooltip-text: _("Enable deinterlacing of interlaced inputs using neural network edge directed interpolation alongside detelecining to produce progressive video. If your source is in an interlaced format (1080i, 720i, 480i, etc), it will be convert to a progressive format (1080p, 720p, 480p, etc) which is optimal for AV1 encoding. Unless you know your source is interlaced & you would like it not to be, leave this disabled.");
+                }
+
+                CheckButton crop_toggle {
+                  active: true;
+                  label: _("Crop");
+                  valign: center;
+                  hexpand: false;
+                  tooltip-text: _("When enabled, crops instead of scaling to the target resolution.");
+                }
+
+                Box {
+                  Box {
+                    margin-top: 8;
+                    margin-bottom: 8;
+
+                    styles [
+                      "linked",
+                    ]
+
+                    Entry resolution_width_entry {
+                      placeholder-text: _("Width");
+                      max-width-chars: 7;
+                    }
+
+                    Entry resolution_height_entry {
+                      placeholder-text: _("Height");
+                      max-width-chars: 7;
+                    }
+                  }
+                }
+              }
+
+              Adw.ActionRow {
+                title: _("CRF");
+                tooltip-text: _("The CRF value determines the size & quality of your output. Higher values mean lower file size & quality while lower values create larger, higher-quality videos.");
+                use-underline: true;
+
+                CheckButton psy_toggle {
+                  active: true;
+                  label: _("Perceptual Tuning");
+                  valign: center;
+                  hexpand: false;
+                  tooltip-text: _("Tunes the encoder for perceptual quality (Tune 3: Subjective SSIM in SVT-AV1-PSY). Disable for better metric performance in exchange for generally degraded visual fidelity. For the best-looking video, leave enabled.");
+                }
+
+                Scale crf_scale {
+                  halign: end;
+                  valign: center;
+                  draw-value: true;
+                  digits: 0;
+                  value-pos: left;
+                  width-request: 300;
+
+                  adjustment: Adjustment {
+                    upper: 63;
+                    lower: 1;
+                    step-increment: 1;
+                    page-increment: 1;
+                  };
+                }
+              }
+
+              Adw.ActionRow {
+                title: _("_Speed");
+                tooltip-text: _("This value determines how hard your system will work to encode your video. Lower values mean your system will take longer to encode the video, but the files will be higher quality. Higher values will encode less efficiently, but much more quickly.");
+                use-underline: true;
+
+                Image warning_image_speed {
+                  icon-name: "dialog-warning";
+                  visible: false;
+                  margin-end: 0;
+                  tooltip-text: _("Speeds below 3 are extremely slow and not recommended.");
+                }
+
+                CheckButton gop_toggle {
+                  active: false;
+                  label: _("oGOP");
+                  valign: center;
+                  hexpand: false;
+                  tooltip-text: _("Enables Open GOPs. GOPs are \"Group(s) of Pictures.\" Enabling allows GOPs to reference one another, but this usually does not improve visual fidelity per bit. If unsure, keep this box unchecked.");
+                }
+
+                Scale speed_scale {
+                  halign: end;
+                  valign: center;
+                  draw-value: true;
+                  digits: 0;
+                  value-pos: left;
+                  width-request: 300;
+
+                  adjustment: Adjustment {
+                    upper: 12;
+                    value: 6;
+                    lower: -2;
+                    step-increment: 1;
+                    page-increment: 1;
+                    value-changed => $speed_changed();
+                  };
+                }
+              }
+
+              Adw.ActionRow {
+                title: _("_Grain Synth");
+                tooltip-text: _("This value determines how much artificial grain will be applied to your video. Use when your source has grain.");
+                use-underline: true;
+
+                CheckButton denoise_toggle {
+                  active: false;
+                  label: _("Denoise");
+                  valign: center;
+                  hexpand: false;
+                  tooltip-text: _("Denoises the input video before adding film grain. Determined based on the amount of added grain. Can reduce detail retention, so it is disabled by default.");
+                }
+
+                Scale grain_scale {
+                  halign: end;
+                  valign: center;
+                  draw-value: true;
+                  digits: 0;
+                  value-pos: left;
+                  width-request: 300;
+
+                  adjustment: Adjustment {
+                    upper: 50;
+                    value: 0;
+                    lower: 0;
+                    step-increment: 1;
+                    page-increment: 1;
+                  };
+                }
+              }
+            }
+          }
+        };
+      }
+
+      Adw.ViewStackPage {
+        name: "page2";
+        title: _("_Audio");
+        icon-name: "audio-speakers-symbolic";
+        use-underline: true;
+
+        child: Box {
+          orientation: vertical;
+          homogeneous: false;
+
+          Adw.PreferencesPage {
+            margin-top: 16;
+
+            Adw.PreferencesGroup {
+              Adw.ActionRow {
+                title: _("_Bitrate");
+                use-underline: true;
+                tooltip-text: _("Sets the audio bitrate to a value in kb/s. Higher values mean better quality at the expense of filesize. We recommend a value between 32 & 128 for stereo audio, >224 for 5.1 Surround, & >336 for 7.1 Surround. If a value from the source media isn't detected, this will default to 80 kb/s. ");
+
+                Box {
+                  margin-top: 8;
+                  margin-bottom: 8;
+
+                  styles [
+                    "linked",
+                  ]
+
+                  Entry bitrate_entry {
+                    placeholder-text: _("kb/s");
+                    max-width-chars: 5;
+                  }
+                }
+              }
+
+              Adw.ActionRow {
+                title: _("_Downmix to Stereo");
+                use-underline: true;
+                tooltip-text: _("Mixes audio inputs with more than two channels (5.1 Surround, 7.1 Surround, etc) down to two audio channels.");
+
+                Switch downmix_switch {
+                  active: false;
+                  valign: center;
+                }
+              }
+
+              Adw.ActionRow {
+                title: _("_Copy Audio");
+                use-underline: true;
+                tooltip-text: _("Ignores all options on this page & copies audio directly from the source untouched. Disables WebM output.");
+
+                Image info_copy_audio {
+                  icon-name: "dialog-information";
+                  visible: true;
+                  margin-end: 20;
+                  tooltip-text: _("Ignores all options on this page & copies audio directly from the source untouched. Disables WebM output.");
+                }
+
+                Switch audio_copy_switch {
+                  active: false;
+                  state-set => $empty_or_not_empty();
+                  valign: center;
+                }
+              }
+
+              Adw.ActionRow {
+                title: _("_Volume");
+                tooltip-text: _("Increase or decrease audio volume. Measured in decibles. Positive numbers will increase volume while negative numbers will decrease it.");
+                use-underline: true;
+
+                CheckButton loudnorm_toggle {
+                  active: false;
+                  label: _("Normalize");
+                  valign: center;
+                  hexpand: false;
+                  tooltip-text: _("Normalize the audio's perceived loudness.");
+                }
+
+                Scale volume_scale {
+                  halign: end;
+                  valign: center;
+                  draw-value: true;
+                  digits: 0;
+                  value-pos: left;
+                  width-request: 300;
+
+                  adjustment: Adjustment {
+                    upper: 10;
+                    value: 0;
+                    lower: -10;
+                    step-increment: 1;
+                    page-increment: 1;
+                  };
+                }
+              }
+            }
+          }
+        };
+      }
+
+      Adw.ViewStackPage {
+        name: "page3";
+        title: _("_Export");
+        icon-name: "folder-download-symbolic";
+        use-underline: true;
+
+        child: Box {
+          orientation: vertical;
+          homogeneous: false;
+
+          Adw.PreferencesPage {
+            Adw.PreferencesGroup {
+              margin-top: 16;
+
+              Adw.ActionRow {
+                title: _("_Output File");
+                use-underline: true;
+                tooltip-text: _("Select the output directory & type in a filename.");
+
+                Box {
+                  Box {
+                    Label output_file_label {
+                      margin-end: 12;
+                      label: _("");
+                    }
+
+                    Button {
+                      valign: center;
+                      clicked => $open_output_file();
+
+                      child: Adw.ButtonContent {
+                        icon-name: "document-open-symbolic";
+                        use-underline: true;
+                      };
+                    }
+                  }
+                }
+              }
+
+              Adw.ActionRow {
+                title: _("_Container");
+                use-underline: true;
+                tooltip-text: _("The container your video is stored in, which is associated with the file extension. MKV is a universal video container with widespread support, while WebM is designed for web compatibility & may break subtitles.");
+
+                Box {
+                  margin-top: 10;
+                  margin-bottom: 10;
+
+                  styles [
+                    "linked",
+                  ]
+
+                  Image warning_image_webm {
+                    icon-name: "dialog-warning";
+                    visible: false;
+                    margin-end: 20;
+                    tooltip-text: _("Selecting WebM output will strip subtitles for compatibility reasons.");
+                  }
+
+                  Button container_mkv_button {
+                    label: _("MKV");
+                    clicked => $container_mkv();
+                  }
+
+                  Button container_webm_button {
+                    label: _("WEBM");
+                    sensitive: true;
+                    clicked => $container_webm();
+                  }
+                }
+              }
+            }
+          }
+
+          Button encode_button {
+            label: _("Encode");
+            halign: center;
+            tooltip-text: _("Begin encoding! Watch the progress bar to see how quickly your encode is progressing.");
+            clicked => $start_export();
+
+            styles [
+              "pill",
+              "suggested-action",
+            ]
+          }
+
+          ProgressBar progress_bar {
+            hexpand: true;
+            pulse-step: 1;
+            show-text: true;
+            margin-top: 48;
+            margin-bottom: 24;
+            margin-start: 128;
+            margin-end: 128;
+          }
+
+          Spinner encoding_spinner {
+            valign: center;
+            width-request: 32;
+            height-request: 32;
+            spinning: true;
+            visible: false;
+          }
+
+          Button stop_button {
+            margin-top: 24;
+            label: _("Stop");
+            halign: center;
+            visible: false;
+            clicked => $stop_encode();
+
+            styles [
+              "pill",
+              "destructive-action",
+            ]
+          }
+        };
+      }
+    };
+
+    [bottom]
+    Adw.ViewSwitcherBar switcher_bar {
+      stack: stack;
+      reveal: bind switcher_title.title-visible;
+    }
+  };
+}

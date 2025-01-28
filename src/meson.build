@@ -2,11 +2,21 @@ pkgdatadir = get_option('prefix') / get_option('datadir') / meson.project_name()
 moduledir = pkgdatadir / 'aviator'
 gnome = import('gnome')
 
+blueprints = custom_target('blueprints',
+  input: files(
+    '../data/ui/window.blp',
+    '../data/ui/startup.blp'
+  ),
+  output: '.',
+  command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
+)
+
 gnome.compile_resources('aviator',
   'aviator.gresource.xml',
   gresource_bundle: true,
   install: true,
   install_dir: pkgdatadir,
+  dependencies: blueprints,
 )
 
 python = import('python')

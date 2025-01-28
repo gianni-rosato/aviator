@@ -1,0 +1,44 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $OnboardWindow: Adw.Window {
+  title: _("Aviator");
+  resizable: false;
+  deletable: true;
+  modal: true;
+  default-width: 600;
+  default-height: 600;
+
+  Adw.Leaflet {
+    orientation: vertical;
+
+    Box {
+      orientation: vertical;
+
+      Image image {
+        vexpand: false;
+        vexpand-set: true;
+        hexpand: false;
+        hexpand-set: true;
+        overflow: hidden;
+        pixel-size: 320;
+      }
+
+      Adw.StatusPage {
+        title: _("Welcome to Aviator");
+        description: _("Your video copilot is ready for takeoff!");
+      }
+
+      Button {
+        clicked => $go();
+        margin-bottom: 36;
+        label: _("Go");
+        halign: center;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+  }
+}
