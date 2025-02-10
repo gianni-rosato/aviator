@@ -210,7 +210,7 @@
                                                                         <property name="label" translatable="yes">Perceptual Tuning</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="hexpand">False</property>
-                                                                        <property name="tooltip-text" translatable="yes">Tunes the encoder for perceptual quality (Tune 3: Subjective SSIM in SVT-AV1-PSY). Disable for better metric performance in exchange for generally degraded visual fidelity. For the best-looking video, leave enabled.</property>
+                                                                        <property name="tooltip-text" translatable="yes">Tunes the encoder for perceptual quality (enables Psychovisual Rate Distortion in SVT-AV1-PSY). Disable for better metric performance in exchange for generally degraded visual fidelity. For the best-looking video, leave enabled.</property>
                                                                     </object>
                                                                 </child>
                                                                 <child>
@@ -405,7 +405,7 @@
                                                                 </child>
                                                             </object>
                                                         </child>
-                                                        
+
                                                         <child>
                                                             <object class="AdwActionRow">
                                                                 <property name="title" translatable="yes">_Copy Audio</property>
@@ -464,7 +464,7 @@
                                                                 </child>
                                                             </object>
                                                         </child>
-                                                        
+
                                                     </object>
                                                 </child>
                                             </object>
@@ -603,7 +603,7 @@
                                                 <property name="visible">false</property>
                                             </object>
                                         </child>
-                                                                                
+
                                         <child>
                                             <object class="GtkButton" id="stop_button">
                                                 <property name="margin-top">24</property>

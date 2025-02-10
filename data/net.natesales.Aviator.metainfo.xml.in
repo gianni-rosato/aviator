@@ -63,6 +63,20 @@
 
   <releases>
 
+    <release version="0.6.4" date="2025-02-10">
+        <description translate="no">
+        <p>We're back with another Aviator release, featuring some new translations and an SVT-AV1-PSY update!</p>
+       	<p>SVT-AV1-PSY v2.3.0-B improvements relevant to Aviator:</p>
+        <ul>
+           	<li>"Perceptual Tuning" now enables an option called psy-rd, or Psychovisual Rate Distortion, for better visual performance</li>
+        </ul>
+       	<p>Other changes:</p>
+        <ul>
+            <li>Added Georgian translation</li>
+        </ul>
+        </description>
+    </release>
+
     <release version="0.6.3" date="2024-10-30">
         <description translate="no">
         <p>We're back with another Aviator release, featuring small bug fixes and an SVT-AV1-PSY update!</p>
