@@ -1,7 +1,7 @@
 <div align="center">
 <h1>Aviator</h1>
 
-A Flatpak-first easy-to-use GUI for encoding with SVT-AV1-PSY & libopus.
+A Flatpak-first easy-to-use GUI for encoding with SVT-AV1-HDR & libopus.
 
 <img src="assets/aviator_splash2.avif" alt="Splash" width=450/>
 <br>
@@ -16,7 +16,7 @@ A Flatpak-first easy-to-use GUI for encoding with SVT-AV1-PSY & libopus.
 
 ## About
 
-Aviator enables simple & easy video encoding for the world's most advanced open video codec, AV1. Encode your favorite media into super efficient files with incredible quality per bit, powered by our custom SVT-AV1-PSY encoder with libopus for audio encoding. The sky's the limit for your old home video collection, large 4k smartphone videos, screen recordings, Blu-ray rips, you name it - take off with Aviator!
+Aviator enables simple & easy video encoding for the world's most advanced open video codec, AV1. Encode your favorite media into super efficient files with incredible quality per bit, powered by our custom SVT-AV1-HDR encoder with libopus for audio encoding. The sky's the limit for your old home video collection, large 4k smartphone videos, screen recordings, Blu-ray rips, you name it - take off with Aviator!
 
 Aviator is designed to be a no frills, easy to use AV1 encoding GUI that any beginner can pick up and immediately understand how to use.
 
@@ -44,7 +44,7 @@ Third party packaging formats are not officially supported by Aviator, and if yo
 
 [AV1](https://wiki.x266.mov/docs/video/AV1) aims to be royalty-free efficient alternative to older codecs like [H.265](https://wiki.x266.mov/docs/video/HEVC) and [H.264](https://wiki.x266.mov/docs/video/AVC).
 
-To encode AV1 video, we're using [SVT-AV1-PSY](https://svt-av1-psy.com/) to optimize our encoding pipeline for maximum visual fidelity per bit. SVT-AV1-PSY promises users a fast, perceptually optimized AV1 encoder implementation that is designed to effectively take advantage of system resources.
+To encode AV1 video, we're using [SVT-AV1-HDR](https://github.com/juliobbv-p/svt-av1-hdr) to optimize our encoding pipeline for maximum visual fidelity per bit. SVT-AV1-HDR promises users a fast, perceptually optimized AV1 encoder implementation that is designed to effectively take advantage of system resources.
 
 Aviator comes bundled with its own version of FFmpeg that is capable decoding videos, upscaling & downscaling videos with the sharp Catmull-Rom scaling algorithm, & encoding audio using the Opus audio codec via libopus.
 
@@ -56,7 +56,7 @@ Hovering over most user configurable options in Aviator will produce a helpful t
 
 <img src="assets/aviator_video.webp" alt="Aviator Video Settings" width=480/>
 
-By default, resolution will match your source's resolution. Manually changing one resolution value will automatically calculate the other based on the video's aspect ratio. Aviator's SVT-AV1-PSY speed preset is set to 6 by default, with a CRF (Constant Rate Factor) of 32. You can set CRF from 0 to 63 using the slider, with larger numerical values indicating smaller filesize at the expense of visual fidelity. Preset 6 offers a good balance between speed & compression efficiency at any CRF level.
+By default, resolution will match your source's resolution. Manually changing one resolution value will automatically calculate the other based on the video's aspect ratio. Aviator's SVT-AV1-HDR speed preset is set to 6 by default, with a CRF (Constant Rate Factor) of 32. You can set CRF from 0 to 63 using the slider, with larger numerical values indicating smaller filesize at the expense of visual fidelity. Preset 6 offers a good balance between speed & compression efficiency at any CRF level.
 
 The Grain Synth slider allows you to add artificial grain to your video to mimic natural grain. Grain Synth applies the artificial grain at decode time as a filter, which makes it easier to encode grainy videos at high fidelity. The Denoise switch removes noise from the video before applying artificial grain.
 
@@ -87,4 +87,4 @@ Let us know if you have any issues in our Issues section. Thank you for using Av
 
 ## Credits
 
-Actively developed by [Nate Sales](https://github.com/natesales/) & [Gianni Rosato](https://github.com/gianni-rosato/)
+Actively developed by [Gianni Rosato](https://github.com/gianni-rosato/)

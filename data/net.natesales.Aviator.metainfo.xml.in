@@ -63,6 +63,18 @@
 
   <releases>
 
+    <release version="0.7.0" date="2025-08-31">
+        <description translate="no">
+        <p>We're back with another Aviator release, featuring major dependency updates for improved performance.</p>
+        <ul>
+           	<li>We've switched to a new encoder called SVT-AV1-HDR, which should be significantly faster than SVT-AV1-PSY.</li>
+            <li>Updated FFmpeg to version 8.0</li>
+            <li>Updated GNOME runtime to version 48</li>
+            <li>Updated LLVM SDK to version 20</li>
+        </ul>
+        </description>
+    </release>
+
     <release version="0.6.4" date="2025-02-10">
         <description translate="no">
         <p>We're back with another Aviator release, featuring some new translations and an SVT-AV1-PSY update!</p>

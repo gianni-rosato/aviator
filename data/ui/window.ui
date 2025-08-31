@@ -210,7 +210,7 @@
                                                                         <property name="label" translatable="yes">Perceptual Tuning</property>
                                                                         <property name="valign">center</property>
                                                                         <property name="hexpand">False</property>
-                                                                        <property name="tooltip-text" translatable="yes">Tunes the encoder for perceptual quality (enables Psychovisual Rate Distortion in SVT-AV1-PSY). Disable for better metric performance in exchange for generally degraded visual fidelity. For the best-looking video, leave enabled.</property>
+                                                                        <property name="tooltip-text" translatable="yes">Tunes the encoder for perceptual quality (enables Psychovisual Rate Distortion in SVT-AV1-HDR). Disable for better metric performance in exchange for generally degraded visual fidelity. For the best-looking video, leave enabled.</property>
                                                                     </object>
                                                                 </child>
                                                                 <child>
@@ -257,15 +257,6 @@
                                                                     </object>
                                                                 </child>
                                                                 <child>
-                                                                    <object class="GtkCheckButton" id="gop_toggle">
-                                                                        <property name="active">False</property>
-                                                                        <property name="label" translatable="yes">oGOP</property>
-                                                                        <property name="valign">center</property>
-                                                                        <property name="hexpand">False</property>
-                                                                        <property name="tooltip-text" translatable="yes">Enables Open GOPs. GOPs are "Group(s) of Pictures." Enabling allows GOPs to reference one another, but this usually does not improve visual fidelity per bit. If unsure, keep this box unchecked.</property>
-                                                                    </object>
-                                                                </child>
-                                                                <child>
                                                                     <object class="GtkScale" id="speed_scale">
                                                                         <property name="halign">end</property>
                                                                         <property name="valign">center</property>
@@ -293,15 +284,6 @@
                                                                 <property name="title" translatable="yes">_Grain Synth</property>
                                                                 <property name="tooltip-text" translatable="yes">This value determines how much artificial grain will be applied to your video. Use when your source has grain.</property>
                                                                 <property name="use-underline">true</property>
-                                                                <child>
-                                                                    <object class="GtkCheckButton" id="denoise_toggle">
-                                                                        <property name="active">False</property>
-                                                                        <property name="label" translatable="yes">Denoise</property>
-                                                                        <property name="valign">center</property>
-                                                                        <property name="hexpand">False</property>
-                                                                        <property name="tooltip-text" translatable="yes">Denoises the input video before adding film grain. Determined based on the amount of added grain. Can reduce detail retention, so it is disabled by default.</property>
-                                                                    </object>
-                                                                </child>
                                                                 <child>
                                                                     <object class="GtkScale" id="grain_scale">
                                                                         <property name="halign">end</property>

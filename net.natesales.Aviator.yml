@@ -2,9 +2,9 @@ app-id: net.natesales.Aviator
 command: aviator
 sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
-runtime-version: "47"
+runtime-version: "48"
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.llvm19
+  - org.freedesktop.Sdk.Extension.llvm20
 
 
 finish-args:
@@ -15,8 +15,8 @@ finish-args:
   - --filesystem=host
 
 build-options:
-  prepend-ld-library-path: /usr/lib/sdk/llvm19/lib
-  prepend-path: /usr/lib/sdk/llvm19/bin
+  prepend-ld-library-path: /usr/lib/sdk/llvm20/lib
+  prepend-path: /usr/lib/sdk/llvm20/bin
 
 cleanup:
   - /include
@@ -30,7 +30,7 @@ cleanup:
   - '*.a'
 
 modules:
-  - name: svt-av1-psy
+  - name: svt-av1-hdr
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
@@ -49,8 +49,8 @@ modules:
       - "/lib/pkgconfig"
     sources:
       - type: git
-        url: https://github.com/gianni-rosato/svt-av1-psy
-        commit: ec65071b65ee70078229182ce6e1d0f6a4aa1a47
+        url: https://github.com/juliobbv-p/svt-av1-hdr
+        commit: 3b7097c3ca1194aa2590fa249ca95329323c9691
 
   - name: ffmpeg
     build-options:
@@ -69,7 +69,7 @@ modules:
     sources:
       - type: git
         url: https://git.ffmpeg.org/ffmpeg.git
-        commit: b08d7969c550a804a59511c7b83f2dd8cc0499b8
+        commit: 140fd653aed8cad774f991ba083e2d01e86420c7
 
   - name: nnedi3_weights.bin
     buildsystem: simple

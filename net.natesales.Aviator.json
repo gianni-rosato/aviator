@@ -5,7 +5,7 @@
     "runtime": "org.gnome.Platform",
     "runtime-version": "master",
     "sdk-extensions": [
-        "org.freedesktop.Sdk.Extension.llvm19"
+        "org.freedesktop.Sdk.Extension.llvm20"
     ],
     "finish-args": [
         "--share=ipc",
@@ -15,8 +15,8 @@
         "--filesystem=host"
     ],
     "build-options": {
-        "prepend-ld-library-path": "/usr/lib/sdk/llvm19/lib",
-        "prepend-path": "/usr/lib/sdk/llvm19/bin"
+        "prepend-ld-library-path": "/usr/lib/sdk/llvm20/lib",
+        "prepend-path": "/usr/lib/sdk/llvm20/bin"
     },
     "cleanup": [
         "/include",
@@ -31,7 +31,7 @@
     ],
     "modules": [
         {
-            "name": "svt-av1-psy",
+            "name": "svt-av1-hdr",
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
@@ -55,8 +55,8 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://github.com/gianni-rosato/svt-av1-psy",
-                    "commit": "ec65071b65ee70078229182ce6e1d0f6a4aa1a47"
+                    "url": "https://github.com/juliobbv-p/svt-av1-hdr",
+                    "commit": "3b7097c3ca1194aa2590fa249ca95329323c9691"
                 }
             ]
         },

@@ -1,22 +1,17 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import logging
+import os
 import sys
 import threading
-import subprocess
-import gi
-import json
-import os
 import time
-import shutil
-from ffmpeg_progress_yield import FfmpegProgress
-
 from pathlib import Path
+
+import gi
+from ffmpeg_progress_yield import FfmpegProgress
+from gi.repository import Adw, Gio, Gtk
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-
-from gi.repository import Gtk, Adw, Gio
 
 Adw.init()
 
@@ -147,13 +142,11 @@ class MainWindow(Adw.Window):
     deinterlace_toggle = Gtk.Template.Child()
     crop_toggle = Gtk.Template.Child()
     warning_image_speed = Gtk.Template.Child()
-    gop_toggle = Gtk.Template.Child()
     # scaling_method = Gtk.Template.Child()
     psy_toggle = Gtk.Template.Child()
     crf_scale = Gtk.Template.Child()
     speed_scale = Gtk.Template.Child()
     grain_scale = Gtk.Template.Child()
-    denoise_toggle = Gtk.Template.Child()
 
     # Audio page
     bitrate_entry = Gtk.Template.Child()
@@ -358,20 +351,10 @@ class MainWindow(Adw.Window):
 
             if self.psy_toggle.get_active():
                 psyrd: float = 1.0
-                tune: int = 2
+                tune: int = 0
             else:
                 psyrd: float = 0.0
                 tune: int = 1
-
-            if self.denoise_toggle.get_active():
-                denoise_val = 1
-            else:
-                denoise_val = 0
-
-            if self.gop_toggle.get_active():
-                gop_val = 1
-            else:
-                gop_val = 2
 
             if self.audio_copy_switch.get_state():
                 afilters = "-y"
@@ -406,7 +389,7 @@ class MainWindow(Adw.Window):
                 "-crf", str(int(self.crf_scale.get_value())),
                 "-preset", str(int(self.speed_scale.get_value())),
                 "-pix_fmt", "yuv420p10le",
-                "-svtav1-params", f"film-grain={int(self.grain_scale.get_value())}:" + f"tune={tune}:" + f"psy-rd={psyrd}:" + "input-depth=10:enable-qm=1:qm-min=0:keyint=300:aq-mode=2:" + f"irefresh-type={gop_val}:" + f"film-grain-denoise={denoise_val}",
+                "-svtav1-params", f"film-grain={int(self.grain_scale.get_value())}:" + f"tune={tune}:" + f"psy-rd={psyrd}:" + "input-depth=10",
                 "-map", "0:a?",
                 "-c:a", "copy" if self.audio_copy_switch.get_state() else "libopus",
                 "-mapping_family", "1",
@@ -470,7 +453,7 @@ class AviatorApplication(Adw.Application):
                                 application_icon="net.natesales.Aviator",
                                 developer_name="Nate Sales & Gianni Rosato",
                                 version=self.version,
-                                copyright="Copyright © 2024 Nate Sales &amp; Gianni Rosato",
+                                copyright="Copyright © 2025 Nate Sales &amp; Gianni Rosato",
                                 license_type=Gtk.License.GPL_3_0,
                                 website="https://github.com/gianni-rosato/aviator",
                                 issue_url="https://github.com/gianni-rosato/aviator/issues")
@@ -489,18 +472,18 @@ class AviatorApplication(Adw.Application):
             _("Special thanks to the encoding community!"),
             [
                 "AV1 For Dummies https://discord.gg/bbQD5MjDr3",
-                "SVT-AV1-PSY Fork https://github.com/gianni-rosato/svt-av1-psy",
+                "SVT-AV1-HDR Fork https://github.com/juliobbv-p/svt-av1-hdr",
                 "Codec Wiki https://wiki.x266.mov/"
             ]
         )
         about.add_legal_section(
             title='FFmpeg',
-            copyright='Copyright © 2024 FFmpeg',
+            copyright='Copyright © 2025 FFmpeg',
             license_type=Gtk.License.GPL_3_0,
         )
         about.add_legal_section(
             title='SVT-AV1',
-            copyright='Copyright © 2024 Alliance for Open Media',
+            copyright='Copyright © 2025 Alliance for Open Media',
             license_type=Gtk.License.BSD,
         )
         about.present(self.props.active_window)
