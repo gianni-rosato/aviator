@@ -2,9 +2,9 @@ app-id: net.natesales.Aviator
 command: aviator
 sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
-runtime-version: "48"
+runtime-version: "50"
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.llvm22
 
 
 finish-args:
@@ -15,8 +15,8 @@ finish-args:
   - --filesystem=host
 
 build-options:
-  prepend-ld-library-path: /usr/lib/sdk/llvm20/lib
-  prepend-path: /usr/lib/sdk/llvm20/bin
+  prepend-ld-library-path: /usr/lib/sdk/llvm22/lib
+  append-path: /usr/lib/sdk/llvm22/bin
 
 cleanup:
   - /include
@@ -50,7 +50,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/juliobbv-p/svt-av1-hdr
-        commit: 3b7097c3ca1194aa2590fa249ca95329323c9691
+        commit: 8d13912d5e0e6b611e3d482d880b41a7f2e5cd52
 
   - name: ffmpeg
     build-options:
@@ -69,7 +69,7 @@ modules:
     sources:
       - type: git
         url: https://git.ffmpeg.org/ffmpeg.git
-        commit: 140fd653aed8cad774f991ba083e2d01e86420c7
+        commit: fcffc0e1c5f82aa134d476fcbbc65e291a0ec958
 
   - name: nnedi3_weights.bin
     buildsystem: simple
